@@ -1,0 +1,29 @@
+# IDE folder
+/.idea
+/**/.idea
+
+# Microsoft office Lockfiles
+~$*
+*.tmp
+
+# Test files
+test.*
+*.test.*
+/test
+
+# Output of compiling
+/out
+/build
+/target
+/cmake-build-debug
+# for QT, both as single directory and as subfolders
+/build-*-*
+/*/build-*-*
+
+# Dealing with BlueJ
+*.bluej
+*.out
+*.ctxt
+
+# Dealing with Mac users
+.DS_Store
