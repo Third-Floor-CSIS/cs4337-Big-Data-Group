@@ -1,16 +1,15 @@
-name: Build
+name: Build and Unit test
 
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 21
@@ -19,5 +18,5 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
-      - name: Build with Maven
+      - name: Unit test with Maven
         run: mvn clean install site -P test
