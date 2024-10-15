@@ -1,0 +1,27 @@
+2024-10-16T00:05:12.415+01:00  INFO 19144 --- [TemplateProject] [main] c.g.T.TemplateProjectApplication         : Starting TemplateProjectApplication using Java 23 with PID 19144 (C:\Users\kmila\IdeaProjects\cs4337-Big-Data-Group\TemplateProject\target\classes started by kmila in C:\Users\kmila\IdeaProjects\cs4337-Big-Data-Group)
+2024-10-16T00:05:12.417+01:00  INFO 19144 --- [TemplateProject] [main] c.g.T.TemplateProjectApplication         : No active profile set, falling back to 1 default profile: "default"
+2024-10-16T00:05:13.066+01:00  INFO 19144 --- [TemplateProject] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-16T00:05:13.120+01:00  INFO 19144 --- [TemplateProject] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 46 ms. Found 1 JPA repository interface.
+2024-10-16T00:05:14.047+01:00  WARN 19144 --- [TemplateProject] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2024-10-16T00:05:14.081+01:00  INFO 19144 --- [TemplateProject] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-10-16T00:05:14.128+01:00 ERROR 19144 --- [TemplateProject] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to bind properties under 'server.port' to java.lang.Integer:
+
+    Property: server.port
+    Value: "${SAMPLE_MICROSERVICE_PORT}"
+    Origin: class path resource [application.properties] - 14:13
+    Reason: failed to convert java.lang.String to java.lang.Integer (caused by java.lang.NumberFormatException: For input string: "${SAMPLE_MICROSERVICE_PORT}")
+
+Action:
+
+Update your application's configuration
+
