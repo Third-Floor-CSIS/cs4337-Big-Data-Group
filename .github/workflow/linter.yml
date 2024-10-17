@@ -1,0 +1,36 @@
+name: Linter
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main   
+
+jobs: 
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'maven'
+        
+      - name: Install Dependencies with Maven
+        run: mvn install -DskipTests=true
+
+      - name: Run Checkstyle
+        run: mvn checkstyle:check
+
+      - name: Upload Checkstyle Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkstyle-report
+          path: target/checkstyle-result.xml
