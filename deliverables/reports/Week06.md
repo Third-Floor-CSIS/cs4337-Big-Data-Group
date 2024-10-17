@@ -14,13 +14,18 @@
 
 ## Work
 
-| Issue ID | Trello Link         | Pull Request Link     | Status  | Student ID | Issue Description                                  | 
-|----------|---------------------|-----------------------|---------|------------|----------------------------------------------------|
-| 16       | [Trello][trello_32] | [Pull Request][pr_17] | Pending | 21308128   | Template for Microservices                         |
-| 22       | [Trello][trello_33] | [Pull Request][pr_20] | Pending | 21308128   | Add images and report structure                    |
-| 19       | [Trello][trello_35] | [Pull Request][pr_20] | Pending | 21308128   | Sync everyone's code (styles.xml)                  |
-| 23       | [Trello][trello_19] |                       | Done    | 21308128   | Familiarise the team with Spring boot architecture | 
+| Index | Issue ID          | Trello Link         | Pull Request Link     | Status  | Student ID | Issue Description                                  | 
+|-------|-------------------|---------------------|-----------------------|---------|------------|----------------------------------------------------|
+| 0     | [Issue][issue_16] | [Trello][trello_32] | [Pull Request][pr_17] | Pending | 21308128   | Template for Microservices                         |
+| 1     | [Issue][issue_22] | [Trello][trello_33] | [Pull Request][pr_20] | Pending | 21308128   | Add images and report structure                    |
+| 2     | [Issue][issue_19] | [Trello][trello_35] | [Pull Request][pr_20] | Pending | 21308128   | Sync everyone's code (styles.xml)                  |
+| 3     | [Issue][issue_23] | [Trello][trello_19] |                       | Done    | 21308128   | Familiarise the team with Spring boot architecture | 
 
+
+[issue_16]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/16
+[issue_19]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/19
+[issue_22]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/22
+[issue_23]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/23
 
 [trello_19]: https://trello.com/c/aw4hsgn1/19-familiarise-the-team-with-springboot-layered-architecture
 [trello_32]: https://trello.com/c/aI8gZGVV/32-template-microservice
