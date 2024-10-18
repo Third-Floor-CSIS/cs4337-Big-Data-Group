@@ -24,13 +24,18 @@
 | 5     |                   | [Trello][trello_33] | [Pull Request][pr_24] | Pending | 12136891   | This report structure                              |
 | 6     | [Issue][issue_25] | [Trello][trello_12] |                       | Pending | 18265693   | Springboot for API-Gateway foundation              |
 | 7     | [Issue][issue_21] | [Trello][trello_18] |                       | Pending | 21342342   | Post Microservice fondation                        |
-
+| 8     | [Issue][issue_26] | [Trello][trello_17] |                       | Pending | 21332673   | Add liquibase                                      |
+| 8     | [Issue][issue_26] | [Trello][trello_13] |                       | Pending | 21332673   | Create service registry                            |
 [issue_16]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/16
 [issue_19]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/19
 [issue_22]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/22
 [issue_23]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/23
 [issue_25]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/25
 [issue_21]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/21
+[issue_26]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/26
+[issue_26]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/27
+[trello_13]: https://trello.com/c/3LMcupSB/13-create-service-registry
+[trello_17]: https://trello.com/c/byGSYX2K/17-add-liquibase
 [trello_18]: https://trello.com/c/blueC4WS/15-posts-microservice-foundations
 [trello_19]: https://trello.com/c/aw4hsgn1/19-familiarise-the-team-with-springboot-layered-architecture
 [trello_32]: https://trello.com/c/aI8gZGVV/32-template-microservice
