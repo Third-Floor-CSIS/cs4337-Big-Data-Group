@@ -22,12 +22,14 @@
 | 3     | [Issue][issue_23] | [Trello][trello_19] |                       | Done    | 21308128   | Familiarise the team with Spring boot architecture | 
 | 4     |                   | [Trello][trello_36] |                       | Done    | 12136891   | Set up a discord integration for Github            |
 | 5     |                   | [Trello][trello_33] | [Pull Request][pr_24] | Pending | 12136891   | This report structure                              |
+| 6     | [Issue][issue_25] | [Trello][trello_12] |                       | Pending | 18265693   | Springboot for API-Gateway foundation              |
 
 
 [issue_16]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/16
 [issue_19]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/19
 [issue_22]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/22
 [issue_23]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/23
+[issue_25]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/25
 [trello_19]: https://trello.com/c/aw4hsgn1/19-familiarise-the-team-with-springboot-layered-architecture
 [trello_32]: https://trello.com/c/aI8gZGVV/32-template-microservice
 [trello_33]: https://trello.com/c/aQ5SbfPd/33-add-documentation-images-to-repo
@@ -36,7 +38,7 @@
 [pr_17]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/17
 [pr_20]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/20
 [pr_24]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/24
-
+[trello_12]: https://trello.com/c/JublwPPu/12-create-api-gateway-module-foundations
 
 | Blockers | Student ID | Description | Approach to resolve |
 |----------|------------|-------------|---------------------|
