@@ -24,19 +24,23 @@
 | 5     |                   | [Trello][trello_33] | [Pull Request][pr_24] | Pending | 12136891   | This report structure                              |
 | 6     | [Issue][issue_25] | [Trello][trello_12] |                       | Pending | 18265693   | Springboot for API-Gateway foundation              |
 | 7     | [Issue][issue_21] | [Trello][trello_18] |                       | Pending | 21342342   | Post Microservice fondation                        |
+| 8     | [Issue][issue_3]  | [Trello][trello_2]  | [Pull Request][pr_14] | Done    | 21332142   | Linter for pipeline                                |
 
+[issue_3]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/3
 [issue_16]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/16
 [issue_19]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/19
 [issue_22]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/22
 [issue_23]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/23
 [issue_25]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/25
 [issue_21]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/21
+[trello_2]: https://trello.com/c/7Nh3QhXY/2-lint-pipeline
 [trello_18]: https://trello.com/c/blueC4WS/15-posts-microservice-foundations
 [trello_19]: https://trello.com/c/aw4hsgn1/19-familiarise-the-team-with-springboot-layered-architecture
 [trello_32]: https://trello.com/c/aI8gZGVV/32-template-microservice
 [trello_33]: https://trello.com/c/aQ5SbfPd/33-add-documentation-images-to-repo
 [trello_35]: https://trello.com/c/xpqAsiQ7/35-sync-code-styles
 [trello_36]: https://trello.com/c/JpIkQlMn/36-discord-intergration-for-github
+[pr_14]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/14
 [pr_17]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/17
 [pr_20]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/20
 [pr_24]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/24
