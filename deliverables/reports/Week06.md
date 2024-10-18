@@ -23,13 +23,15 @@
 | 4     |                   | [Trello][trello_36] |                       | Done    | 12136891   | Set up a discord integration for Github            |
 | 5     |                   | [Trello][trello_33] | [Pull Request][pr_24] | Pending | 12136891   | This report structure                              |
 | 6     | [Issue][issue_25] | [Trello][trello_12] |                       | Pending | 18265693   | Springboot for API-Gateway foundation              |
-
+| 7     | [Issue][issue_21] | [Trello][trello_18] |                       | Pending | 21342342   | Post Microservice fondation                        |
 
 [issue_16]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/16
 [issue_19]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/19
 [issue_22]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/22
 [issue_23]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/23
 [issue_25]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/25
+[issue_21]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/21
+[trello_18]: https://trello.com/c/blueC4WS/15-posts-microservice-foundations
 [trello_19]: https://trello.com/c/aw4hsgn1/19-familiarise-the-team-with-springboot-layered-architecture
 [trello_32]: https://trello.com/c/aI8gZGVV/32-template-microservice
 [trello_33]: https://trello.com/c/aQ5SbfPd/33-add-documentation-images-to-repo
