@@ -13,9 +13,10 @@
     <artifactId>parent-microservices</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <description>To manage the dependency Versions in an organized way</description>
+    <packaging>pom</packaging>
 
     <modules>
-        <module>SampleMicroservice</module>
+        <module>TemplateProject</module>
     </modules>
 
     <properties>
@@ -23,6 +24,7 @@
         <mapstruct.version>1.6.2</mapstruct.version>
         <lombok.version>1.18.34</lombok.version>
         <spring.data.rest.version>3.1.3</spring.data.rest.version>
+        <mysql.version>8.3.0</mysql.version>
     </properties>
 
     <dependencies>
