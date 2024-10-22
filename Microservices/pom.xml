@@ -17,6 +17,7 @@
 
     <modules>
         <module>TemplateProject</module>
+        <module>ServiceRegistryMicroservice</module>
     </modules>
 
     <properties>
