@@ -18,8 +18,8 @@
 	<description>API project for group work</description>
 
 	<properties>
-		<java.version>21</java.version> <!-- Ensure this matches the installed Java version -->
-		<spring-cloud.version>2022.0.1</spring-cloud.version> <!-- Ensure this is compatible -->
+		<java.version>17</java.version>
+		<spring-cloud.version>2022.0.1</spring-cloud.version>
 	</properties>
 
 	<dependencyManagement>
@@ -37,7 +37,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webflux</artifactId> <!-- Use webflux for reactive -->
+			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
 
 		<dependency>
@@ -68,3 +68,5 @@
 		</plugins>
 	</build>
 </project>
+
+
