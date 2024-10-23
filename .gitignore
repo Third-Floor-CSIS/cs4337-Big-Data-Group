@@ -29,3 +29,6 @@ test.*
 .DS_Store
 
 /logs
+
+# Environment Variables
+.env*
