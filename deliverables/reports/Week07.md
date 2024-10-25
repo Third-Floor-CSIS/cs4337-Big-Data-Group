@@ -31,6 +31,7 @@
 | 13    | [Issue][issue_28] | [Trello][trello_18] |                       | Pending | 21332142   | Setup local environment               |
 | 14    |                   |                     | [Pull Request][pr_24] | Pending | 12136891   | Week 7 Report                         |
 | 15    | [Issue][issue_34] | [Trello][trello_16] |                       | Pending | 12136891   | Profile Microservice                  |
+| 16    | [Issue][issue_32] | [Trello][trello_12] |                       | Pending | 18265693   | Creating separate services            |
 
 [issue_3]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/3
 [issue_16]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/16
@@ -45,6 +46,7 @@
 [issue_28]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/28
 [issue_29]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/29
 [issue_34]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/34
+[issue_32]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/32
 
 [trello_2]: https://trello.com/c/7Nh3QhXY/2-lint-pipeline
 [trello_12]: https://trello.com/c/JublwPPu/12-create-api-gateway-module-foundations
