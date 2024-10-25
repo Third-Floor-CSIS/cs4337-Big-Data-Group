@@ -32,7 +32,7 @@
         <option name="PACKAGES_TO_USE_IMPORT_ON_DEMAND" />
         <option name="CLASS_COUNT_TO_USE_IMPORT_ON_DEMAND" value="999" />
         <option name="NAMES_COUNT_TO_USE_IMPORT_ON_DEMAND" value="999" />
-        <option name="NAMES_COUNT_TO_USE_STAR_IMPORT" value="5" />
+        <option name="NAMES_COUNT_TO_USE_STAR_IMPORT" value="8" />
         <option name="IMPORT_LAYOUT_TABLE" value="5" />
         <option name="PACKAGE_NAME_ABBREVIATION_LENGTH" value="0" />
         <option name="CLASS_COUNT_TO_USE_FQ_CLASS_NAMES" value="999" />
