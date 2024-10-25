@@ -20,7 +20,7 @@
 |-------|-------------------|---------------------|-----------------------|---------|------------|---------------------------------------|
 | 0     | [Issue][issue_16] | [Trello][trello_32] | [Pull Request][pr_17] | Done    | 21308128   | Template for Microservices            |
 | 1     | [Issue][issue_22] | [Trello][trello_33] | [Pull Request][pr_20] | Done    | 21308128   | Add images and report structure       |
-| 2     | [Issue][issue_19] | [Trello][trello_35] | [Pull Request][pr_20] | Pending | 21308128   | Sync everyone's code (styles.xml)     |
+| 2     | [Issue][issue_19] | [Trello][trello_35] | [Pull Request][pr_20] | Done    | 21308128   | Sync everyone's code (styles.xml)     |
 | 3     | [Issue][issue_29] | [Trello][trello_38] |                       | Pending | 21308128   | Add Oauth to Authentication Ms        |
 | 5     |                   | [Trello][trello_33] | [Pull Request][pr_24] | Done    | 12136891   | This report structure                 |
 | 6     | [Issue][issue_25] | [Trello][trello_12] |                       | Pending | 18265693   | Springboot for API-Gateway foundation |
