@@ -24,7 +24,7 @@
 | 7     | [Issue][issue_21] | [Trello][trello_15] |                       | Pending | 21342342   | Post Microservice fondation                        |
 | 8     | [Issue][issue_26] | [Trello][trello_17] |                       | Pending | 21332673   | Add liquibase                                      |
 | 9     | [Issue][issue_27] | [Trello][trello_13] |                       | Pending | 21332673   | Create service registry                            |
-| 11    | [Issue][issue_18] | [Trello][trello_37] |                       | Pending | 21332142   | Create .env's                                      |
+| 11    | [Issue][issue_18] | [Trello][trello_37] | [Pull Request][pr_30] | Pending | 21332142   | Create .env's                                      |
 | 13    | [Issue][issue_28] | [Trello][trello_18] |                       | Pending | 21332142   | Setup local environment                            |
 
 [issue_3]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/3
@@ -54,6 +54,7 @@
 [pr_17]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/17
 [pr_20]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/20
 [pr_24]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/24
+[pr_30]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/30
 
 | Blockers | Student ID | Description | Approach to resolve |
 |----------|------------|-------------|---------------------|
