@@ -29,6 +29,8 @@
 | 9     | [Issue][issue_27] | [Trello][trello_13] | [Pull Request][pr_31] | Pending | 21332673   | Create service registry               |
 | 11    | [Issue][issue_18] | [Trello][trello_37] | [Pull Request][pr_30] | Pending | 21332142   | Create .env's                         |
 | 13    | [Issue][issue_28] | [Trello][trello_18] |                       | Pending | 21332142   | Setup local environment               |
+| 14    |                   |                     | [Pull Request][pr_24] | Pending | 12136891   | Week 7 Report                         |
+| 15    | [Issue][issue_34] | [Trello][trello_16] |                       | Pending | 12136891   | Profile Microservice                  |
 
 [issue_3]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/3
 
@@ -53,7 +55,7 @@
 [issue_28]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/28
 
 [issue_29]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/29
-
+[issue_34]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/34
 [trello_2]: https://trello.com/c/7Nh3QhXY/2-lint-pipeline
 
 [trello_12]: https://trello.com/c/JublwPPu/12-create-api-gateway-module-foundations
@@ -61,7 +63,7 @@
 [trello_13]: https://trello.com/c/3LMcupSB/13-create-service-registry
 
 [trello_15]: https://trello.com/c/blueC4WS/15-posts-microservice-foundations
-
+[trello_16]: https://trello.com/c/dupP22Mk/16-profile-microservice-foundations
 [trello_17]: https://trello.com/c/byGSYX2K/17-add-liquibase
 
 [trello_18]: https://trello.com/c/zzW6JN0j/18-setup-local-environment
@@ -78,7 +80,7 @@
 
 [trello_37]: https://trello.com/c/rJ6rzzpm/37-create-env
 
-[trello_38]: https://trello.com/c/EDgzbQYz/38-add-oath-to-authentication
+[trello_38]: https://trello.com/c/EDgzbQYz/38-add-oath-to-authentication        
 
 [pr_14]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/14
 
@@ -91,6 +93,7 @@
 [pr_30]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/30
 
 [pr_31]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/31
+[pr_33]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/33
 
 | Blockers | Student ID | Description | Approach to resolve |
 |----------|------------|-------------|---------------------|
