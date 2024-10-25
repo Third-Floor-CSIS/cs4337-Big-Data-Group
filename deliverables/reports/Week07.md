@@ -25,8 +25,8 @@
 | 5     |                   | [Trello][trello_33] | [Pull Request][pr_24] | Done    | 12136891   | This report structure                 |
 | 6     | [Issue][issue_25] | [Trello][trello_12] |                       | Pending | 18265693   | Springboot for API-Gateway foundation |
 | 7     | [Issue][issue_21] | [Trello][trello_15] |                       | Pending | 21342342   | Post Microservice fondation           |
-| 8     | [Issue][issue_26] | [Trello][trello_17] |                       | Pending | 21332673   | Add liquibase                         |
-| 9     | [Issue][issue_27] | [Trello][trello_13] |                       | Pending | 21332673   | Create service registry               |
+| 8     | [Issue][issue_26] | [Trello][trello_17] | [Pull Request][pr_31] | Pending | 21332673   | Add liquibase                         |
+| 9     | [Issue][issue_27] | [Trello][trello_13] | [Pull Request][pr_31] | Pending | 21332673   | Create service registry               |
 | 11    | [Issue][issue_18] | [Trello][trello_37] | [Pull Request][pr_30] | Pending | 21332142   | Create .env's                         |
 | 13    | [Issue][issue_28] | [Trello][trello_18] |                       | Pending | 21332142   | Setup local environment               |
 
@@ -89,6 +89,8 @@
 [pr_24]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/24
 
 [pr_30]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/30
+
+[pr_31]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/31
 
 | Blockers | Student ID | Description | Approach to resolve |
 |----------|------------|-------------|---------------------|
