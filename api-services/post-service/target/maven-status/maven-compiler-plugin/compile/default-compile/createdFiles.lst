@@ -1,0 +1,3 @@
+com/example/postservice/model/Post.class
+com/example/postservice/controller/PostController.class
+com/example/postservice/PostServiceApplication.class
