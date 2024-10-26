@@ -1,12 +1,17 @@
 package cs4337.group_8.AuthenticationMicroservice.controllers;
 
-import cs4337.group_8.AuthenticationMicroservice.DTOs.RegistrationDTO;
+import cs4337.group_8.AuthenticationMicroservice.DTOs.UserDTO;
 import cs4337.group_8.AuthenticationMicroservice.exceptions.AuthenticationException;
+import cs4337.group_8.AuthenticationMicroservice.exceptions.RefreshTokenExpiredException;
 import cs4337.group_8.AuthenticationMicroservice.exceptions.ValidateTokenException;
 import cs4337.group_8.AuthenticationMicroservice.services.AuthenticationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @Slf4j
@@ -23,7 +28,9 @@ public class AuthenticationController {
                                     @RequestParam("authuser") String authUser,
                                     @RequestParam("prompt") String prompt) {
         try {
-            return authenticationService.handleAuthentication(code);
+            UserDTO user = authenticationService.handleAuthentication(code);
+
+            return new ResponseEntity<>(user, HttpStatus.OK);
         } catch (AuthenticationException e) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
@@ -32,35 +39,23 @@ public class AuthenticationController {
         }
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<Object> registerUser(@RequestBody RegistrationDTO registrationForm) {
-        String email = registrationForm.getEmail();
-        if (authenticationService.doesEmailExist(email)) {
-            return ResponseEntity
-                    .badRequest()
-                    .body("Email already exists");
-        }
-
-        return ResponseEntity
-                .badRequest()
-                .body("Can't register user: No User Microservice");
-    }
-
-    @GetMapping("/validate-token")
-    public ResponseEntity<Object> validateToken(@RequestHeader("Authorization") String token, @RequestParam("userId") int userId) {
+    @PostMapping("/refresh-token")
+    public ResponseEntity<Object> refreshToken(@RequestHeader("Authorization") String token) {
         try {
-            System.out.println("Validating token: " + token);
             token = token.substring(7);
             HttpHeaders headers = new HttpHeaders();
-            headers.setBearerAuth(authenticationService.refreshToken(token, userId));
+            headers.setBearerAuth(authenticationService.refreshToken(token));
             return ResponseEntity
                     .ok()
                     .headers(headers)
-                    .body("Token is valid");
-        } catch (ValidateTokenException e) {
+                    .body("Token refreshed");
+        } catch (RefreshTokenExpiredException e) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setLocation(URI.create("/login"));
             return ResponseEntity
-                    .status(HttpStatus.UNAUTHORIZED)
-                    .body(e.getMessage());
+                    .status(HttpStatus.FORBIDDEN)
+                    .headers(headers)
+                    .body("Refresh token expired");
         }
     }
 }

@@ -9,8 +9,7 @@ import java.util.Arrays;
 public class CustomException extends RuntimeException {
     public CustomException(String message) {
         super(message);
-        log.error("Authentication Exception");
         log.error(message);
-        log.error(Arrays.toString(this.getStackTrace()));
+        this.printStackTrace();
     }
 }

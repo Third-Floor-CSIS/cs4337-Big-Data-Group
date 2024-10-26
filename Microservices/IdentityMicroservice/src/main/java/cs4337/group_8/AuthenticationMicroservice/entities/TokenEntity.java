@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 @Data
 @NoArgsConstructor
 @Table(name = "tokens")
-public class RefreshTokenEntity {
+public class TokenEntity {
     @Id
     private Integer userId;
     private String refreshToken;
