@@ -8,11 +8,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import cs4337.group_8.AuthenticationMicroservice.DTOs.UserDTO;
 import cs4337.group_8.AuthenticationMicroservice.POJOs.GoogleAuthorizationResponse;
 import cs4337.group_8.AuthenticationMicroservice.POJOs.GoogleUserDetails;
-import cs4337.group_8.AuthenticationMicroservice.entities.RefreshTokenEntity;
+import cs4337.group_8.AuthenticationMicroservice.entities.TokenEntity;
 import cs4337.group_8.AuthenticationMicroservice.entities.UserEntity;
 import cs4337.group_8.AuthenticationMicroservice.exceptions.AuthenticationException;
+import cs4337.group_8.AuthenticationMicroservice.exceptions.RefreshTokenExpiredException;
 import cs4337.group_8.AuthenticationMicroservice.exceptions.ValidateTokenException;
-import cs4337.group_8.AuthenticationMicroservice.mappers.TokenMapper;
 import cs4337.group_8.AuthenticationMicroservice.repositories.AuthenticationRepository;
 import cs4337.group_8.AuthenticationMicroservice.repositories.TokenRepository;
 import cs4337.group_8.AuthenticationMicroservice.repositories.UserRepository;
@@ -49,27 +49,20 @@ public class AuthenticationService {
         this.userRepository = userRepository;
     }
 
-    public ResponseEntity<UserEntity> handleAuthentication(String grantCode) {
+    public UserDTO handleAuthentication(String grantCode) {
         GoogleAuthorizationResponse apiResponse = getOauthInformationFromGrantCode(grantCode);
         String accessToken = apiResponse.getAccess_token();
-        String refreshToken = apiResponse.getRefresh_token();
-
+        System.out.println("Access token: " + accessToken);
         GoogleUserDetails userDetails = getGoogleProfileDetails(accessToken);
         UserEntity user = userRepository.findByEmail(userDetails.getEmail())
                 .orElseGet(() -> createNewUserFromGoogleOauth(userDetails));
 
-        storeRefreshToken(refreshToken, user.getUser_id());
+        storeTokens(apiResponse, user.getUser_id());
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setBearerAuth(accessToken);
         UserDTO userDto = new UserDTO();
         userDto.setUserId(user.getUser_id());
         userDto.setProfilePicture(user.getProfile_picture());
-        return new ResponseEntity<>(user, headers, HttpStatus.OK);
-    }
-
-    public boolean doesEmailExist(String email) {
-        return authenticationRepository.findByEmail(email).isPresent();
+        return userDto;
     }
 
     private UserEntity createNewUserFromGoogleOauth(GoogleUserDetails userDetails) {
@@ -85,36 +78,36 @@ public class AuthenticationService {
         return userRepository.save(createdUser);
     }
 
-    private void storeRefreshToken(String refreshToken, Integer userId) {
-        RefreshTokenEntity refreshTokenEntity = new RefreshTokenEntity();
-        refreshTokenEntity.setUserId(userId);
-        refreshTokenEntity.setCurrentAccessToken(null);
-        refreshTokenEntity.setExpirationTimeAccessToken(new Timestamp(System.currentTimeMillis() + (SECOND_IN_MILLISECONDS * 0)));
-        refreshTokenEntity.setRefreshToken(refreshToken);
-        refreshTokenEntity.setExpirationTimeRefreshToken(new Timestamp(System.currentTimeMillis() + (DAY_IN_MILLISECONDS * 14)));
-        tokenRepository.save(refreshTokenEntity);
+    private void storeTokens(GoogleAuthorizationResponse tokenDetails, int userId) {
+        TokenEntity tokenEntity = new TokenEntity();
+        tokenEntity.setUserId(userId);
+        tokenEntity.setCurrentAccessToken(tokenDetails.getAccess_token());
+        tokenEntity.setExpirationTimeAccessToken(new Timestamp(System.currentTimeMillis() + (SECOND_IN_MILLISECONDS * tokenDetails.getExpires_in())));
+        tokenEntity.setRefreshToken(tokenDetails.getRefresh_token());
+        tokenEntity.setExpirationTimeRefreshToken(new Timestamp(System.currentTimeMillis() + (DAY_IN_MILLISECONDS * 14)));
+        tokenRepository.save(tokenEntity);
     }
 
-    public String refreshToken(String accessToken, int userId) throws ValidateTokenException {
-        boolean isTokenExpired = isTokenExpired(accessToken);
-        if (isTokenExpired) {
-            // Try and refresh the token
-            String refreshToken = tokenRepository.getTokenEntityByUserId(userId)
-                    .orElseThrow(() -> new ValidateTokenException("No refresh token found for user"))
-                    .getRefreshToken();
+    public String refreshToken(String accessToken) throws RefreshTokenExpiredException {
+        boolean refreshTokenIsInvalid = isRefreshTokenExpiredForAccessToken(accessToken);
+        if (!refreshTokenIsInvalid) {
+            TokenEntity tokenEntity = tokenRepository.getTokenEntityByCurrentAccessToken(accessToken)
+                    .orElseThrow(() -> new ValidateTokenException("No token found for user, please login again"));
 
-            GoogleAuthorizationResponse updatedData = refreshAccessToken(refreshToken, userId);
-            accessToken = updatedData.getAccess_token();
+            String refreshToken = tokenEntity.getRefreshToken();
+
+            accessToken = refreshAccessToken(refreshToken, tokenEntity.getUserId());
+            return accessToken;
         }
-        return accessToken;
+
+        throw new RefreshTokenExpiredException("Refresh token has expired, please login again");
     }
 
-    private GoogleAuthorizationResponse refreshAccessToken(String refreshToken, int userId) {
+    private String refreshAccessToken(String refreshToken, int userId) throws AuthenticationException {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED); // The content type will contain the form data in the URL
 
         MultiValueMap<String, String> params = getPayloadForGoogleRefresh(refreshToken);
-
         HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(params, headers);
 
         try {
@@ -124,11 +117,13 @@ public class AuthenticationService {
             JsonNode jsonNode = objectMapper.readTree(responseFromGoogle.getBody());
             GoogleAuthorizationResponse tokenDetails = objectMapper.treeToValue(jsonNode, GoogleAuthorizationResponse.class);
 
-            RefreshTokenEntity refreshTokenEntity = TokenMapper.INSTANCE.toTokenEntity(tokenDetails);
-            refreshTokenEntity.setUserId(userId);
-            tokenRepository.save(refreshTokenEntity);
+            TokenEntity tokenEntity = tokenRepository.getTokenEntityByUserId(userId)
+                    .orElseThrow(() -> new AuthenticationException("No token found for user, please login again"));
+            tokenEntity.setCurrentAccessToken(tokenDetails.getAccess_token());
+            tokenEntity.setExpirationTimeAccessToken(new Timestamp(System.currentTimeMillis() + (SECOND_IN_MILLISECONDS * tokenDetails.getExpires_in())));
+            tokenRepository.save(tokenEntity);
 
-            return tokenDetails;
+            return tokenDetails.getAccess_token();
         } catch (JsonProcessingException e) {
             throw new AuthenticationException("Failed to refresh access token");
         }
@@ -149,9 +144,12 @@ public class AuthenticationService {
         return restTemplate.postForEntity(googleRefreshTokenURL, requestPayload, String.class);
     }
 
-    private boolean isTokenExpired(String accessToken) {
+    private boolean isRefreshTokenExpiredForAccessToken(String accessToken) {
         try {
-            Date expirationTime = JWT.decode(accessToken).getExpiresAt();
+            TokenEntity tokenEntity = tokenRepository.getTokenEntityByCurrentAccessToken(accessToken)
+                    .orElseThrow(() -> new ValidateTokenException("No token found, please login again"));
+
+            Date expirationTime = tokenEntity.getExpirationTimeRefreshToken();
             return expirationTime.before(new Date());
         } catch (JWTDecodeException e) {
             log.error("Invalid Access token provided: " + e.getMessage());

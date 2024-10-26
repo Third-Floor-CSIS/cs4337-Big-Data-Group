@@ -17,7 +17,7 @@
 
     <modules>
         <module>TemplateProject</module>
-        <module>AuthenticationMicroservice</module>
+        <module>IdentityMicroservice</module>
     </modules>
 
     <properties>
