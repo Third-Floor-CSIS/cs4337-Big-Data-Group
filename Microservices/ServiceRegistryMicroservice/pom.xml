@@ -17,7 +17,6 @@
 	<packaging>jar</packaging>
 
 	<properties>
-		<!--		This is a variable that can be used throughout the current and child files -->
 		<maven.compiler.source>23</maven.compiler.source>
 		<maven.compiler.target>23</maven.compiler.target>
 	</properties>

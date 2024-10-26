@@ -9,7 +9,7 @@
     <include file="com/example/directory/directory.changelog.sql"/>
 
     <changeSet author="Killian" id="0">
-<!--        Creating comments table-->
+        <!-- Creating comments table -->
         <createTable tableName="comments">
             <column autoIncrement="true" name="comment_id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true"/>
@@ -27,9 +27,8 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-    </changeSet>
-    <changeSet author="Killian" id="1">
-<!--        Creating followers table -->
+
+        <!-- Creating followers table -->
         <createTable tableName="followers">
             <column name="follower_id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" unique="true"/>
@@ -41,9 +40,8 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-    </changeSet>
-    <changeSet author="Killian" id="2">
-<!--        Creating likes table-->
+
+        <!-- Creating likes table -->
         <createTable tableName="likes">
             <column autoIncrement="true" name="like_Id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true"/>
@@ -58,9 +56,8 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-    </changeSet>
-    <changeSet author="Killian" id="3">
-<!--        Creating posts table-->
+
+        <!-- Creating posts table -->
         <createTable tableName="posts">
             <column autoIncrement="true" name="post_id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true"/>
@@ -82,9 +79,8 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-    </changeSet>
-    <changeSet author="Killian" id="4">
-<!--        Creating users table-->
+
+        <!-- Creating users table -->
         <createTable tableName="users">
             <column autoIncrement="true" name="user_id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true"/>
@@ -113,63 +109,36 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-    </changeSet>
-    <changeSet author="Killian" id="5">
-<!--         Creating an index on post_id in the comments table for performance and creation of a foreign key constraint-->
-        <createIndex associatedWith="" indexName="fk_comments_post_id" tableName="comments">
+
+        <!-- Indexes for comments table -->
+        <createIndex indexName="fk_comments_post_id" tableName="comments">
             <column name="post_id"/>
         </createIndex>
-    </changeSet>
-    <changeSet author="Killian" id="6">
-<!--        Creating an index on user_id in the comments table for performance and creation of a foreign key-->
-        <createIndex associatedWith="" indexName="fk_comments_user_id" tableName="comments">
+        <createIndex indexName="fk_comments_user_id" tableName="comments">
             <column name="user_id"/>
         </createIndex>
-    </changeSet>
-    <changeSet author="Killian" id="7">
-<!--        Creating an index on post_id in the likes table for performance and creation of a foreign key-->
-        <createIndex associatedWith="" indexName="fk_likes_post_id" tableName="likes">
+
+        <!-- Indexes for likes table -->
+        <createIndex indexName="fk_likes_post_id" tableName="likes">
             <column name="post_id"/>
         </createIndex>
-    </changeSet>
-    <changeSet author="Killian" id="8">
-<!--        Creating an index on user_id in the likes table for performance and creation of a foreign key-->
-        <createIndex associatedWith="" indexName="fk_likes_user_id" tableName="likes">
+        <createIndex indexName="fk_likes_user_id" tableName="likes">
             <column name="user_id"/>
         </createIndex>
-    </changeSet>
-    <changeSet author="Killian" id="9">
-<!--        Creating an index on user_id in the posts table for performance and creation of a foreign key constraint-->
-        <createIndex associatedWith="" indexName="fk_posts_user_id" tableName="posts">
+
+        <!-- Index for posts table -->
+        <createIndex indexName="fk_posts_user_id" tableName="posts">
             <column name="user_id"/>
         </createIndex>
+
+        <!-- Foreign key constraints -->
+        <addForeignKeyConstraint baseColumnNames="post_id" baseTableName="comments" constraintName="fk_comments_post_id" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="post_id" referencedTableName="posts"/>
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="comments" constraintName="fk_comments_user_id" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="user_id" referencedTableName="users"/>
+        <addForeignKeyConstraint baseColumnNames="followed_id" baseTableName="followers" constraintName="fk_followers_followed_id" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="user_id" referencedTableName="users"/>
+        <addForeignKeyConstraint baseColumnNames="follower_id" baseTableName="followers" constraintName="fk_followers_follower_id" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="user_id" referencedTableName="users"/>
+        <addForeignKeyConstraint baseColumnNames="post_id" baseTableName="likes" constraintName="fk_likes_post_id" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="post_id" referencedTableName="posts"/>
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="likes" constraintName="fk_likes_user_id" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="user_id" referencedTableName="users"/>
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="posts" constraintName="fk_posts_user_id" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="user_id" referencedTableName="users"/>
     </changeSet>
-    <changeSet author="Killian" id="10">
-<!--        Add a foreign key on post_id in the comments table to reference posts table-->
-        <addForeignKeyConstraint baseColumnNames="post_id" baseTableName="comments" constraintName="fk_comments_post_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="post_id" referencedTableName="posts" validate="true"/>
-    </changeSet>
-    <changeSet author="Killian" id="11">
-<!--        Add a foreign key on user_id in the comments table to reference users table-->
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="comments" constraintName="fk_comments_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="user_id" referencedTableName="users" validate="true"/>
-    </changeSet>
-    <changeSet author="Killian" id="12">
-<!--        Add a foreign key on followed_id in the followers table to reference users table-->
-        <addForeignKeyConstraint baseColumnNames="followed_id" baseTableName="followers" constraintName="fk_followers_followed_id" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="user_id" referencedTableName="users" validate="true"/>
-    </changeSet>
-    <changeSet author="Killian" id="13">
-<!--        Add a foreign key on follower_id in the follower table to reference users table-->
-        <addForeignKeyConstraint baseColumnNames="follower_id" baseTableName="followers" constraintName="fk_followers_follower_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="user_id" referencedTableName="users" validate="true"/>
-    </changeSet>
-    <changeSet author="Killian" id="14">
-<!--        Add a foreign key on post_id in the likes table to reference posts table-->
-        <addForeignKeyConstraint baseColumnNames="post_id" baseTableName="likes" constraintName="fk_likes_post_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="post_id" referencedTableName="posts" validate="true"/>
-    </changeSet>
-    <changeSet author="Killian" id="15">
-<!--        Add a foreign key on user_id in the likes table to reference users table-->
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="likes" constraintName="fk_likes_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="user_id" referencedTableName="users" validate="true"/>
-    </changeSet>
-    <changeSet author="Killian" id="16">
-<!--        Add a foreign key on user_id in the posts table to reference users table-->
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="posts" constraintName="fk_posts_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="user_id" referencedTableName="users" validate="true"/>
-    </changeSet>
+
 </databaseChangeLog>
