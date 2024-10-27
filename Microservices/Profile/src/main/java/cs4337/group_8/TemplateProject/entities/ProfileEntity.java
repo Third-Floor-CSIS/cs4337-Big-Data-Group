@@ -19,26 +19,34 @@ import java.time.LocalDateTime;
  * Other annotations: @AllArgsConstructor, @NoArgsConstructor
  *
  */
-// Example toString
+
 @Entity
 @Data
 @ToString(callSuper = true, includeFieldNames = true)
-@Table(name = "name_of_table")
-public class SampleEntity {
+@Table(name = "profile")
+public class ProfileEntity {
     @Id // Primary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment in the database
+//    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment in the database
     @Column
-    private Integer id;
-
-    @Column // If the column name is the same as the field name, you can omit the name attribute
-    private String firstname;
-
-    @Column(name = "date_of_birth") // Or you can use the name of the column in the table
-    private Date dateOfBirth;
-
-    @Column(name = "signed_up", insertable = false) // Insertable = false means that the column is not included in the insert statement
-    private LocalDateTime signUpTime;
+    private String user_id;
 
     @Column
-    @ToString.Exclude private boolean verified;
+    private String full_name;
+
+    @Column
+    private String bio;
+
+    @Column
+    private String profile_pic;
+
+    @Column
+    private int count_follower;
+
+    @Column
+    private int count_following;
+
+//    // modification date?
+//    // Insertable = false means that the column is not included in the insert statement
+//    @Column(name = "signed_up", insertable = false)
+//    private LocalDateTime signUpTime;
 }

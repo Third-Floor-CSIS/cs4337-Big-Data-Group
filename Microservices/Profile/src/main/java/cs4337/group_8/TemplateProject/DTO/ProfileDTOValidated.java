@@ -10,7 +10,7 @@ import lombok.Data;
 import java.sql.Date;
 
 @Data
-public class ValidatedProfileDTO {
+public class ProfileDTOValidated {
     @NotNull
     private String user_id;
 

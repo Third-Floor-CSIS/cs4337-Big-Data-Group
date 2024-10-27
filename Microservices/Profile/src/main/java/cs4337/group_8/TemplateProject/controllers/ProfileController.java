@@ -1,9 +1,9 @@
 package cs4337.group_8.TemplateProject.controllers;
 
-import cs4337.group_8.TemplateProject.DTO.SampleDTO;
-import cs4337.group_8.TemplateProject.DTO.ValidatedSampleDTO;
+import cs4337.group_8.TemplateProject.DTO.ProfileDTO;
+import cs4337.group_8.TemplateProject.DTO.ProfileDTOValidated;
 import cs4337.group_8.TemplateProject.exceptions.SampleCustomException;
-import cs4337.group_8.TemplateProject.services.SampleService;
+import cs4337.group_8.TemplateProject.services.ProfileService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -24,10 +24,10 @@ public class SampleController {
 
     // Bean injections
     // It is okay to have more than one service, but nothing lower
-    private final SampleService sampleService;
+    private final ProfileService ProfileService;
 
-    public SampleController(SampleService sampleService) {
-        this.sampleService = sampleService;
+    public SampleController(ProfileService ProfileService) {
+        this.ProfileService = ProfileService;
     }
 
     @PostMapping(
@@ -35,14 +35,14 @@ public class SampleController {
         produces = "application/json",
         consumes = "application/json"
     )
-    public ResponseEntity<SampleDTO> addNewUserFromRegistration(@Valid @RequestBody ValidatedSampleDTO incomingDTO) {
+    public ResponseEntity<ProfileDTO> addNewUserFromRegistration(@Valid @RequestBody ProfileDTOValidated incomingDTO) {
         try {
-            sampleService.getUserExistanceById(incomingDTO.getId());
+            ProfileService.getUserExistanceById(incomingDTO.getId());
             log.info("New user registered");
-            SampleDTO apiResponse = new SampleDTO("property1");
+            ProfileDTO apiResponse = new ProfileDTO("property1");
             return ResponseEntity.ok(apiResponse);
         } catch (SampleCustomException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(new SampleDTO(e.getMessage()));
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new ProfileDTO(e.getMessage()));
         }
     }
 
