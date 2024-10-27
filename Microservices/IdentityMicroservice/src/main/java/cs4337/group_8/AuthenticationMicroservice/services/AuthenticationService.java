@@ -1,37 +1,23 @@
 package cs4337.group_8.AuthenticationMicroservice.services;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.exceptions.JWTDecodeException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import cs4337.group_8.AuthenticationMicroservice.DTOs.UserDTO;
 import cs4337.group_8.AuthenticationMicroservice.POJOs.GoogleAuthorizationResponse;
 import cs4337.group_8.AuthenticationMicroservice.POJOs.GoogleUserDetails;
 import cs4337.group_8.AuthenticationMicroservice.entities.TokenEntity;
 import cs4337.group_8.AuthenticationMicroservice.entities.UserEntity;
-import cs4337.group_8.AuthenticationMicroservice.exceptions.AuthenticationException;
 import cs4337.group_8.AuthenticationMicroservice.exceptions.RefreshTokenExpiredException;
 import cs4337.group_8.AuthenticationMicroservice.exceptions.ValidateTokenException;
-import cs4337.group_8.AuthenticationMicroservice.repositories.AuthenticationRepository;
 import cs4337.group_8.AuthenticationMicroservice.repositories.TokenRepository;
 import cs4337.group_8.AuthenticationMicroservice.repositories.UserRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.*;
+
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestTemplate;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 @Service
 @Slf4j
 public class AuthenticationService {
-    private final AuthenticationRepository authenticationRepository;
     private final TokenRepository tokenRepository;
     private final UserRepository userRepository;
     private final GoogleAuthService googleAuthService;
@@ -39,11 +25,9 @@ public class AuthenticationService {
     private static final long SECOND_IN_MILLISECONDS = 1000;
 
     public AuthenticationService(
-            AuthenticationRepository authenticationRepository,
             TokenRepository tokenRepository,
             UserRepository userRepository,
             GoogleAuthService googleAuthService) {
-        this.authenticationRepository = authenticationRepository;
         this.tokenRepository = tokenRepository;
         this.userRepository = userRepository;
         this.googleAuthService = googleAuthService;
@@ -52,7 +36,6 @@ public class AuthenticationService {
     public UserDTO handleAuthentication(String grantCode) {
         GoogleAuthorizationResponse apiResponse = googleAuthService.getOauthInformationFromGrantCode(grantCode);
         String accessToken = apiResponse.getAccess_token();
-        System.out.println("Access token: " + accessToken);
         GoogleUserDetails userDetails = googleAuthService.getGoogleProfileDetails(accessToken);
         UserEntity user = userRepository.findByEmail(userDetails.getEmail())
                 .orElseGet(() -> createNewUserFromGoogleOauth(userDetails));
@@ -102,5 +85,4 @@ public class AuthenticationService {
         tokenEntity.setExpirationTimeRefreshToken(new Timestamp(System.currentTimeMillis() + (DAY_IN_MILLISECONDS * 14)));
         tokenRepository.save(tokenEntity);
     }
-
 }

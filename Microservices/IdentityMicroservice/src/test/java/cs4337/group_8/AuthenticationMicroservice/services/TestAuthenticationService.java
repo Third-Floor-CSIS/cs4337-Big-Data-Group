@@ -1,4 +1,4 @@
-package cs4337.group_8.AuthenticationMicroservice;
+package cs4337.group_8.AuthenticationMicroservice.services;
 
 
 import cs4337.group_8.AuthenticationMicroservice.DTOs.UserDTO;
@@ -9,8 +9,6 @@ import cs4337.group_8.AuthenticationMicroservice.entities.UserEntity;
 import cs4337.group_8.AuthenticationMicroservice.repositories.AuthenticationRepository;
 import cs4337.group_8.AuthenticationMicroservice.repositories.TokenRepository;
 import cs4337.group_8.AuthenticationMicroservice.repositories.UserRepository;
-import cs4337.group_8.AuthenticationMicroservice.services.AuthenticationService;
-import cs4337.group_8.AuthenticationMicroservice.services.GoogleAuthService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
