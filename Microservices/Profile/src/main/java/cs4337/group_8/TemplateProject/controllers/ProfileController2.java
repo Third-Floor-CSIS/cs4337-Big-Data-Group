@@ -20,13 +20,13 @@ import java.util.HashMap;
 @RequestMapping("/profile")
 // Simple logging interface: meaning we can plug in and out different logging implementations. By Default its the Springboot logger
 @Slf4j
-public class SampleController {
+public class ProfileController2 {
 
     // Bean injections
     // It is okay to have more than one service, but nothing lower
     private final ProfileService ProfileService;
 
-    public SampleController(ProfileService ProfileService) {
+    public ProfileController2(ProfileService ProfileService) {
         this.ProfileService = ProfileService;
     }
 
@@ -37,12 +37,12 @@ public class SampleController {
     )
     public ResponseEntity<ProfileDTO> addNewUserFromRegistration(@Valid @RequestBody ProfileDTOValidated incomingDTO) {
         try {
-            ProfileService.getUserExistanceById(incomingDTO.getId());
+            ProfileService.getUserExistanceById(incomingDTO.getUser_id());
             log.info("New user registered");
-            ProfileDTO apiResponse = new ProfileDTO("property1");
+            ProfileDTO apiResponse = new ProfileDTO();
             return ResponseEntity.ok(apiResponse);
         } catch (SampleCustomException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(new ProfileDTO(e.getMessage()));
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new ProfileDTO());
         }
     }
 
