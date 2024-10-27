@@ -24,7 +24,8 @@ public class SampleService {
     public void sampleMethod() {
         log.info("Sample service method called");
         log.error("Error log: {}", "Some variable goes here");
-        log.warn("Warning log:", new SampleCustomException("Some exception goes here")); // Log a throwable
+        // Log a throwable
+        log.warn("Warning log:", new SampleCustomException("Some exception goes here"));
     }
 
     public SampleEntity getUserExistanceById(Integer id){

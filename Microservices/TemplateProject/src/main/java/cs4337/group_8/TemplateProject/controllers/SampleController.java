@@ -18,11 +18,13 @@ import java.util.HashMap;
 
 @RestController
 @RequestMapping("/sample-root-endpoint")
-@Slf4j // Simple logging interface: meaning we can plug in and out different logging implementations. By Default its the Springboot logger
+// Simple logging interface: meaning we can plug in and out different logging implementations. By Default its the Springboot logger
+@Slf4j
 public class SampleController {
 
     // Bean injections
-    private final SampleService sampleService; // It is okay to have more than one service, but nothing lower
+    // It is okay to have more than one service, but nothing lower
+    private final SampleService sampleService;
 
     public SampleController(SampleService sampleService) {
         this.sampleService = sampleService;
@@ -42,7 +44,8 @@ public class SampleController {
         }
     }
 
-    @PostMapping(value = "/ok", produces = "application/json") // No need to specify consumes or produces, but it is good practice
+    // No need to specify consumes or produces, but it is good practice
+    @PostMapping(value = "/ok", produces = "application/json")
     public ResponseEntity<String> loginUser() {
         return ResponseEntity.ok("Hello, World!");
     }
