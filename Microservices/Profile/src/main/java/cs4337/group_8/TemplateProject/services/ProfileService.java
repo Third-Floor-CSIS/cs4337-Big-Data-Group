@@ -28,7 +28,7 @@ public class ProfileService {
         log.warn("Warning log:", new SampleCustomException("Some exception goes here"));
     }
 
-    public ProfileEntity getUserExistanceById(Integer id){
+    public ProfileEntity getUserExistanceById(String id){
         return ProfileRepository.findById(id).orElseThrow(() -> new SampleCustomException("User not found"));
     }
 
