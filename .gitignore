@@ -1,6 +1,6 @@
 # IDE folder
 /.idea
-/**/.idea
+                    /**/.idea
 
 # Microsoft office Lockfiles
 ~$*
