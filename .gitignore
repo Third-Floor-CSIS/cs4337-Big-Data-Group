@@ -29,3 +29,10 @@ test.*
 .DS_Store
 
 /logs
+
+.classpath
+.project
+/.settings
+/**/.settings
+/target
+/**/target
