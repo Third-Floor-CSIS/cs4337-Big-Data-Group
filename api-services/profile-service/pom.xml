@@ -10,9 +10,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.0.0</version>
-		<!-- Or a stable version like 2.6.x if using Java 11 -->
 		<relativePath />
-		<!-- lookup parent from repository -->
 	</parent>
 	<description>Demo project for Spring Boot</description>
 	<properties>
