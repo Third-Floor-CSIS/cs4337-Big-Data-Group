@@ -18,7 +18,8 @@ public class ValidatedSampleDTO {
     @NotNull
     private String firstname;
 
-    @Size(min = 2, message = "Surname too short") // Message is what the error message will be if the validation fails
+    // Message is what the error message will be if the validation fails
+    @Size(min = 2, message = "Surname too short")
     @NotNull
     private String surname;
 
@@ -26,12 +27,16 @@ public class ValidatedSampleDTO {
     @NotNull(message = "Email not provided")
     private String email;
 
-    @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*\\W)(?!.* ).{8,}",
-            message = "Password does not meet the requirements") // You can even provide regexes
+    @Pattern(
+        // You can even provide regexes
+        regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*\\W)(?!.* ).{8,}",
+        message = "Password does not meet the requirements"
+    )
     @NotNull
     private String password;
 
-    @Past(message = "Date Of Birth is in the future") // And time comparison
+    // And time comparison
+    @Past(message = "Date Of Birth is in the future")
     @NotNull(message = "Date of Birth not provided")
     private Date dateOfBirth;
 }

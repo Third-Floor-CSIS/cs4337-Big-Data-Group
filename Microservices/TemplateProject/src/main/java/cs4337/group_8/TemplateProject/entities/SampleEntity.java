@@ -25,18 +25,23 @@ import java.time.LocalDateTime;
 @ToString(callSuper = true, includeFieldNames = true)
 @Table(name = "name_of_table")
 public class SampleEntity {
-    @Id // Primary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment in the database
+    // Primary key
+    @Id
+    // Auto-increment in the database
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Integer id;
 
-    @Column // If the column name is the same as the field name, you can omit the name attribute
+    // If the column name is the same as the field name, you can omit the name attribute
+    @Column
     private String firstname;
 
-    @Column(name = "date_of_birth") // Or you can use the name of the column in the table
+    // Or you can use the name of the column in the table
+    @Column(name = "date_of_birth")
     private Date dateOfBirth;
 
-    @Column(name = "signed_up", insertable = false) // Insertable = false means that the column is not included in the insert statement
+    // Insertable = false means that the column is not included in the insert statement
+    @Column(name = "signed_up", insertable = false)
     private LocalDateTime signUpTime;
 
     @Column
