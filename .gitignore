@@ -29,3 +29,7 @@ test.*
 .DS_Store
 
 /logs
+
+# Maven stuff
+/target/
+/**/target/
