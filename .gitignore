@@ -33,3 +33,6 @@ test.*
 # Maven stuff
 /target/
 /**/target/
+
+# Environment Variables
+.env*
