@@ -27,3 +27,12 @@ test.*
 
 # Dealing with Mac users
 .DS_Store
+
+/logs
+
+# Maven stuff
+/target/
+/**/target/
+
+# Environment Variables
+.env*
