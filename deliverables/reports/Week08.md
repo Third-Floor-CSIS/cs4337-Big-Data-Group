@@ -16,18 +16,20 @@
 
 ## Work
 
-| Index | Issue ID          | Trello Link         | Pull Request Link     | Status  | Student ID | Issue Description                     | 
-|-------|-------------------|---------------------|-----------------------|---------|------------|---------------------------------------|
-| 3     | [Issue][issue_29] | [Trello][trello_38] |                       | Pending | 21308128   | Add Oauth to Authentication Ms        |
-| 6     | [Issue][issue_25] | [Trello][trello_12] |                       | Pending | 18265693   | Springboot for API-Gateway foundation |
-| 7     | [Issue][issue_21] | [Trello][trello_15] |                       | Pending | 21342342   | Post Microservice fondation           |
-| 8     | [Issue][issue_26] | [Trello][trello_17] | [Pull Request][pr_31] | Pending | 21332673   | Add liquibase                         |
-| 9     | [Issue][issue_27] | [Trello][trello_13] | [Pull Request][pr_31] | Pending | 21332673   | Create service registry               |
-| 11    | [Issue][issue_18] | [Trello][trello_37] | [Pull Request][pr_30] | Pending | 21332142   | Create .env's                         |
-| 13    | [Issue][issue_28] | [Trello][trello_18] |                       | Pending | 21332142   | Setup local environment               |
-| 14    |                   |                     | [Pull Request][pr_33] | Done    | 12136891   | Week 7 Report                         |
-| 15    | [Issue][issue_34] | [Trello][trello_16] |                       | Pending | 12136891   | Profile Microservice                  |
-| 16    | [Issue][issue_32] | [Trello][trello_12] |                       | Pending | 18265693   | Creating separate services            |
+| Index | Issue ID          | Trello Link         | Pull Request Link     | Status  | Student ID | Issue Description                      | 
+|-------|-------------------|---------------------|-----------------------|---------|------------|----------------------------------------|
+| 3     | [Issue][issue_29] | [Trello][trello_38] |                       | Pending | 21308128   | Add Oauth to Authentication Ms         |
+| 6     | [Issue][issue_25] | [Trello][trello_12] |                       | Pending | 18265693   | Springboot for API-Gateway foundation  |
+| 7     | [Issue][issue_21] | [Trello][trello_15] |                       | Pending | 21342342   | Post Microservice fondation            |
+| 8     | [Issue][issue_26] | [Trello][trello_17] | [Pull Request][pr_31] | Pending | 21332673   | Add liquibase                          |
+| 9     | [Issue][issue_27] | [Trello][trello_13] | [Pull Request][pr_31] | Pending | 21332673   | Create service registry                |
+| 11    | [Issue][issue_18] | [Trello][trello_37] | [Pull Request][pr_30] | Pending | 21332142   | Create .env's                          |
+| 13    | [Issue][issue_28] | [Trello][trello_18] |                       | Pending | 21332142   | Setup local environment                |
+| 14    |                   |                     | [Pull Request][pr_33] | Done    | 12136891   | Week 7 Report                          |
+| 15    | [Issue][issue_34] | [Trello][trello_16] |                       | Pending | 12136891   | Profile Microservice                   |
+| 16    | [Issue][issue_32] | [Trello][trello_12] |                       | Pending | 18265693   | Creating separate services             |
+| 17    |                   |                     | [Pull Request][pr_36] | Pending | 12136891   | Week 8 Report                          |
+| 18    | [Issue][issue_38] |                     | [Pull Request][pr_39] | Done    | 12136891   | Improve the template for microservices |
 
 
 [issue_18]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/18
@@ -39,6 +41,7 @@
 [issue_29]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/29
 [issue_34]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/34
 [issue_32]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/32
+[issue_38]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/38
 
 [trello_12]: https://trello.com/c/JublwPPu/12-create-api-gateway-module-foundations
 [trello_13]: https://trello.com/c/3LMcupSB/13-create-service-registry
@@ -52,6 +55,8 @@
 [pr_30]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/30
 [pr_31]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/31
 [pr_33]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/33
+[pr_36]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/36
+[pr_39]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/39
 
 | Blockers | Student ID | Description | Approach to resolve |
 |----------|------------|-------------|---------------------|
