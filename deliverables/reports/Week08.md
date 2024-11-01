@@ -18,7 +18,7 @@
 
 | Index | Issue ID          | Trello Link         | Pull Request Link     | Status  | Student ID | Issue Description                     | 
 |-------|-------------------|---------------------|-----------------------|---------|------------|---------------------------------------|
-| 3     | [Issue][issue_29] | [Trello][trello_38] |                       | Pending | 21308128   | Add Oauth to Authentication Ms        |
+| 3     | [Issue][issue_29] | [Trello][trello_38] | [Pull Request][pr_40] | Pending | 21308128   | Add Oauth to Authentication Ms        |
 | 6     | [Issue][issue_25] | [Trello][trello_12] |                       | Pending | 18265693   | Springboot for API-Gateway foundation |
 | 7     | [Issue][issue_21] | [Trello][trello_15] |                       | Pending | 21342342   | Post Microservice fondation           |
 | 8     | [Issue][issue_26] | [Trello][trello_17] | [Pull Request][pr_31] | Pending | 21332673   | Add liquibase                         |
@@ -28,7 +28,7 @@
 | 14    |                   |                     | [Pull Request][pr_33] | Done    | 12136891   | Week 7 Report                         |
 | 15    | [Issue][issue_34] | [Trello][trello_16] |                       | Pending | 12136891   | Profile Microservice                  |
 | 16    | [Issue][issue_32] | [Trello][trello_12] |                       | Pending | 18265693   | Creating separate services            |
-
+| 17    | [Issue][issue_45] | [Trello][trello_44] |                       | Pending | 21308128   | Add JWT                               |
 
 [issue_18]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/18
 [issue_21]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/21
@@ -39,6 +39,7 @@
 [issue_29]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/29
 [issue_34]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/34
 [issue_32]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/32
+[issue_45]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/45
 
 [trello_12]: https://trello.com/c/JublwPPu/12-create-api-gateway-module-foundations
 [trello_13]: https://trello.com/c/3LMcupSB/13-create-service-registry
@@ -47,11 +48,13 @@
 [trello_17]: https://trello.com/c/byGSYX2K/17-add-liquibase
 [trello_18]: https://trello.com/c/zzW6JN0j/18-setup-local-environment
 [trello_37]: https://trello.com/c/rJ6rzzpm/37-create-env
-[trello_38]: https://trello.com/c/EDgzbQYz/38-add-oath-to-authentication        
+[trello_38]: https://trello.com/c/EDgzbQYz/38-add-oath-to-authentication       
+[trello_44]: https://trello.com/c/4iiYV9sN/44-add-jwt
 
 [pr_30]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/30
 [pr_31]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/31
 [pr_33]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/33
+[pr_40]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/40
 
 | Blockers | Student ID | Description | Approach to resolve |
 |----------|------------|-------------|---------------------|
