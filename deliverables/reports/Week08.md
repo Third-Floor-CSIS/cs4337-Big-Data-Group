@@ -16,19 +16,24 @@
 
 ## Work
 
-| Index | Issue ID          | Trello Link         | Pull Request Link     | Status  | Student ID | Issue Description                     | 
-|-------|-------------------|---------------------|-----------------------|---------|------------|---------------------------------------|
-| 3     | [Issue][issue_29] | [Trello][trello_38] | [Pull Request][pr_40] | Pending | 21308128   | Add Oauth to Authentication Ms        |
-| 6     | [Issue][issue_25] | [Trello][trello_12] |                       | Pending | 18265693   | Springboot for API-Gateway foundation |
-| 7     | [Issue][issue_21] | [Trello][trello_15] |                       | Pending | 21342342   | Post Microservice fondation           |
-| 8     | [Issue][issue_26] | [Trello][trello_17] | [Pull Request][pr_31] | Pending | 21332673   | Add liquibase                         |
-| 9     | [Issue][issue_27] | [Trello][trello_13] | [Pull Request][pr_31] | Pending | 21332673   | Create service registry               |
-| 11    | [Issue][issue_18] | [Trello][trello_37] | [Pull Request][pr_30] | Pending | 21332142   | Create .env's                         |
-| 13    | [Issue][issue_28] | [Trello][trello_18] |                       | Pending | 21332142   | Setup local environment               |
-| 14    |                   |                     | [Pull Request][pr_33] | Done    | 12136891   | Week 7 Report                         |
-| 15    | [Issue][issue_34] | [Trello][trello_16] |                       | Pending | 12136891   | Profile Microservice                  |
-| 16    | [Issue][issue_32] | [Trello][trello_12] |                       | Pending | 18265693   | Creating separate services            |
-| 17    | [Issue][issue_45] | [Trello][trello_44] |                       | Pending | 21308128   | Add JWT                               |
+| Index | Issue ID          | Trello Link         | Pull Request Link     | Status  | Student ID | Issue Description                       | 
+|-------|-------------------|---------------------|-----------------------|---------|------------|-----------------------------------------|
+| 3     | [Issue][issue_29] | [Trello][trello_38] |                       | Pending | 21308128   | Add Oauth to Authentication Ms          |
+| 6     | [Issue][issue_25] | [Trello][trello_12] |                       | Pending | 18265693   | Springboot for API-Gateway foundation   |
+| 7     | [Issue][issue_21] | [Trello][trello_15] |                       | Pending | 21342342   | Post Microservice fondation             |
+| 8     | [Issue][issue_26] | [Trello][trello_17] | [Pull Request][pr_31] | Pending | 21332673   | Add liquibase                           |
+| 9     | [Issue][issue_27] | [Trello][trello_13] | [Pull Request][pr_31] | Pending | 21332673   | Create service registry                 |
+| 11    | [Issue][issue_18] | [Trello][trello_37] | [Pull Request][pr_30] | Pending | 21332142   | Create .env's                           |
+| 13    | [Issue][issue_28] | [Trello][trello_18] |                       | Pending | 21332142   | Setup local environment                 |
+| 14    |                   |                     | [Pull Request][pr_33] | Done    | 12136891   | Week 7 Report                           |
+| 15    | [Issue][issue_34] | [Trello][trello_16] |                       | Pending | 12136891   | Profile Microservice                    |
+| 16    | [Issue][issue_32] | [Trello][trello_12] |                       | Pending | 18265693   | Creating separate services              |
+| 17    |                   |                     | [Pull Request][pr_36] | Pending | 12136891   | Week 8 Report                           |
+| 18    | [Issue][issue_38] |                     | [Pull Request][pr_39] | Done    | 12136891   | Improve the template for microservices  |
+| 19    | [Issue][issue_43] | [Trello][trello_42] |                       | Pending | 21332673   | Fault Tolerance                         |
+| 20    | [Issue][issue_44] | [Trello][trello_43] |                       | Pending | 21332673   | Database Replication                    |
+| 21    | [Issue][issue_45] | [Trello][trello_44] |                       | Pending | 21308128   | Add JWT                                 |
+
 
 [issue_18]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/18
 [issue_21]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/21
@@ -39,6 +44,9 @@
 [issue_29]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/29
 [issue_34]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/34
 [issue_32]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/32
+[issue_38]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/38
+[issue_43]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/43
+[issue_44]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/44
 [issue_45]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/45
 
 [trello_12]: https://trello.com/c/JublwPPu/12-create-api-gateway-module-foundations
@@ -48,12 +56,16 @@
 [trello_17]: https://trello.com/c/byGSYX2K/17-add-liquibase
 [trello_18]: https://trello.com/c/zzW6JN0j/18-setup-local-environment
 [trello_37]: https://trello.com/c/rJ6rzzpm/37-create-env
-[trello_38]: https://trello.com/c/EDgzbQYz/38-add-oath-to-authentication       
+[trello_38]: https://trello.com/c/EDgzbQYz/38-add-oath-to-authentication
+[trello_42]: https://trello.com/c/Ke5V83mB/42-fault-tolerance
+[trello_43]: https://trello.com/c/yQcVzN4t/43-database-replication
 [trello_44]: https://trello.com/c/4iiYV9sN/44-add-jwt
 
 [pr_30]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/30
 [pr_31]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/31
 [pr_33]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/33
+[pr_36]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/36
+[pr_39]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/39
 [pr_40]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/40
 
 | Blockers | Student ID | Description | Approach to resolve |
