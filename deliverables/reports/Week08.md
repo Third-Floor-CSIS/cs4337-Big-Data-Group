@@ -30,6 +30,8 @@
 | 16    | [Issue][issue_32] | [Trello][trello_12] |                       | Pending | 18265693   | Creating separate services             |
 | 17    |                   |                     | [Pull Request][pr_36] | Pending | 12136891   | Week 8 Report                          |
 | 18    | [Issue][issue_38] |                     | [Pull Request][pr_39] | Done    | 12136891   | Improve the template for microservices |
+| 19    | [Issue][issue_43] | [Trello][trello_42] |                       | Pending | 21332673   | Fault Tolerance                        |
+| 20    | [Issue][issue_44] | [Trello][trello_43] |                       | Pending | 21332673   | Database Replication                   |
 
 
 [issue_18]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/18
@@ -42,6 +44,8 @@
 [issue_34]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/34
 [issue_32]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/32
 [issue_38]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/38
+[issue_43]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/43
+[issue_44]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/44
 
 [trello_12]: https://trello.com/c/JublwPPu/12-create-api-gateway-module-foundations
 [trello_13]: https://trello.com/c/3LMcupSB/13-create-service-registry
@@ -50,7 +54,9 @@
 [trello_17]: https://trello.com/c/byGSYX2K/17-add-liquibase
 [trello_18]: https://trello.com/c/zzW6JN0j/18-setup-local-environment
 [trello_37]: https://trello.com/c/rJ6rzzpm/37-create-env
-[trello_38]: https://trello.com/c/EDgzbQYz/38-add-oath-to-authentication        
+[trello_38]: https://trello.com/c/EDgzbQYz/38-add-oath-to-authentication
+[trello_42]: https://trello.com/c/Ke5V83mB/42-fault-tolerance
+[trello_43]: https://trello.com/c/yQcVzN4t/43-database-replication
 
 [pr_30]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/30
 [pr_31]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/31
