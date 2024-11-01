@@ -27,12 +27,13 @@
 | 13    | [Issue][issue_28] | [Trello][trello_18] |                       | Pending | 21332142   | Setup local environment                 |
 | 14    |                   |                     | [Pull Request][pr_33] | Done    | 12136891   | Week 7 Report                           |
 | 15    | [Issue][issue_34] | [Trello][trello_16] |                       | Pending | 12136891   | Profile Microservice                    |
-| 16    | [Issue][issue_32] | [Trello][trello_12] |                       | Pending | 18265693   | Creating separate services              |
+| 16    | [Issue][issue_32] | [Trello][trello_12] |                       | Done    | 18265693   | Creating separate services              |
 | 17    |                   |                     | [Pull Request][pr_36] | Pending | 12136891   | Week 8 Report                           |
 | 18    | [Issue][issue_38] |                     | [Pull Request][pr_39] | Done    | 12136891   | Improve the template for microservices  |
 | 19    | [Issue][issue_43] | [Trello][trello_42] |                       | Pending | 21332673   | Fault Tolerance                         |
 | 20    | [Issue][issue_44] | [Trello][trello_43] |                       | Pending | 21332673   | Database Replication                    |
 | 21    | [Issue][issue_45] | [Trello][trello_44] |                       | Pending | 21308128   | Add JWT                                 |
+| 22    | [Issue][issue_25] | [Trello][trello_12] |  [Pull Request][pr_37]| Done    | 18265693   | API-gateway and service registry        |
 
 
 [issue_18]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/18
@@ -67,6 +68,7 @@
 [pr_36]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/36
 [pr_39]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/39
 [pr_40]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/40
+[pr_37]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/37
 
 | Blockers | Student ID | Description | Approach to resolve |
 |----------|------------|-------------|---------------------|
