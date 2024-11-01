@@ -33,8 +33,8 @@
 | 19    | [Issue][issue_43] | [Trello][trello_42] |                       | Pending | 21332673   | Fault Tolerance                         |
 | 20    | [Issue][issue_44] | [Trello][trello_43] |                       | Pending | 21332673   | Database Replication                    |
 | 21    | [Issue][issue_45] | [Trello][trello_44] |                       | Pending | 21308128   | Add JWT                                 |
-| 22    | [Issue][issue_25] | [Trello][trello_12] |  [Pull Request][pr_37]| Done    | 18265693   | API-gateway and service registry        |
-| 23    | [Issue][issue_47] | [Trello][trello_45] |                       | Pending | 21342342   | Add docker to Posts MS                  |
+| 22    | [Issue][issue_25] | [Trello][trello_12] | [Pull Request][pr_37] | Done    | 18265693   | API-gateway and service registry        |
+| 23    | [Issue][issue_47] | [Trello][trello_21] |                       | Pending | 21342342   | Add docker to Posts MS                  |
 | 24    | [Issue][issue_48] | [Trello][trello_41] |                       | Pending | 21332142   | Kafka integration into Service Registry |
 
 
@@ -45,8 +45,8 @@
 [issue_27]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/27
 [issue_28]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/28
 [issue_29]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/29
-[issue_34]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/34
 [issue_32]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/32
+[issue_34]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/34
 [issue_38]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/38
 [issue_43]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/43
 [issue_44]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/44
@@ -60,21 +60,21 @@
 [trello_16]: https://trello.com/c/dupP22Mk/16-profile-microservice-foundations
 [trello_17]: https://trello.com/c/byGSYX2K/17-add-liquibase
 [trello_18]: https://trello.com/c/zzW6JN0j/18-setup-local-environment
+[trello_21]: https://trello.com/c/jMzngaip/21-add-docker-to-posts-microservice
 [trello_37]: https://trello.com/c/rJ6rzzpm/37-create-env
 [trello_38]: https://trello.com/c/EDgzbQYz/38-add-oath-to-authentication
 [trello_41]: https://trello.com/c/Qpza67N3/41-kafka-integration-into-service-registry
 [trello_42]: https://trello.com/c/Ke5V83mB/42-fault-tolerance
 [trello_43]: https://trello.com/c/yQcVzN4t/43-database-replication
 [trello_44]: https://trello.com/c/4iiYV9sN/44-add-jwt
-[trello_45]: https://trello.com/c/jMzngaip/21-add-docker-to-posts-microservice
 
 [pr_30]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/30
 [pr_31]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/31
 [pr_33]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/33
 [pr_36]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/36
+[pr_37]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/37
 [pr_39]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/39
 [pr_40]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/40
-[pr_37]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/37
 
 | Blockers | Student ID | Description | Approach to resolve |
 |----------|------------|-------------|---------------------|
