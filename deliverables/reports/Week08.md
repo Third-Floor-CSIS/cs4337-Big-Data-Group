@@ -34,6 +34,7 @@
 | 20    | [Issue][issue_44] | [Trello][trello_43] |                       | Pending | 21332673   | Database Replication                    |
 | 21    | [Issue][issue_45] | [Trello][trello_44] |                       | Pending | 21308128   | Add JWT                                 |
 | 22    | [Issue][issue_25] | [Trello][trello_12] |  [Pull Request][pr_37]| Done    | 18265693   | API-gateway and service registry        |
+| 23    | [Issue][issue_47] | [Trello][trello_45] |                       | Pending | 21342342   | Add docker to Posts MS                  |
 
 
 [issue_18]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/18
@@ -49,6 +50,7 @@
 [issue_43]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/43
 [issue_44]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/44
 [issue_45]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/45
+[issue_47]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/47
 
 [trello_12]: https://trello.com/c/JublwPPu/12-create-api-gateway-module-foundations
 [trello_13]: https://trello.com/c/3LMcupSB/13-create-service-registry
@@ -61,6 +63,7 @@
 [trello_42]: https://trello.com/c/Ke5V83mB/42-fault-tolerance
 [trello_43]: https://trello.com/c/yQcVzN4t/43-database-replication
 [trello_44]: https://trello.com/c/4iiYV9sN/44-add-jwt
+[trello_45]: https://trello.com/c/jMzngaip/21-add-docker-to-posts-microservice
 
 [pr_30]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/30
 [pr_31]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/31
