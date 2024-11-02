@@ -31,7 +31,7 @@
 | 21    | [Issue][issue_45] | [Trello][trello_44] |                       | Pending | 21308128   | Add JWT                                 |
 | 23    | [Issue][issue_47] | [Trello][trello_21] |                       | Pending | 21342342   | Add docker to Posts MS                  |
 | 24    | [Issue][issue_48] | [Trello][trello_41] |                       | Pending | 21332142   | Kafka integration into Service Registry |
-| 25    |                   |                     |                       | Pending | 12136891   | Week 9 Report                           |
+| 25    |                   |                     | [Pull Request][pr_50] | Pending | 12136891   | Week 9 Report                           |
 
 
 [issue_21]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/21
@@ -62,6 +62,7 @@
 
 [pr_31]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/31
 [pr_36]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/36
+[pr_50]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/50
 
 | Blockers | Student ID | Description | Approach to resolve |
 |----------|------------|-------------|---------------------|
