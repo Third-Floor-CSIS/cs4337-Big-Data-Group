@@ -1,6 +1,6 @@
 # IDE folder
 /.idea
-                    /**/.idea
+/**/.idea
 
 # Microsoft office Lockfiles
 ~$*
@@ -28,7 +28,9 @@ test.*
 # Dealing with Mac users
 .DS_Store
 
+# ignore all log folders
 /logs
+/**/logs
 
 # Maven stuff
 /target/
