@@ -5,25 +5,22 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
 
 <!--    We will have a parent directory -->
-    <include file="com/example/news/news.changelog.sql"/>
-    <include file="com/example/directory/directory.changelog.sql"/>
+<!--    <include file="com/example/news/news.changelog.sql"/>-->
+<!--    <include file="com/example/directory/directory.changelog.sql"/>-->
 
-<!--    Sample change set -->
-    <changeSet id="0" author="Milan" context="Creating tables">
-<!--        Increment the ID with each following change set and give it a name (Commit msg for context) -->
-        <createTable tableName="users">
-            <column name="id" type="int" autoIncrement="true">
-                <constraints primaryKey="true" primaryKeyName="PK_USERS" nullable="false"/>
+    <!-- Increment the ID with each following change set and give it a name (Commit msg for context) -->
+    <changeSet id="0" author="Brendan" context="Creating table">
+        <createTable tableName="profile">
+            <column name="user_id" type="VARCHAR2(255)">
+                <constraints primaryKey="true" nullable="false" foreignKeyName="users_id" references="users(id)"/>
             </column>
-            <column name="firstname" type="VARCHAR2(255)"/>
-            <column name="surname" type="VARCHAR2(255)"/>
-            <column name="email" type="VARCHAR2(255)">
-                <constraints unique="true"/>
-            </column>
-            <column name="password" type="text"/>
-            <column name="date_of_birth" type="date"/>
-            <column name="signed_up" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
-            <column name="verified" type="boolean" defaultValue="false"/>
+            <column name="full_name" type="VARCHAR2(255)"/>
+            <column name="bio" type="VARCHAR2(255)"/>
+            <column name="profile_pic" type="VARCHAR2(255)"/>
+
+            <!-- this might be more a query to another table?-->
+            <column name="count_follower" type="int"/>
+            <column name="count_following" type="int"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>
