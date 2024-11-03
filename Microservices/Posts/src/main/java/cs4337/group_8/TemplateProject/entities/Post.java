@@ -1,6 +1,6 @@
 package com.example.posts.entity;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 import java.time.LocalDateTime;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -15,18 +15,30 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int postId;
+    private Long id;
+    private String content;
 
     private String caption;
     private String imageUrl;
     private LocalDateTime createdAt;
-    private int userId; // to track which user created the post
+    private long userId; // to track which user created the post
 
     private int likesCount = 0; // to track number of likes
 
-    public Post() {
+    public Post(Long id, String content) {
 
+        this.id = id;
+        this.content = content;
         this.createdAt = LocalDateTime.now();
     }
+
+    public Long getId() { return id; }
+    public Long getUserId() { return userId; }
+    public String getContent() { return content; }
+    public int getLikesCount() { return likesCount; }
+    public void setLikesCount(int likesCount) {
+        this.likesCount = likesCount;
+    }
+
 
 }
