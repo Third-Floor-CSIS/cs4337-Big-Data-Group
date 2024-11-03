@@ -3,6 +3,7 @@ package cs4337.group_8.TemplateProject.controllers;
 import cs4337.group_8.TemplateProject.DTO.ProfileDTO;
 import cs4337.group_8.TemplateProject.DTO.ProfileDTOValidated;
 import cs4337.group_8.TemplateProject.exceptions.SampleCustomException;
+import cs4337.group_8.TemplateProject.mappers.ProfileMapper;
 import cs4337.group_8.TemplateProject.services.ProfileService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +38,7 @@ public class ProfileController2 {
     )
     public ResponseEntity<ProfileDTO> addNewUserFromRegistration(@Valid @RequestBody ProfileDTOValidated incomingDTO) {
         try {
+            // if a confict exist throwsi it down below
             ProfileService.getUserExistanceById(incomingDTO.getUser_id());
             log.info("New user registered");
             ProfileDTO apiResponse = new ProfileDTO();
@@ -46,23 +48,15 @@ public class ProfileController2 {
         }
     }
 
-    // No need to specify consumes or produces, but it is good practice
-    @PostMapping(
-            value = "/ok",
-            produces = "application/json"
-    )
-    public ResponseEntity<String> loginUser() {
-        return ResponseEntity.ok("Hello, World!");
-    }
-
     @GetMapping(value = "/get", produces = "application/json")
-    public ResponseEntity<HashMap<String, Object>> getSample() {
-        HashMap<String, Object> response = new HashMap<>();
-        response.put("key", "value");
-        response.put("name", "milan");
-        response.put("age", 22);
-        response.put("how are you", "good");
-        // You can also just return response, but ResponseEntity is more explicit
-        return ResponseEntity.ok(response);
+    public ResponseEntity<ProfileDTO> getProfile(@Valid @RequestBody String user_id) {
+        try {
+            ProfileEntity profileEntity = ProfileService.getUserExistanceById(user_id);
+            ProfileDTO profile = ProfileMapper.INSTANCE.toDto( profileEntity );
+            return ResponseEntity.ok(profile);
+        } catch (SampleCustomException e) {
+            // TODO: not the right response
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new ProfileDTO());
+        }
     }
 }

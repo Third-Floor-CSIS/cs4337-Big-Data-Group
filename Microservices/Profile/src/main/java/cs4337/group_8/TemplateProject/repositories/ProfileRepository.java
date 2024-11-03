@@ -19,7 +19,7 @@ public interface ProfileRepository extends JpaRepository<ProfileEntity, String> 
 //    Optional<List<ProfileEntity>> findAllByVerifiedTrue();
 
     // You can also use the @Query annotation to write custom queries
-    @Query(value = "SELECT e FROM ProfileEntity e WHERE e.firstname = ?1 AND e.verified = ?2")
+    //@Query(value = "SELECT e FROM ProfileEntity e WHERE e.firstname = ?1 AND e.verified = ?2")
     // Where ?1 is the first parameter of the method
-    Optional<List<ProfileEntity>> findAllByFirstnameAndVerified(String firstname, boolean verified);
+    //Optional<List<ProfileEntity>> findAllByFirstnameAndVerified(String firstname, boolean verified);
 }
