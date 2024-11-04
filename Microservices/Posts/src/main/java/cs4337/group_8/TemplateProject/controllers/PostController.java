@@ -42,7 +42,7 @@ public class PostController {
         PostDTO dto = new PostDTO();
         dto.setId(post.getId());
         dto.setUserId(post.getUserId());
-        dto.setContent(post.getContent());
+        dto.setContent(post.picUrl());
         dto.setLikesCount(post.getLikesCount());
         return dto;
     }

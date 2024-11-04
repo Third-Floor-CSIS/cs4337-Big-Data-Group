@@ -3,7 +3,7 @@ package com.example.posts.dto;
 public class PostDTO {
     private Long id;
     private Long userId;
-    private String content;
+    private String picUrl;
     private int likesCount;
 
     // Getters and Setters
@@ -13,8 +13,8 @@ public class PostDTO {
     public Long getUserId() { return userId; }
     public void setUserId(Long userId) { this.userId = userId; }
 
-    public String getContent() { return content; }
-    public void setContent(String content) { this.content = content; }
+    public String getPicUrl() { return picUrl; }
+    public void setPicUrl(String picUrl) { this.picUrl = picUrl; }
 
     public int getLikesCount() { return likesCount; }
     public void setLikesCount(int likesCount) { this.likesCount = likesCount; }

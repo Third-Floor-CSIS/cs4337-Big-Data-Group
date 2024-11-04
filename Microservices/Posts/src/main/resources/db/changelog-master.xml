@@ -9,21 +9,18 @@
     <include file="com/example/directory/directory.changelog.sql"/>
 
 <!--    Sample change set -->
-    <changeSet id="0" author="Milan" context="Creating tables">
-<!--        Increment the ID with each following change set and give it a name (Commit msg for context) -->
-        <createTable tableName="users">
+    <changeSet id="0" author="Sean" context="Creating tables">
+
+        <createTable tableName="posts">
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="PK_USERS" nullable="false"/>
             </column>
-            <column name="firstname" type="VARCHAR2(255)"/>
-            <column name="surname" type="VARCHAR2(255)"/>
-            <column name="email" type="VARCHAR2(255)">
+            <column name="likesCount" type="VARCHAR2(255)"/>
+            <column name="content" type="VARCHAR2(255)"/>
+            <column name="userID" type="VARCHAR2(255)">
                 <constraints unique="true"/>
             </column>
-            <column name="password" type="text"/>
-            <column name="date_of_birth" type="date"/>
-            <column name="signed_up" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
-            <column name="verified" type="boolean" defaultValue="false"/>
+
         </createTable>
     </changeSet>
 </databaseChangeLog>
