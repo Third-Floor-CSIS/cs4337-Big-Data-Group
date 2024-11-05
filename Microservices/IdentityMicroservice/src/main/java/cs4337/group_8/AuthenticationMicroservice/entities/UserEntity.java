@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.sql.Timestamp;
+import java.time.Instant;
+
 
 @Entity
 @Data
@@ -26,5 +27,5 @@ public class UserEntity {
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
-    private Timestamp created_at;
+    private Instant created_at;
 }

@@ -6,17 +6,17 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
+import java.time.Instant;
 
 @Entity
 @Data
 @NoArgsConstructor
 @Table(name = "tokens")
-public class TokenEntity {
+public class GoogleResourceTokenEntity {
     @Id
     private Integer userId;
     private String refreshToken;
     private String currentAccessToken;
-    private Timestamp expirationTimeAccessToken;
-    private Timestamp expirationTimeRefreshToken;
+    private Instant expirationTimeAccessToken;
+    private Instant expirationTimeRefreshToken;
 }

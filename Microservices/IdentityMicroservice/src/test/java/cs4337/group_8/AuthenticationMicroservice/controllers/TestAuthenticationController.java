@@ -101,7 +101,7 @@ public class TestAuthenticationController {
         String trimmedToken = requestHeaderToken.substring(7);
         String refreshedToken = "refreshedToken";
 
-        when(authenticationService.refreshToken(trimmedToken))
+        when(authenticationService.refreshAccessToken(trimmedToken))
                 .thenReturn(refreshedToken);
 
         mockMvc.perform(post("/refresh-token")
@@ -118,7 +118,7 @@ public class TestAuthenticationController {
         String requestHeaderToken = "Bearer someToken";
         String trimmedToken = requestHeaderToken.substring(7);
 
-        when(authenticationService.refreshToken(trimmedToken))
+        when(authenticationService.refreshAccessToken(trimmedToken))
                 .thenThrow(new RefreshTokenExpiredException("Refresh token expired"));
 
         mockMvc.perform(post("/refresh-token").header("Authorization", requestHeaderToken))

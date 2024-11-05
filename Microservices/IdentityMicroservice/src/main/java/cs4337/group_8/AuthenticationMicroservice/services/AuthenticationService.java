@@ -3,17 +3,21 @@ package cs4337.group_8.AuthenticationMicroservice.services;
 import cs4337.group_8.AuthenticationMicroservice.DTOs.UserDTO;
 import cs4337.group_8.AuthenticationMicroservice.POJOs.GoogleAuthorizationResponse;
 import cs4337.group_8.AuthenticationMicroservice.POJOs.GoogleUserDetails;
-import cs4337.group_8.AuthenticationMicroservice.entities.TokenEntity;
+import cs4337.group_8.AuthenticationMicroservice.entities.GoogleResourceTokenEntity;
 import cs4337.group_8.AuthenticationMicroservice.entities.UserEntity;
+import cs4337.group_8.AuthenticationMicroservice.exceptions.AuthenticationNotFoundException;
 import cs4337.group_8.AuthenticationMicroservice.exceptions.RefreshTokenExpiredException;
 import cs4337.group_8.AuthenticationMicroservice.exceptions.ValidateTokenException;
 import cs4337.group_8.AuthenticationMicroservice.repositories.TokenRepository;
 import cs4337.group_8.AuthenticationMicroservice.repositories.UserRepository;
+import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
+import java.time.Instant;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -21,16 +25,19 @@ public class AuthenticationService {
     private final TokenRepository tokenRepository;
     private final UserRepository userRepository;
     private final GoogleAuthService googleAuthService;
+    private final JwtService jwtService;
     private static final long DAY_IN_MILLISECONDS = 1000 * 60 * 60 * 24;
     private static final long SECOND_IN_MILLISECONDS = 1000;
 
     public AuthenticationService(
             TokenRepository tokenRepository,
             UserRepository userRepository,
-            GoogleAuthService googleAuthService) {
+            GoogleAuthService googleAuthService,
+            JwtService jwtService) {
         this.tokenRepository = tokenRepository;
         this.userRepository = userRepository;
         this.googleAuthService = googleAuthService;
+        this.jwtService = jwtService;
     }
 
     public UserDTO handleAuthentication(String grantCode) {
@@ -42,25 +49,50 @@ public class AuthenticationService {
 
         storeTokens(apiResponse, user.getUser_id());
 
+        String jwtToken = jwtService.generateToken(new org.springframework.security.core.userdetails.User(
+                String.valueOf(user.getUser_id()),
+                "",
+                List.of(new SimpleGrantedAuthority("USER"))
+        ), accessToken);
+
         UserDTO userDto = new UserDTO();
         userDto.setUserId(user.getUser_id());
         userDto.setProfilePicture(user.getProfile_picture());
+        userDto.setJwtToken(jwtToken);
+
         return userDto;
     }
 
-    public String refreshToken(String accessToken) throws RefreshTokenExpiredException {
-        boolean refreshTokenIsInvalid = googleAuthService.isRefreshTokenExpiredForAccessToken(accessToken);
-        if (!refreshTokenIsInvalid) {
-            TokenEntity tokenEntity = tokenRepository.getTokenEntityByCurrentAccessToken(accessToken)
-                    .orElseThrow(() -> new ValidateTokenException("No token found for user, please login again"));
+    public String refreshAccessToken(String jwtToken) throws RefreshTokenExpiredException {
 
-            String refreshToken = tokenEntity.getRefreshToken();
+        Claims jwtClaims = jwtService.extractAllClaims(jwtToken);
 
-            accessToken = googleAuthService.refreshAccessToken(refreshToken, tokenEntity.getUserId());
-            return accessToken;
+        String accessToken;
+        String userId;
+
+        if (jwtClaims.get("access_token") != null && jwtClaims.get("user_id") != null) {
+            accessToken = (String) jwtClaims.get("access_token");
+            userId = (String) jwtClaims.get("user_id");
+        } else {
+            throw new AuthenticationNotFoundException("Access token not found in JWT token");
         }
 
-        throw new RefreshTokenExpiredException("Refresh token has expired, please login again");
+        try {
+            String refreshToken = googleAuthService.getRefreshTokenForAccessTokenIfNotExpired(accessToken);
+
+            accessToken = googleAuthService.refreshAccessToken(refreshToken, Integer.parseInt(userId));
+
+            String newJwt = jwtService.generateToken(new org.springframework.security.core.userdetails.User(
+                    userId,
+                    "",
+                    List.of(new SimpleGrantedAuthority("USER"))
+            ), accessToken);
+
+            return newJwt;
+        } catch (ValidateTokenException e) {
+            throw new AuthenticationNotFoundException("No token found for user, please login again");
+        }
+
     }
 
     private UserEntity createNewUserFromGoogleOauth(GoogleUserDetails userDetails) {
@@ -73,16 +105,24 @@ public class AuthenticationService {
         createdUser.setBio("");
         createdUser.setFollower_count(0);
         createdUser.setFollowing_count(0);
-        return userRepository.save(createdUser);
+
+        createdUser = userRepository.save(createdUser);
+        jwtService.generateRefreshToken(new org.springframework.security.core.userdetails.User(
+                String.valueOf(createdUser.getUser_id()),
+                "",
+                List.of(new SimpleGrantedAuthority("USER"))
+        ));
+        return createdUser;
     }
 
     private void storeTokens(GoogleAuthorizationResponse tokenDetails, int userId) {
-        TokenEntity tokenEntity = new TokenEntity();
-        tokenEntity.setUserId(userId);
-        tokenEntity.setCurrentAccessToken(tokenDetails.getAccess_token());
-        tokenEntity.setExpirationTimeAccessToken(new Timestamp(System.currentTimeMillis() + (SECOND_IN_MILLISECONDS * tokenDetails.getExpires_in())));
-        tokenEntity.setRefreshToken(tokenDetails.getRefresh_token());
-        tokenEntity.setExpirationTimeRefreshToken(new Timestamp(System.currentTimeMillis() + (DAY_IN_MILLISECONDS * 14)));
-        tokenRepository.save(tokenEntity);
+        GoogleResourceTokenEntity googleResourceTokenEntity = new GoogleResourceTokenEntity();
+        googleResourceTokenEntity.setUserId(userId);
+        googleResourceTokenEntity.setCurrentAccessToken(tokenDetails.getAccess_token());
+        googleResourceTokenEntity.setExpirationTimeAccessToken(
+                Instant.now().plusSeconds(SECOND_IN_MILLISECONDS * tokenDetails.getExpires_in()));
+        googleResourceTokenEntity.setRefreshToken(tokenDetails.getRefresh_token());
+        googleResourceTokenEntity.setExpirationTimeRefreshToken(Instant.now().plusSeconds(DAY_IN_MILLISECONDS * 14));
+        tokenRepository.save(googleResourceTokenEntity);
     }
 }
