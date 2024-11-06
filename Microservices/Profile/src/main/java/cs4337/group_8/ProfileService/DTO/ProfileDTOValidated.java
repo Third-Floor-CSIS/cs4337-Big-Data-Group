@@ -1,4 +1,4 @@
-package cs4337.group_8.TemplateProject.DTO;
+package cs4337.group_8.ProfileService.DTO;
 
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.NotNull;

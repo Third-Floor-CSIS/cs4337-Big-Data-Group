@@ -1,0 +1,18 @@
+package cs4337.group_8.ProfileService.repositories;
+
+import cs4337.group_8.ProfileService.entities.ProfileEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+// <Entity, ID> (ID is the type of the primary key of the entity)
+public interface ProfileRepository extends JpaRepository<ProfileEntity, String> {
+
+    // Optional is a container object which may or may not contain a non-null value
+    Optional<ProfileEntity> findByIdEquals(String id);
+    }

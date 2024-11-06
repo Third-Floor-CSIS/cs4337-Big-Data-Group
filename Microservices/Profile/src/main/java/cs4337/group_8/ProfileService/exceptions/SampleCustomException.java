@@ -1,4 +1,4 @@
-package cs4337.group_8.TemplateProject.exceptions;
+package cs4337.group_8.ProfileService.exceptions;
 
 public class SampleCustomException extends RuntimeException {
   public SampleCustomException(String message) {
