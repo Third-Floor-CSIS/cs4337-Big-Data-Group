@@ -11,6 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 public class Post {
 
     @Id
@@ -19,7 +20,7 @@ public class Post {
     private String content;
 
     private String caption;
-    private String imageUrl;
+    private String picUrl;
     private LocalDateTime createdAt;
     private long userId; // to track which user created the post
 

@@ -1,7 +1,9 @@
 package com.example.posts.service;
 
-import com.example.posts.exception.PostException;
+import com.example.posts.entity.Like;
 import com.example.posts.entity.Post;
+import com.example.posts.exception.PostException;
+import com.example.posts.repository.LikesRepository;
 import com.example.posts.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,9 @@ public class PostService {
 
     @Autowired
     private PostRepository postRepository;
+
+    @Autowired
+    private LikesRepository likesRepository;
 
     public Post createPost(Post post) {
         return postRepository.save(post);
@@ -31,7 +36,6 @@ public class PostService {
         return postRepository.findById(id);
     }
 
-
     public void deletePost(Long postId, Long userId) {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new PostException("Post with ID " + postId + " not found"));
@@ -43,19 +47,62 @@ public class PostService {
         }
     }
 
-    public void likePost(Long postId) {
+    public void likePost(Long postId, Long userId) {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new PostException("Post with ID " + postId + " not found"));
 
-        post.setLikesCount(post.getLikesCount() + 1);
+        Optional<Like> existingLike = likesRepository.findByPostIdAndUserId(postId, userId);
+
+        if (existingLike.isPresent()) {
+            Like like = existingLike.get();
+            if (!like.isLiked()) {
+                like.setLiked(true); // Reactivate like
+                likesRepository.save(like);
+                post.setLikesCount(post.getLikesCount() + 1); // Increment fast lookup counter
+                postRepository.save(post);
+            } else {
+                throw new PostException("User ID " + userId + " has already liked post with ID " + postId);
+            }
+        } else {
+            // Add a new like entry if none exists
+            Like newLike = new Like(postId, userId);
+            likesRepository.save(newLike);
+            post.setLikesCount(post.getLikesCount() + 1); // Increment fast lookup counter
+            postRepository.save(post);
+        }
+    }
+
+    public void unlikePost(Long postId, Long userId) {
+        Optional<Like> likeOptional = likesRepository.findByPostIdAndUserId(postId, userId);
+
+        if (likeOptional.isEmpty()) {
+            throw new PostException("Like entry for Post ID " + postId + " by User ID " + userId + " not found");
+        }
+
+        Like like = likeOptional.get();
+
+        if (!like.isLiked()) {
+            throw new PostException("Post with ID " + postId + " is already unliked by User ID " + userId);
+        }
+
+        like.setLiked(false);
+        likesRepository.save(like);
+
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new PostException("Post with ID " + postId + " not found"));
+
+        // Only decrement if likesCount is greater than 0
+        if (post.getLikesCount() > 0) {
+            post.setLikesCount(post.getLikesCount() - 1);
+        }
+
+        //post.setLikesCount(post.getLikesCount() - 1);
         postRepository.save(post);
     }
 
-    public void unlikePost(Long postId) {
+    public long getLikeCount(Long postId) {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new PostException("Post with ID " + postId + " not found"));
-
-        post.setLikesCount(post.getLikesCount() - 1);
-        postRepository.save(post);
+        return post.getLikesCount();
     }
 }

@@ -1,6 +1,9 @@
+package com.example.posts.controllers;
+
 import com.example.posts.dto.PostDTO;
 import com.example.posts.entity.Post;
 import com.example.posts.service.PostService;
+import com.example.posts.mapper.PostMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,31 +23,21 @@ public class PostController {
 
     @PostMapping
     public PostDTO createPost(@RequestBody PostDTO postDTO) {
-        Post post = new Post(postDTO.getUserId(), postDTO.getContent());
-        return convertToDTO(postService.createPost(post));
+        Post post = postMapper.toEntity(postDTO);
+        return postMapper.toDTO(postService.createPost(post));
     }
 
     @GetMapping("/user/{userId}")
     public List<PostDTO> getUserPosts(@PathVariable Long userId) {
         return postService.getPostsByUser(userId).stream()
-                .map(this::convertToDTO)
+                .map(postMapper::toDTO)
                 .collect(Collectors.toList());
     }
 
     @GetMapping("/{postId}")
     public ResponseEntity<PostDTO> getPostById(@PathVariable Long postId) {
         return postService.getPostById(postId)
-                .map(post -> ResponseEntity.ok(convertToDTO(post)))
+                .map(post -> ResponseEntity.ok(postMapper.toDTO(post)))
                 .orElse(ResponseEntity.notFound().build());
     }
-
-    private PostDTO convertToDTO(Post post) {
-        PostDTO dto = new PostDTO();
-        dto.setId(post.getId());
-        dto.setUserId(post.getUserId());
-        dto.setContent(post.picUrl());
-        dto.setLikesCount(post.getLikesCount());
-        return dto;
-    }
-
 }
