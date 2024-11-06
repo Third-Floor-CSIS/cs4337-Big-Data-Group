@@ -1,7 +1,7 @@
-package cs4337.group_8.TemplateProject.mappers;
+package cs4337.group_8.ProfileService.mappers;
 
-import cs4337.group_8.TemplateProject.DTO.ProfileDTO;
-import cs4337.group_8.TemplateProject.entities.ProfileEntity;
+import cs4337.group_8.ProfileService.DTO.ProfileDTO;
+import cs4337.group_8.ProfileService.entities.ProfileEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

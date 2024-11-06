@@ -1,10 +1,11 @@
-package cs4337.group_8.TemplateProject.controllers;
+package cs4337.group_8.ProfileService.controllers;
 
-import cs4337.group_8.TemplateProject.DTO.ProfileDTO;
-import cs4337.group_8.TemplateProject.DTO.ProfileDTOValidated;
-import cs4337.group_8.TemplateProject.exceptions.SampleCustomException;
-import cs4337.group_8.TemplateProject.mappers.ProfileMapper;
-import cs4337.group_8.TemplateProject.services.ProfileService;
+import cs4337.group_8.ProfileService.DTO.ProfileDTO;
+import cs4337.group_8.ProfileService.DTO.ProfileDTOValidated;
+import cs4337.group_8.ProfileService.exceptions.SampleCustomException;
+import cs4337.group_8.ProfileService.mappers.ProfileMapper;
+import cs4337.group_8.ProfileService.services.ProfileService;
+import cs4337.group_8.ProfileService.entities.ProfileEntity;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -21,14 +22,14 @@ import java.util.HashMap;
 @RequestMapping("/profile")
 // Simple logging interface: meaning we can plug in and out different logging implementations. By Default its the Springboot logger
 @Slf4j
-public class ProfileController2 {
+public class ControllerProfile {
 
     // Bean injections
     // It is okay to have more than one service, but nothing lower
-    private final ProfileService ProfileService;
+    private final ProfileService profileService;
 
-    public ProfileController2(ProfileService ProfileService) {
-        this.ProfileService = ProfileService;
+    public ControllerProfile(ProfileService profileService) {
+        this.profileService = profileService;
     }
 
     @PostMapping(
@@ -39,7 +40,7 @@ public class ProfileController2 {
     public ResponseEntity<ProfileDTO> addNewUserFromRegistration(@Valid @RequestBody ProfileDTOValidated incomingDTO) {
         try {
             // if a confict exist throwsi it down below
-            ProfileService.getUserExistanceById(incomingDTO.getUser_id());
+            profileService.getUserExistanceById(incomingDTO.getUser_id());
             log.info("New user registered");
             ProfileDTO apiResponse = new ProfileDTO();
             return ResponseEntity.ok(apiResponse);
@@ -51,7 +52,7 @@ public class ProfileController2 {
     @GetMapping(value = "/get", produces = "application/json")
     public ResponseEntity<ProfileDTO> getProfile(@Valid @RequestBody String user_id) {
         try {
-            ProfileEntity profileEntity = ProfileService.getUserExistanceById(user_id);
+            ProfileEntity profileEntity = profileService.getUserExistanceById(user_id);
             ProfileDTO profile = ProfileMapper.INSTANCE.toDto( profileEntity );
             return ResponseEntity.ok(profile);
         } catch (SampleCustomException e) {

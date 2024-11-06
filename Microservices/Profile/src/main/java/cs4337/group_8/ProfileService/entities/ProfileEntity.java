@@ -1,4 +1,4 @@
-package cs4337.group_8.TemplateProject.entities;
+package cs4337.group_8.ProfileService.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,8 +25,8 @@ import java.time.LocalDateTime;
 @ToString(callSuper = true, includeFieldNames = true)
 @Table(name = "profile")
 public class ProfileEntity {
-    @Id // Primary key
-//    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment in the database
+    // Primary key
+    @Id
     @Column
     private String user_id;
 
@@ -44,9 +44,4 @@ public class ProfileEntity {
 
     @Column
     private int count_following;
-
-//    // modification date?
-//    // Insertable = false means that the column is not included in the insert statement
-//    @Column(name = "signed_up", insertable = false)
-//    private LocalDateTime signUpTime;
 }

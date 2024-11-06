@@ -1,8 +1,8 @@
-package cs4337.group_8.TemplateProject.services;
+package cs4337.group_8.ProfileService.services;
 
-import cs4337.group_8.TemplateProject.entities.ProfileEntity;
-import cs4337.group_8.TemplateProject.exceptions.SampleCustomException;
-import cs4337.group_8.TemplateProject.repositories.ProfileRepository;
+import cs4337.group_8.ProfileService.entities.ProfileEntity;
+import cs4337.group_8.ProfileService.exceptions.SampleCustomException;
+import cs4337.group_8.ProfileService.repositories.ProfileRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -30,20 +30,5 @@ public class ProfileService {
 
     public ProfileEntity getUserExistanceById(String id){
         return ProfileRepository.findById(id).orElseThrow(() -> new SampleCustomException("User not found"));
-    }
-
-    public List<ProfileEntity> getAllUsersByName(String name){
-        Optional<List<ProfileEntity>> query = ProfileRepository.findAllByFirstnameAndVerified(name, true);
-        return query.orElseGet(ArrayList::new);
-
-        // The above is the same as:
-        /*
-            This may be a bit cleaner
-            if (query.isPresent()){
-                return query.get();
-            } else {
-                return new ArrayList<ProfileEntity>();
-            }
-        */
     }
 }

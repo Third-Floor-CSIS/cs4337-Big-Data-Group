@@ -1,4 +1,4 @@
-package cs4337.group_8.TemplateProject.DTO;
+package cs4337.group_8.ProfileService.DTO;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,8 +16,4 @@ public class ProfileDTO {
     private String profile_pic;
     private int count_follower;
     private int count_following;
-
-//    public ProfileDTO (String property1){
-//        this.property1 = property1;
-//    }
 }
