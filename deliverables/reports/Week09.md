@@ -18,7 +18,7 @@
 
 | Index | Issue ID          | Trello Link         | Pull Request Link     | Status  | Student ID | Issue Description                       | 
 |-------|-------------------|---------------------|-----------------------|---------|------------|-----------------------------------------|
-| 3     | [Issue][issue_29] | [Trello][trello_38] |                       | Pending | 21308128   | Add Oauth to Authentication Ms          |
+| 3     | [Issue][issue_29] | [Trello][trello_38] | [Pull Request][pr_40] | Pending | 21308128   | Add Oauth to Authentication Ms          |
 | 6     | [Issue][issue_25] | [Trello][trello_12] |                       | Done    | 18265693   | Springboot for API-Gateway foundation   |
 | 7     | [Issue][issue_21] | [Trello][trello_15] |                       | Pending | 21342342   | Post Microservice fondation             |
 | 8     | [Issue][issue_26] | [Trello][trello_17] | [Pull Request][pr_31] | Pending | 21332673   | Add liquibase                           |
@@ -28,7 +28,7 @@
 | 17    |                   |                     | [Pull Request][pr_36] | Done    | 12136891   | Week 8 Report                           |
 | 19    | [Issue][issue_43] | [Trello][trello_42] |                       | Pending | 21332673   | Fault Tolerance                         |
 | 20    | [Issue][issue_44] | [Trello][trello_43] |                       | Pending | 21332673   | Database Replication                    |
-| 21    | [Issue][issue_45] | [Trello][trello_44] |                       | Pending | 21308128   | Add JWT                                 |
+| 21    | [Issue][issue_45] | [Trello][trello_44] | [Pull Request][pr_54] | Pending | 21308128   | Add JWT                                 |
 | 23    | [Issue][issue_47] | [Trello][trello_21] |                       | Pending | 21342342   | Add docker to Posts MS                  |
 | 24    | [Issue][issue_48] | [Trello][trello_41] |                       | Pending | 21332142   | Kafka integration into Service Registry |
 | 25    |                   |                     | [Pull Request][pr_50] | Pending | 12136891   | Week 9 Report                           |
@@ -67,10 +67,12 @@
 
 [pr_31]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/31
 [pr_36]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/36
+[pr_40]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/40
 [pr_50]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/50
 [pr_51]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/51
 [pr_52]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/52
 [pr_49]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/49
+[pr_54]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/54
 
-| Blockers | Student ID | Description | Approach to resolve |
-|----------|------------|-------------|---------------------|
+| Blockers                     | Student ID | Description | Approach to resolve |
+|------------------------------|------------|-------------|---------------------|
