@@ -1,8 +1,8 @@
 package cs4337.group_8.TemplateProject.services;
 
-import cs4337.group_8.AuthenticationMicroservice.entities.SampleEntity;
-import cs4337.group_8.AuthenticationMicroservice.exceptions.SampleCustomException;
-import cs4337.group_8.AuthenticationMicroservice.repositories.SampleRepository;
+import cs4337.group_8.TemplateProject.entities.SampleEntity;
+import cs4337.group_8.TemplateProject.exceptions.SampleCustomException;
+import cs4337.group_8.TemplateProject.repositories.SampleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
