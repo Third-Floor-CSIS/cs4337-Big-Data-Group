@@ -1,4 +1,4 @@
-package com.fawad.serviceregistry;
+package cs4337.group_8.ServiceRegistry;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

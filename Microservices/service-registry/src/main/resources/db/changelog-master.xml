@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet author="Killian" id="0">
+        <!-- Creating comments table -->
+        <createTable tableName="comments">
+            <column autoIncrement="true" name="comment_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="post_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="comment" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="current_timestamp()" name="created_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Creating followers table -->
+        <createTable tableName="followers">
+            <column name="follower_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="followed_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column defaultValueComputed="current_timestamp()" name="created_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Creating likes table -->
+        <createTable tableName="likes">
+            <column autoIncrement="true" name="like_Id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="post_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="current_timestamp()" name="created_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Creating posts table -->
+        <createTable tableName="posts">
+            <column autoIncrement="true" name="post_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image_url" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="caption" type="TEXT"/>
+            <column defaultValueComputed="current_timestamp()" name="created_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="like_count" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="comment_count" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Creating users table -->
+        <createTable tableName="users">
+            <column autoIncrement="true" name="user_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="username" type="VARCHAR(200)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="email" type="VARCHAR(200)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="full_name" type="VARCHAR(200)"/>
+            <column name="bio" type="TEXT"/>
+            <column name="profile_pic" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="current_timestamp()" name="created_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="follower_count" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="following_count" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Indexes for comments table -->
+        <createIndex indexName="fk_comments_post_id" tableName="comments">
+            <column name="post_id"/>
+        </createIndex>
+        <createIndex indexName="fk_comments_user_id" tableName="comments">
+            <column name="user_id"/>
+        </createIndex>
+
+        <!-- Indexes for likes table -->
+        <createIndex indexName="fk_likes_post_id" tableName="likes">
+            <column name="post_id"/>
+        </createIndex>
+        <createIndex indexName="fk_likes_user_id" tableName="likes">
+            <column name="user_id"/>
+        </createIndex>
+
+        <!-- Index for posts table -->
+        <createIndex indexName="fk_posts_user_id" tableName="posts">
+            <column name="user_id"/>
+        </createIndex>
+
+        <!-- Foreign key constraints -->
+        <addForeignKeyConstraint baseColumnNames="post_id" baseTableName="comments" constraintName="fk_comments_post_id" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="post_id" referencedTableName="posts"/>
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="comments" constraintName="fk_comments_user_id" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="user_id" referencedTableName="users"/>
+        <addForeignKeyConstraint baseColumnNames="followed_id" baseTableName="followers" constraintName="fk_followers_followed_id" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="user_id" referencedTableName="users"/>
+        <addForeignKeyConstraint baseColumnNames="follower_id" baseTableName="followers" constraintName="fk_followers_follower_id" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="user_id" referencedTableName="users"/>
+        <addForeignKeyConstraint baseColumnNames="post_id" baseTableName="likes" constraintName="fk_likes_post_id" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="post_id" referencedTableName="posts"/>
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="likes" constraintName="fk_likes_user_id" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="user_id" referencedTableName="users"/>
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="posts" constraintName="fk_posts_user_id" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="user_id" referencedTableName="users"/>
+    </changeSet>
+
+</databaseChangeLog>
