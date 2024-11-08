@@ -20,7 +20,6 @@
         <module>IdentityMicroservice</module>
         <module>api-gateway</module>
         <module>service-registry</module>
-        <module>ServiceRegistryMicroservice</module>
     </modules>
 
     <properties>
