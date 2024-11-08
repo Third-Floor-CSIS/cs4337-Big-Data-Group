@@ -20,7 +20,7 @@
 |-------|-------------------|---------------------|-----------------------|---------|------------|-----------------------------------------|
 | 3     | [Issue][issue_29] | [Trello][trello_38] | [Pull Request][pr_40] | Pending | 21308128   | Add Oauth to Authentication Ms          |
 | 6     | [Issue][issue_25] | [Trello][trello_12] |                       | Done    | 18265693   | Springboot for API-Gateway foundation   |
-| 7     | [Issue][issue_21] | [Trello][trello_15] |                       | Pending | 21342342   | Post Microservice fondation             |
+| 7     | [Issue][issue_21] | [Trello][trello_15] | [Pull Request][pr_53] | Pending | 21342342   | Post Microservice fondation             |
 | 8     | [Issue][issue_26] | [Trello][trello_17] | [Pull Request][pr_31] | Pending | 21332673   | Add liquibase                           |
 | 9     | [Issue][issue_27] | [Trello][trello_13] | [Pull Request][pr_31] | Pending | 21332673   | Create service registry                 |
 | 13    | [Issue][issue_28] | [Trello][trello_18] |                       | Pending | 21332142   | Setup local environment                 |
@@ -73,6 +73,7 @@
 [pr_52]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/52
 [pr_49]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/49
 [pr_54]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/54
+[pr_53]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pulls
 
 | Blockers                     | Student ID | Description | Approach to resolve |
 |------------------------------|------------|-------------|---------------------|
