@@ -35,4 +35,5 @@ test.*
 /**/target/
 
 # Environment Variables
+!.env.example
 .env*
