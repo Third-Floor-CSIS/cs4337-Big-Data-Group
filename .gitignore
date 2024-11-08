@@ -37,3 +37,7 @@ test.*
 # Environment Variables
 !.env.example
 .env*
+
+# local dev storage
+/dev
+/**/dev
