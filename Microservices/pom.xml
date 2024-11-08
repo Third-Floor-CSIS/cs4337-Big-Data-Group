@@ -18,6 +18,8 @@
     <modules>
         <module>TemplateProject</module>
         <module>IdentityMicroservice</module>
+        <module>api-gateway</module>
+        <module>service-registry</module>
     </modules>
 
     <properties>
