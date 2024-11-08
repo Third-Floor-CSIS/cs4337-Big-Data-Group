@@ -1,7 +1,3 @@
-/*
- * Citation: This file was generated with the help of GitHub Copilot 2024
- */
-
 package cs4337.group_8.AuthenticationMicroservice.config.filters;
 
 import cs4337.group_8.AuthenticationMicroservice.services.JwtService;
