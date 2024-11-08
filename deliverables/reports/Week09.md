@@ -59,21 +59,21 @@
 [trello_18]: https://trello.com/c/zzW6JN0j/18-setup-local-environment
 [trello_21]: https://trello.com/c/jMzngaip/21-add-docker-to-posts-microservice
 [trello_38]: https://trello.com/c/EDgzbQYz/38-add-oath-to-authentication
+[trello_40]: https://trello.com/c/crKgFZBZ/40-notification-microservice
 [trello_41]: https://trello.com/c/Qpza67N3/41-kafka-integration-into-service-registry
 [trello_42]: https://trello.com/c/Ke5V83mB/42-fault-tolerance
 [trello_43]: https://trello.com/c/yQcVzN4t/43-database-replication
 [trello_44]: https://trello.com/c/4iiYV9sN/44-add-jwt
-[trello_40]: https://trello.com/c/crKgFZBZ/40-notification-microservice
 
 [pr_31]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/31
 [pr_36]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/36
 [pr_40]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/40
+[pr_49]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/49
 [pr_50]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/50
 [pr_51]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/51
 [pr_52]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/52
-[pr_49]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/49
+[pr_53]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/53
 [pr_54]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/54
-[pr_53]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pulls
 
 | Blockers                     | Student ID | Description | Approach to resolve |
 |------------------------------|------------|-------------|---------------------|
