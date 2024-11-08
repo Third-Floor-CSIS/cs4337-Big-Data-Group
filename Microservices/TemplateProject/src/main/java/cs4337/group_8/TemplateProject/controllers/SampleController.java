@@ -1,9 +1,9 @@
-package cs4337.group_8.AuthenticationMicroservice.controllers;
+package cs4337.group_8.TemplateProject.controllers;
 
 import cs4337.group_8.AuthenticationMicroservice.DTO.SampleDTO;
-import cs4337.group_8.AuthenticationMicroservice.DTO.ValidatedSampleDTO;
+import cs4337.group_8.TemplateProject.DTO.ValidatedSampleDTO;
 import cs4337.group_8.AuthenticationMicroservice.exceptions.SampleCustomException;
-import cs4337.group_8.AuthenticationMicroservice.services.SampleService;
+import cs4337.group_8.TemplateProject.services.SampleService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

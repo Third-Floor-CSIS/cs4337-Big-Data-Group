@@ -1,4 +1,4 @@
-package cs4337.group_8.AuthenticationMicroservice.services;
+package cs4337.group_8.TemplateProject.services;
 
 import cs4337.group_8.AuthenticationMicroservice.entities.SampleEntity;
 import cs4337.group_8.AuthenticationMicroservice.exceptions.SampleCustomException;
