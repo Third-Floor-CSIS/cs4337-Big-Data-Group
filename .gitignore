@@ -36,6 +36,9 @@ test.*
 /target/
 /**/target/
 
+# Linux stuff
+.attach_pid*
+
 # Environment Variables
 !.env.example
 .env*
