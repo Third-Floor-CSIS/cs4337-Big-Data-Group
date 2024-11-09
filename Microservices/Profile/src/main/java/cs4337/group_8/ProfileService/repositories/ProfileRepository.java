@@ -14,5 +14,6 @@ import java.util.Optional;
 public interface ProfileRepository extends JpaRepository<ProfileEntity, String> {
 
     // Optional is a container object which may or may not contain a non-null value
-    Optional<ProfileEntity> findByIdEquals(String id);
+    @Query(value = "SELECT e FROM ProfileEntity e WHERE e.user_id = ?1")
+    Optional<ProfileEntity> findByIdEquals(String user_id);
     }
