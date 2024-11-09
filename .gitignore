@@ -28,6 +28,7 @@ test.*
 # Dealing with Mac users
 .DS_Store
 
+
 # ignore all log folders
 /logs
 /**/logs
