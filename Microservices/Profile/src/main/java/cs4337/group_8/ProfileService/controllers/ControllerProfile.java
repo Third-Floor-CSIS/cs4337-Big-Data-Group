@@ -33,11 +33,15 @@ public class ControllerProfile {
     }
 
     @PostMapping(
-        value = "/register",
+        value = "/new",
         produces = "application/json",
         consumes = "application/json"
     )
-    public ResponseEntity<ProfileDTO> addNewUserFromRegistration(@Valid @RequestBody ProfileDTOValidated incomingDTO) {
+    public ResponseEntity<ProfileDTO> addNewUserFromRegistration(
+        @Valid
+        @RequestBody
+        ProfileDTOValidated incomingDTO
+    ) {
         try {
             // if a confict exist throwsi it down below
             profileService.getUserExistanceById(incomingDTO.getUser_id());
@@ -49,14 +53,46 @@ public class ControllerProfile {
         }
     }
 
-    @GetMapping(value = "/get", produces = "application/json")
-    public ResponseEntity<ProfileDTO> getProfile(@Valid @RequestBody String user_id) {
+    @GetMapping(
+        value = "/existing",
+        produces = "application/json"
+    )
+    public ResponseEntity<ProfileDTO> getProfile(
+        @Valid
+        @RequestBody
+        String user_id
+    ) {
         try {
             ProfileEntity profileEntity = profileService.getUserExistanceById(user_id);
             ProfileDTO profile = ProfileMapper.INSTANCE.toDto( profileEntity );
             return ResponseEntity.ok(profile);
         } catch (SampleCustomException e) {
             // TODO: not the right response
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new ProfileDTO());
+        }
+    }
+
+    @PostMapping(
+        value = "/existing",
+        produces = "application/json",
+        consumes = "application/json"
+    )
+    public ResponseEntity<ProfileDTO> setProfile(
+        @Valid
+        @RequestBody
+        ProfileDTOValidated incomingDTO
+    ) {
+        try {
+            // Save it to the database
+            profileService.updateByUserId(
+                incomingDTO.getUser_id(),
+                incomingDTO.getFull_name(),
+                incomingDTO.getBio(),
+                incomingDTO.getProfile_pic(),
+            );
+            // return modified version
+            return ResponseEntity.ok(incomingDTO);
+        } catch (SampleCustomException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(new ProfileDTO());
         }
     }
