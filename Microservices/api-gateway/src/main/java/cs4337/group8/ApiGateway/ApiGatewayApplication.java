@@ -1,4 +1,4 @@
-package cs4337.group_8.AuthenticationMicroservice;
+package cs4337.group8.ApiGateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

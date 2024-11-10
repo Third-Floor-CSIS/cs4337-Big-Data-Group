@@ -17,6 +17,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Service
@@ -26,8 +27,6 @@ public class AuthenticationService {
     private final UserRepository userRepository;
     private final GoogleAuthService googleAuthService;
     private final JwtService jwtService;
-    private static final long DAY_IN_MILLISECONDS = 1000 * 60 * 60 * 24;
-    private static final long SECOND_IN_MILLISECONDS = 1000;
 
     public AuthenticationService(
             TokenRepository tokenRepository,
@@ -120,9 +119,9 @@ public class AuthenticationService {
         googleResourceTokenEntity.setUserId(userId);
         googleResourceTokenEntity.setCurrentAccessToken(tokenDetails.getAccess_token());
         googleResourceTokenEntity.setExpirationTimeAccessToken(
-                Instant.now().plusSeconds(SECOND_IN_MILLISECONDS * tokenDetails.getExpires_in()));
+                Instant.now().plusSeconds(tokenDetails.getExpires_in()));
         googleResourceTokenEntity.setRefreshToken(tokenDetails.getRefresh_token());
-        googleResourceTokenEntity.setExpirationTimeRefreshToken(Instant.now().plusSeconds(DAY_IN_MILLISECONDS * 14));
+        googleResourceTokenEntity.setExpirationTimeRefreshToken(Instant.now().plus(14, ChronoUnit.DAYS));
         tokenRepository.save(googleResourceTokenEntity);
     }
 }
