@@ -35,4 +35,9 @@ test.*
 /**/target/
 
 # Environment Variables
+!.env.example
 .env*
+
+# local dev storage
+/dev
+/**/dev
