@@ -7,6 +7,7 @@ import cs4337.group_8.AuthenticationMicroservice.entities.UserEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 
 public class SharedResources {
@@ -55,7 +56,7 @@ public class SharedResources {
         mockUser.setFollower_count(0);
         mockUser.setFollowing_count(0);
 
-        mockUser.setCreated_at(new Timestamp(2024, 1, 1, 0, 0, 0, 0));
+        mockUser.setCreated_at(Instant.now()); // Todo: change this to 2024/1/1
         return mockUser;
     }
 

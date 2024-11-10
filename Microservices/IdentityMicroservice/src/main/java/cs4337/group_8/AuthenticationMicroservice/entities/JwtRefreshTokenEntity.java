@@ -9,6 +9,7 @@ import java.time.Instant;
 @Entity
 @Data
 @NoArgsConstructor
+@Table(name = "jwt_refresh_tokens")
 public class JwtRefreshTokenEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
