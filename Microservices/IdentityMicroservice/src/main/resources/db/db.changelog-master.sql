@@ -12,16 +12,10 @@ CREATE TABLE IF NOT EXISTS tokens (
 
 -- changeset Milan:1
 CREATE TABLE IF NOT EXISTS users (
- user_id BIGINT AUTO_INCREMENT NOT NULL,
- username VARCHAR(200),
+    user_id BIGINT AUTO_INCREMENT NOT NULL,
     email VARCHAR(200) NOT NULL UNIQUE,
     password VARCHAR(200),
-    full_name VARCHAR(200),
-    bio TEXT,
-    profile_pic VARCHAR(200),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    follower_count INT,
-    following_count INT,
     PRIMARY KEY (user_id)
     );
 

@@ -46,15 +46,8 @@ public class SharedResources {
         UserEntity mockUser = new UserEntity();
         mockUser.setUser_id(1);
 
-        mockUser.setUsername(null);
         mockUser.setPassword(null);
         mockUser.setEmail("mock@email.com");
-        mockUser.setFull_name("firstname lastname");
-        mockUser.setBio("");
-
-        mockUser.setProfile_picture("picture URL");
-        mockUser.setFollower_count(0);
-        mockUser.setFollowing_count(0);
 
         mockUser.setCreated_at(Instant.now()); // Todo: change this to 2024/1/1
         return mockUser;

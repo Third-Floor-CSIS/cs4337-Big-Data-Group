@@ -56,7 +56,6 @@ public class AuthenticationService {
 
         UserDTO userDto = new UserDTO();
         userDto.setUserId(user.getUser_id());
-        userDto.setProfilePicture(user.getProfile_picture());
         userDto.setJwtToken(jwtToken);
 
         return userDto;
@@ -97,13 +96,8 @@ public class AuthenticationService {
     private UserEntity createNewUserFromGoogleOauth(GoogleUserDetails userDetails) {
         UserEntity createdUser = new UserEntity();
         createdUser.setEmail(userDetails.getEmail());
-        createdUser.setFull_name(userDetails.getName());
-        createdUser.setProfile_picture(userDetails.getPicture());
-        createdUser.setUsername(null);
         createdUser.setPassword(null);
-        createdUser.setBio("");
-        createdUser.setFollower_count(0);
-        createdUser.setFollowing_count(0);
+
 
         createdUser = userRepository.save(createdUser);
         jwtService.generateRefreshToken(new org.springframework.security.core.userdetails.User(

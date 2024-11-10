@@ -58,7 +58,6 @@ public class TestAuthenticationController {
 
         UserDTO expectedUser = new UserDTO();
         expectedUser.setUserId(1);
-        expectedUser.setProfilePicture("some link to a pfp");
 
         when(authenticationService.handleAuthentication(code))
                 .thenReturn(expectedUser);
@@ -69,8 +68,8 @@ public class TestAuthenticationController {
                         .param("authuser", authUser)
                         .param("prompt", prompt))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.userId").value(expectedUser.getUserId()))
-                .andExpect(jsonPath("$.profilePicture").value(expectedUser.getProfilePicture()));
+                .andExpect(jsonPath("$.userId").value(expectedUser.getUserId())
+                );
     }
 
     @Test
