@@ -58,7 +58,6 @@ public class TestAuthenticationController {
 
         UserDTO expectedUser = new UserDTO();
         expectedUser.setUserId(1);
-        expectedUser.setProfilePicture("some link to a pfp");
 
         when(authenticationService.handleAuthentication(code))
                 .thenReturn(expectedUser);
@@ -69,8 +68,8 @@ public class TestAuthenticationController {
                         .param("authuser", authUser)
                         .param("prompt", prompt))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.userId").value(expectedUser.getUserId()))
-                .andExpect(jsonPath("$.profilePicture").value(expectedUser.getProfilePicture()));
+                .andExpect(jsonPath("$.userId").value(expectedUser.getUserId())
+                );
     }
 
     @Test
@@ -101,7 +100,7 @@ public class TestAuthenticationController {
         String trimmedToken = requestHeaderToken.substring(7);
         String refreshedToken = "refreshedToken";
 
-        when(authenticationService.refreshToken(trimmedToken))
+        when(authenticationService.refreshAccessToken(trimmedToken))
                 .thenReturn(refreshedToken);
 
         mockMvc.perform(post("/refresh-token")
@@ -118,7 +117,7 @@ public class TestAuthenticationController {
         String requestHeaderToken = "Bearer someToken";
         String trimmedToken = requestHeaderToken.substring(7);
 
-        when(authenticationService.refreshToken(trimmedToken))
+        when(authenticationService.refreshAccessToken(trimmedToken))
                 .thenThrow(new RefreshTokenExpiredException("Refresh token expired"));
 
         mockMvc.perform(post("/refresh-token").header("Authorization", requestHeaderToken))

@@ -2,24 +2,33 @@ package cs4337.group_8.AuthenticationMicroservice.controllers;
 
 import cs4337.group_8.AuthenticationMicroservice.DTOs.UserDTO;
 import cs4337.group_8.AuthenticationMicroservice.exceptions.AuthenticationException;
+import cs4337.group_8.AuthenticationMicroservice.exceptions.AuthenticationNotFoundException;
 import cs4337.group_8.AuthenticationMicroservice.exceptions.RefreshTokenExpiredException;
-import cs4337.group_8.AuthenticationMicroservice.exceptions.ValidateTokenException;
 import cs4337.group_8.AuthenticationMicroservice.services.AuthenticationService;
+import cs4337.group_8.AuthenticationMicroservice.services.JwtService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
+import org.springframework.security.oauth2.jwt.JwtException;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
+@RequestMapping("/auth")
 @Slf4j
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
+    private final JwtService jwtService;
 
-    public AuthenticationController(AuthenticationService authenticationService) {
+    public AuthenticationController(AuthenticationService authenticationService,
+                                    JwtService jwtService) {
         this.authenticationService = authenticationService;
+        this.jwtService = jwtService;
+    }
+
+    @GetMapping("/test")
+    public ResponseEntity test() {
+        return new ResponseEntity<>("Test", HttpStatus.OK);
     }
 
     @GetMapping("/grantcode")
@@ -39,12 +48,13 @@ public class AuthenticationController {
         }
     }
 
-    @PostMapping("/refresh-token")
-    public ResponseEntity<Object> refreshToken(@RequestHeader("Authorization") String token) {
+    @PostMapping("/refresh-access-token")
+    public ResponseEntity<Object> refreshToken(@RequestHeader("Authorization") String jwtToken) {
         try {
-            token = token.substring(7);
+            jwtToken = jwtToken.substring(7);
             HttpHeaders headers = new HttpHeaders();
-            headers.setBearerAuth(authenticationService.refreshToken(token));
+
+            headers.setBearerAuth(authenticationService.refreshAccessToken(jwtToken));
             return ResponseEntity
                     .ok()
                     .headers(headers)
@@ -56,6 +66,40 @@ public class AuthenticationController {
                     .status(HttpStatus.FORBIDDEN)
                     .headers(headers)
                     .body("Refresh token expired");
+        } catch (AuthenticationNotFoundException e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
+        } catch (AuthenticationException e) {
+            return ResponseEntity
+                    .status(HttpStatus.UNAUTHORIZED)
+                    .body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/refresh-jwt-token")
+    public ResponseEntity<Object> refreshJwtToken(@RequestHeader("Authorization") String jwtToken) {
+        try {
+            jwtToken = jwtToken.substring(7);
+            HttpHeaders headers = new HttpHeaders();
+
+            headers.setBearerAuth(jwtService.refreshJwtToken(jwtToken));
+
+            return ResponseEntity
+                    .ok()
+                    .headers(headers)
+                    .body("Token refreshed");
+        } catch (RefreshTokenExpiredException e) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setLocation(URI.create("/login"));
+            return ResponseEntity
+                    .status(HttpStatus.FORBIDDEN)
+                    .headers(headers)
+                    .body("Refresh token expired");
+        } catch (JwtException e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
         }
     }
 }

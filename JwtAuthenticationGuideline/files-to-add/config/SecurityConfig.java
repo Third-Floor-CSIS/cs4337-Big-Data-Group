@@ -1,8 +1,7 @@
-package cs4337.group_8.AuthenticationMicroservice.config;
 
-import cs4337.group_8.AuthenticationMicroservice.config.filters.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
@@ -24,10 +23,14 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(request -> {
-                    request.requestMatchers("/auth/grantcode", "/auth/validate-token", "/auth/refresh-token", "/auth/test").permitAll();
+                    request.requestMatchers(
+                            "/auth/grantcode",
+                            "/auth/validate-token",
+                            "/auth/refresh-token",
+                            "/auth/test").permitAll();
                     request.anyRequest().authenticated();
                 })
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+//                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }

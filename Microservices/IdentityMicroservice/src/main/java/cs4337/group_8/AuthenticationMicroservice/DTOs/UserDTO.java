@@ -7,5 +7,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserDTO {
     private int userId;
-    private String profilePicture;
+    private String jwtToken;
 }
