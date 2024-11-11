@@ -30,7 +30,7 @@
 | 23    | [Issue][issue_47] | [Trello][trello_21] |                       | Pending | 21342342   | Add docker to Posts MS                  |
 | 24    | [Issue][issue_48] | [Trello][trello_41] |                       | Pending | 21332142   | Kafka integration into Service Registry |
 | 25    |                   |                     | [Pull Request][pr_50] | Done    | 12136891   | Week 9 Report                           |
-| 26    | [Issue][issue_52] |                     | [Pull Request][pr_52] | Pending | 12136891   | Add database for dev                    |
+| 26    | [Issue][issue_52] |                     | [Pull Request][pr_52] | Done    | 12136891   | Add database for dev                    |
 | 28    | [Issue][issue_56] | [Trello][trello_40] |                       | Pending | 18265693   | Notification Micro service              |
 | 29    |                   |                     | [Pull Request][pr_57] | Pending | 12136891   | Week 10 Report                          |
 
