@@ -31,4 +31,17 @@ public class ProfileService {
     public ProfileEntity getUserExistanceById(String id){
         return ProfileRepository.findById(id).orElseThrow(() -> new SampleCustomException("User not found"));
     }
+
+    public void updateByUserId(
+            String userId,
+            String fullName,
+            String bio,
+            String profilePic
+    ){
+        ProfileEntity profileEntity = ProfileRepository.findById(userId).orElseThrow(() -> new SampleCustomException("User not found"));
+        profileEntity.setFull_name(fullName);
+        profileEntity.setBio(bio);
+        profileEntity.setProfile_pic(profilePic);
+        ProfileRepository.save(profileEntity);
+    }
 }

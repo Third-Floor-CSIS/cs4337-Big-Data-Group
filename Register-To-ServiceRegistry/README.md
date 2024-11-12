@@ -10,6 +10,20 @@ Add the following dependency:
     <artifactId>spring-cloud-starter-openfeign</artifactId>
 </dependency>
 ```
+Add this to the bottom
+```
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>${spring-cloud.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+```
 
 Add the following annotation to the main class:
 ```

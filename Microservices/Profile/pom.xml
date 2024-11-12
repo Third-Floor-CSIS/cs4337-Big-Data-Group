@@ -10,9 +10,9 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>TemplateProject</artifactId>
+	<artifactId>Profile</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>TemplateProject</name>
+	<name>Profile</name>
 	<description>Demo project for Spring Boot</description>
 	<packaging>jar</packaging>
 
@@ -69,8 +69,27 @@
 			<artifactId>mysql-connector-j</artifactId>
 			<version>${mysql.version}</version>
 		</dependency>
-	</dependencies>
 
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<build>
 		<plugins>
 			<plugin>

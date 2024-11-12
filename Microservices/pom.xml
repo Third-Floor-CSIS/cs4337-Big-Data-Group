@@ -20,6 +20,7 @@
         <module>IdentityMicroservice</module>
         <module>api-gateway</module>
         <module>service-registry</module>
+        <module>Profile</module>
     </modules>
 
     <properties>

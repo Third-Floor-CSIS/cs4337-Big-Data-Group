@@ -1,7 +1,6 @@
 package cs4337.group_8.ProfileService.controllers;
 
 import cs4337.group_8.ProfileService.DTO.ProfileDTO;
-import cs4337.group_8.ProfileService.DTO.ProfileDTOValidated;
 import cs4337.group_8.ProfileService.exceptions.SampleCustomException;
 import cs4337.group_8.ProfileService.mappers.ProfileMapper;
 import cs4337.group_8.ProfileService.services.ProfileService;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 
 @RestController
 @RequestMapping("/profile")
@@ -32,6 +30,11 @@ public class ControllerProfile {
         this.profileService = profileService;
     }
 
+    @GetMapping("/test")
+    public String test() {
+        return "Hello World";
+    }
+
     @PostMapping(
         value = "/new",
         produces = "application/json",
@@ -40,7 +43,7 @@ public class ControllerProfile {
     public ResponseEntity<ProfileDTO> addNewUserFromRegistration(
         @Valid
         @RequestBody
-        ProfileDTOValidated incomingDTO
+        ProfileDTO incomingDTO
     ) {
         try {
             // if a confict exist throwsi it down below
@@ -80,7 +83,7 @@ public class ControllerProfile {
     public ResponseEntity<ProfileDTO> setProfile(
         @Valid
         @RequestBody
-        ProfileDTOValidated incomingDTO
+        ProfileDTO incomingDTO
     ) {
         try {
             // Save it to the database
@@ -88,7 +91,7 @@ public class ControllerProfile {
                 incomingDTO.getUser_id(),
                 incomingDTO.getFull_name(),
                 incomingDTO.getBio(),
-                incomingDTO.getProfile_pic(),
+                incomingDTO.getProfile_pic()
             );
             // return modified version
             return ResponseEntity.ok(incomingDTO);
