@@ -96,7 +96,6 @@ public class PostService {
             post.setLikesCount(post.getLikesCount() - 1);
         }
 
-        //post.setLikesCount(post.getLikesCount() - 1);
         postRepository.save(post);
     }
 
