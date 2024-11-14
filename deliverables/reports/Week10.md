@@ -31,7 +31,7 @@
 | 24    | [Issue][issue_48] | [Trello][trello_41] |                       | Pending | 21332142   | Kafka integration into Service Registry |
 | 25    |                   |                     | [Pull Request][pr_50] | Done    | 12136891   | Week 9 Report                           |
 | 26    | [Issue][issue_52] |                     | [Pull Request][pr_52] | Done    | 12136891   | Add database for dev                    |
-| 28    | [Issue][issue_56] | [Trello][trello_40] |                       | Pending | 18265693   | Notification Micro service              |
+| 28    | [Issue][issue_56] | [Trello][trello_40] | [Pull_Request][pr_59] | Done    | 18265693   | Notification Micro service              |
 | 29    |                   |                     | [Pull Request][pr_57] | Pending | 12136891   | Week 10 Report                          |
 
 [issue_21]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/21
@@ -73,6 +73,7 @@
 [pr_53]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/53
 [pr_54]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/54
 [pr_57]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/57
+[pr_59]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/59
 
 | Blockers                     | Student ID | Description | Approach to resolve |
 |------------------------------|------------|-------------|---------------------|
