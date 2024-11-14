@@ -33,11 +33,11 @@ Formatting for imports
 
 
 ## Guide to intial building with Maven
-Navigate to ``file -> Project Structure`` \
-Under Modules, Click + (Add) and Import Module \
-Navigate to the pom.xml file in the Microservice directory
+Navigate to ``File -> Project Structure``  
+Under Modules, Click + (Add) and ``Import Module``  
+Navigate to the ``pom.xml`` file in the Microservice directory
 
-Now you can move into the Microservices directory
-``cd Microservices`` \
-and run Maven
+Now you can move into the Microservices directory:
+``cd Microservices``  
+and run Maven:
 ``mvn clean install``
