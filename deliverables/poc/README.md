@@ -1,5 +1,17 @@
 # Ownerships
 
+## Euan Bourke    | 21332142
+
+## Brendan Golden | 12136891
+
+## Sean Caplis    | 21342342
+
+## Killian Carthy | 21332673
+
+## Ben Hogan      | 21319561
+
+## Fawad Shahzad  | 18265693
+
 ## Milan Kovacs | 21308128
 - Helped with the majority of the architecture and breakdown of the project
 - Leading the meetings and discussions
