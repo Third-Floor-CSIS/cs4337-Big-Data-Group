@@ -5,6 +5,12 @@
 ## Brendan Golden | 12136891
 
 ## Sean Caplis    | 21342342
+  - Helped Killian in designing DB schema
+  - Created and built Post Microservice
+  - Created Unit Tests for Post Controller and Service using Mockhito to continually test Post Microservice
+  - Create endpoint for Creating, Deleting and Liking posts aswell as endpoints for retrieving all Posts and Posts by ID
+  - Continuously stayed updated on rest of the projects development
+  - Added functionallity to store Likes as rows in Likes table and Posts in DB
 
 ## Killian Carthy | 21332673
 
