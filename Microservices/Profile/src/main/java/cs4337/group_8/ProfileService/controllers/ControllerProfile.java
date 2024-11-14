@@ -86,6 +86,7 @@ public class ControllerProfile {
         ProfileDTO incomingDTO
     ) {
         try {
+            // TODO: verify the user modifying it owns the profile
             // Save it to the database
             profileService.updateByUserId(
                 incomingDTO.getUser_id(),
