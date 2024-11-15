@@ -8,6 +8,7 @@
   - Reviewed multiple PR's, approving and discussing.
   - Currently working on integrating kafka into the project.
   - Currently creating test cases for the Profile microservice.
+  - Currently working on Notification Microservice
 
 ## Brendan Golden | 12136891
 ### Reports
