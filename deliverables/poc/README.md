@@ -6,9 +6,8 @@
   - Set up the environment variables for the project.
   - Added a guide for setting up Maven with the project.
   - Reviewed multiple PR's, approving and discussing.
-  - Currently working on integrating kafka into the project.
-  - Currently creating test cases for the Profile microservice.
-  - Currently working on Notification Microservice
+  - Currently working on Notification Microservice and Kafka integration.
+  - also working on creating test cases for the Profile microservice. 
 
 ## Brendan Golden | 12136891
 ### Reports
