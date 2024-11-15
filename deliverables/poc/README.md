@@ -65,3 +65,15 @@ to increase reliability and scalability.
 - Helped Fawad with the integration of the Gateway and Service Registry
 - Wrote the instructions for onboarding the API onto Service registry and the Gateway.
 - Added instructions for adding JWT configuration to the microservices.
+
+
+# Todo as a group
+We are planning on distributing the following works:
+- Dockerizing each microservice
+- Setting up the production environment
+- Setting up the CI/CD pipeline
+
+## Push goals
+- Add followers and following to the Profile Microservice
+- Add notification when someone likes the post
+- Add notification when someone follows you
