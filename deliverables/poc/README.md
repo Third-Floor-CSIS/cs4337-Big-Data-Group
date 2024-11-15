@@ -3,6 +3,21 @@
 ## Euan Bourke    | 21332142
 
 ## Brendan Golden | 12136891
+### Reports
+I was the main person in charge of organising the weekly reports.  
+This covers everything from the format to nudging folks to fill out their sections as well as submissions.
+
+### Microservice
+The microservice I am in charge of is the Profile microservice.  
+Overall it is a simple and self-contained service comprising of CRU (no delete in this prototype).
+
+### Reviews
+A solid chunk of my contributions were on the PR's, giving feedback and requesting changes.  
+This feedback often contained reasons why changes were required.
+
+### Discord Webhooks
+I setup the discord webhook so any changes on the repo would be immediately sent to a channel on our group Discord.  
+This dramatically increased interactions on all github related events since all members were pinged by it.
 
 ## Sean Caplis    | 21342342
   - Helped Killian in designing DB schema
@@ -18,7 +33,7 @@
 
 ## Fawad Shahzad  | 18265693
 
-## Milan Kovacs | 21308128
+## Milan Kovacs   | 21308128
 - Helped with the majority of the architecture and breakdown of the project
 - Leading the meetings and discussions
 - Continuously following the state of the project
