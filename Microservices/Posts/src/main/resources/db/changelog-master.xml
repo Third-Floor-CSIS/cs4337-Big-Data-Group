@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <!-- Including other change log files -->
+   <!--- <include file="com/example/news/news.changelog.sql"/>
+    <include file="com/example/directory/directory.changelog.sql"/> -->
+
+    <!-- ChangeSet for creating posts table -->
+    <changeSet id="0" author="Sean" context="initial-setup">
+        <createTable tableName="posts">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PK_POSTS" nullable="false"/>
+            </column>
+            <column name="likesCount" type="INT"/>
+            <column name="content" type="VARCHAR2(255)"/>
+            <column name="userID" type="VARCHAR2(255)">
+                <constraints unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="1" author="Sean" context="initial-setup">
+        <createTable tableName="likes">
+            <column name="LikeID" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PK_LIKES" nullable="false"/>
+            </column>
+            <column name="UserId" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PostId" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Timestamp" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IsLiked" type="BOOLEAN" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="FK_LIKES_USERID"
+                                 baseTableName="post_likes"
+                                 baseColumnNames="UserId"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint constraintName="FK_LIKES_POSTID"
+                                 baseTableName="post_likes"
+                                 baseColumnNames="PostId"
+                                 referencedTableName="posts"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>
