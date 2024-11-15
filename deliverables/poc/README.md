@@ -46,6 +46,33 @@ to increase reliability and scalability.
 ## Ben Hogan      | 21319561
 
 ## Fawad Shahzad  | 18265693
+### API Gateway & Service Registry Setup
+- Collaborated with Milan to understand the function of API gateway then implemented and integrated the API Gateway
+  - Set up the initial gateway structure using Spring Cloud Gateway
+  - Configured routing for our microservices
+  - Worked on making the gateway discover services automatically
+
+## Built the Service Registry (Eureka Server)
+  - Created the central hub where all our services can register themselves
+  - Made sure services can find each other through the registry
+  - Set it up so new services can easily join our system
+
+## Notification Service Development 
+- Started building the notification system
+- Set up the basic structure following our project patterns
+- Made it work with our service registry
+- Added flexible configuration (like configurable ports)
+- MEthods will be added later on
+
+## Team Collaboration
+- Worked closely with Milan on gateway integration
+- Regular code reviews and discussions
+- Following and contributing to our team's development patterns
+
+##  Next Steps
+- Completing the notification service
+- Will be working on more task like JWT as group 
+
 
 ## Milan Kovacs   | 21308128
 ### Architecture
