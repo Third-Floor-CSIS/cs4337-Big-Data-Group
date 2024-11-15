@@ -34,16 +34,19 @@ This dramatically increased interactions on all github related events since all 
 ## Fawad Shahzad  | 18265693
 
 ## Milan Kovacs   | 21308128
+### Architecture
 - Helped with the majority of the architecture and breakdown of the project
-- Leading the meetings and discussions
 - Continuously following the state of the project
+- Created architecture_diagram.png
 
+### Meetings
+- Leading the meetings and discussions
+
+### Code
 - Created the TemplateMicroservice to get the lads up to speed
 - Created the IdentityMicroservice (Authentication) 
   - Handles Oauth2.0
   - Generates JWT with a signature of the userId and Google Access Token, this allowed us to have stateless Microservices
 - Helped Fawad with the integration of the Gateway and Service Registry
-
 - Wrote the instructions for onboarding the API onto Service registry and the Gateway.
-- Added instructions for adding JWT configuration to the microservices. 
-- Created architecture_diagram.png
+- Added instructions for adding JWT configuration to the microservices.
