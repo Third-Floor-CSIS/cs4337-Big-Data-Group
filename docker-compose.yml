@@ -34,9 +34,17 @@ services:
       context: ./Microservices/IdentityMicroservice
       dockerfile: Dockerfile
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_auth:3306/${AUTH_DB_NAME}
-      SPRING_DATASOURCE_USERNAME: ${AUTH_MYSQL_USERNAME}
-      SPRING_DATASOURCE_PASSWORD: ${AUTH_MYSQL_PASSWORD}
+      AUTH_MICROSERVICE_PORT: ${AUTH_MICROSERVICE_PORT}
+      AUTH_MYSQL_USERNAME: ${AUTH_MYSQL_USERNAME}
+      AUTH_MYSQL_PASSWORD: ${AUTH_MYSQL_ROOT_PASSWORD}
+      AUTH_MYSQL_ROOT_PASSWORD: ${AUTH_MYSQL_ROOT_PASSWORD}
+      AUTH_DB_IP: mysql_auth
+      AUTH_DB_PORT: ${AUTH_DB_PORT}
+      AUTH_DOCKER_DB_PORT: ${AUTH_DOCKER_DB_PORT}
+      AUTH_DB_NAME: ${AUTH_DB_NAME}
+      CLIENT_ID: ${CLIENT_ID}
+      CLIENT_SECRET: ${CLIENT_SECRET}
+      JWT_SECRET: ${JWT_SECRET}
     depends_on:
       - mysql_auth
     networks:
