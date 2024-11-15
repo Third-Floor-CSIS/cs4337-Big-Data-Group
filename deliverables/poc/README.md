@@ -27,7 +27,14 @@ This dramatically increased interactions on all github related events since all 
   - Continuously stayed updated on rest of the projects development
   - Added functionallity to store Likes as rows in Likes table and Posts in DB
 
-## Killian Carthy | 21332673
+## Killian Carty | 21332673
+- Designed the database for the project creating all necessary tables we needed and created an ER diagram to show the rest of the team. I the updated the design
+based on feedback from my team and using MySql in xammp built the database.
+
+- integrated liquibase into the project creating a master changelog to manage the database version and changes to the schema.
+
+- Also researched into ways to make the project more fault-tolerant and exploring strategies for database replication 
+to increase reliability and scalability.
 
 ## Ben Hogan      | 21319561
 
