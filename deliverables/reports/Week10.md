@@ -1,6 +1,6 @@
 # CS4337 – Big Data – Group 8
 
-## Sprint 3 - Report 1
+## Sprint 3 - Report 2
 
 ### 04/11/24 – 15/11/24
 
@@ -16,25 +16,25 @@
 
 ## Work
 
-| Index | Issue ID          | Trello Link         | Pull Request Link     | Status  | Student ID | Issue Description                       | 
-|-------|-------------------|---------------------|-----------------------|---------|------------|-----------------------------------------|
-| 3     | [Issue][issue_29] | [Trello][trello_38] | [Pull Request][pr_40] | Pending | 21308128   | Add Oauth to Authentication Ms          |
-| 6     | [Issue][issue_25] | [Trello][trello_12] |                       | Done    | 18265693   | Springboot for API-Gateway foundation   |
-| 7     | [Issue][issue_21] | [Trello][trello_15] | [Pull Request][pr_53] | Pending | 21342342   | Post Microservice fondation             |
-| 8     | [Issue][issue_26] | [Trello][trello_17] | [Pull Request][pr_31] | Pending | 21332673   | Add liquibase                           |
-| 9     | [Issue][issue_27] | [Trello][trello_13] | [Pull Request][pr_31] | Pending | 21332673   | Create service registry                 |
-| 13    | [Issue][issue_28] | [Trello][trello_18] |                       | Pending | 21332142   | Setup local environment                 |
-| 15    | [Issue][issue_34] | [Trello][trello_16] | [Pull Request][pr_51] | Pending | 12136891   | Profile Microservice                    |
-| 17    |                   |                     | [Pull Request][pr_36] | Done    | 12136891   | Week 8 Report                           |
-| 19    | [Issue][issue_43] | [Trello][trello_42] |                       | Pending | 21332673   | Fault Tolerance                         |
-| 20    | [Issue][issue_44] | [Trello][trello_43] |                       | Pending | 21332673   | Database Replication                    |
-| 21    | [Issue][issue_45] | [Trello][trello_44] | [Pull Request][pr_54] | Pending | 21308128   | Add JWT                                 |
-| 23    | [Issue][issue_47] | [Trello][trello_21] |                       | Pending | 21342342   | Add docker to Posts MS                  |
-| 24    | [Issue][issue_48] | [Trello][trello_41] |                       | Pending | 21332142   | Kafka integration into Service Registry |
-| 25    |                   |                     | [Pull Request][pr_50] | Pending | 12136891   | Week 9 Report                           |
-| 26    | [Issue][issue_52] |                     | [Pull Request][pr_52] | Pending | 12136891   | Add database for dev                    |
-| 27    | [Issue][issue_25] | [Trello][trello_12] | [Pull Request][pr_49] | Done    | 18265693   | API gateway, Service registry           |
-| 28    | [Issue][issue_56] | [Trello][trello_40] |                       | Pending | 18265693   | Notification Micro service              |
+| Index | Issue ID           | Trello Link           | Pull Request Link     | Status  | Student ID | Issue Description                       | 
+|-------|--------------------|-----------------------|-----------------------|---------|------------|-----------------------------------------|
+| 3     | [Issue][issue_29]  | [Trello][trello_38]   | [Pull Request][pr_40] | Pending | 21308128   | Add Oauth to Authentication Ms          |
+| 7     | [Issue][issue_21]  | [Trello][trello_15]   | [Pull Request][pr_53] | Pending | 21342342   | Post Microservice fondation             |
+| 8     | [Issue][issue_26]  | [Trello][trello_17]   | [Pull Request][pr_31] | Pending | 21332673   | Add liquibase                           |
+| 9     | [Issue][issue_27]  | [Trello][trello_13]   | [Pull Request][pr_31] | Pending | 21332673   | Create service registry                 |
+| 13    | [Issue][issue_28]  | [Trello][trello_18]   |                       | Pending | 21332142   | Setup local environment                 |
+| 15    | [Issue][issue_34]  | [Trello][trello_16]   | [Pull Request][pr_51] | Pending | 12136891   | Profile Microservice                    |
+| 19    | [Issue][issue_43]  | [Trello][trello_42]   |                       | Pending | 21332673   | Fault Tolerance                         |
+| 20    | [Issue][issue_44]  | [Trello][trello_43]   |                       | Pending | 21332673   | Database Replication                    |
+| 21    | [Issue][issue_45]  | [Trello][trello_44]   | [Pull Request][pr_54] | Done    | 21308128   | Add JWT                                 |
+| 22    | [Issue][issue_65]  | [Trello][trello_45]   |                       | Pending | 21308128   | Dockerize Authentication                |
+| 23    | [Issue][issue_47]  | [Trello][trello_21]   |                       | Pending | 21342342   | Add docker to Posts MS                  |
+| 24    | [Issue][issue_48]  | [Trello][trello_41]   |                       | Pending | 21332142   | Kafka integration into Service Registry |
+| 25    |                    |                       | [Pull Request][pr_50] | Done    | 12136891   | Week 9 Report                           |
+| 26    | [Issue][issue_52]  |                       | [Pull Request][pr_52] | Done    | 12136891   | Add database for dev                    |
+| 28    | [Issue][issue_56]  | [Trello][trello_40]   | [Pull_Request][pr_59] | Done    | 18265693   | Notification Micro service              |
+| 29    |                    |                       | [Pull Request][pr_57] | Pending | 12136891   | Week 10 Report                          |
+| 30    | [Issue][issue_73]  | [Trello][trello_46]   |                       | Pending | 21308128   | DB Replication for Auth                 |
 
 [issue_21]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/21
 [issue_25]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/25
@@ -50,6 +50,8 @@
 [issue_48]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/48
 [issue_52]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/52
 [issue_56]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/56
+[issue_65]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/65
+[issue_73]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/73
 
 [trello_12]: https://trello.com/c/JublwPPu/12-create-api-gateway-module-foundations
 [trello_13]: https://trello.com/c/3LMcupSB/13-create-service-registry
@@ -64,6 +66,8 @@
 [trello_42]: https://trello.com/c/Ke5V83mB/42-fault-tolerance
 [trello_43]: https://trello.com/c/yQcVzN4t/43-database-replication
 [trello_44]: https://trello.com/c/4iiYV9sN/44-add-jwt
+[trello_45]: https://trello.com/c/ogG2nF6a/20-add-docker-to-authentication-microservice
+[trello_46]: https://trello.com/c/dtWto4Y7/22-db-replication-for-auth
 
 [pr_31]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/31
 [pr_36]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/36
@@ -74,6 +78,9 @@
 [pr_52]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/52
 [pr_53]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/53
 [pr_54]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/54
+[pr_57]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/57
+[pr_59]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/59
+
 
 | Blockers                     | Student ID | Description | Approach to resolve |
 |------------------------------|------------|-------------|---------------------|

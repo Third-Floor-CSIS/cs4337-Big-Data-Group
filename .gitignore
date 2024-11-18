@@ -31,6 +31,8 @@ test.*
 # ignore all log folders
 /logs
 /**/logs
+.log
+.log.*
 
 # Maven stuff
 /target/
