@@ -28,13 +28,18 @@ test.*
 # Dealing with Mac users
 .DS_Store
 
+# ignore all log folders
 /logs
+/**/logs
 .log
 .log.*
 
 # Maven stuff
 /target/
 /**/target/
+
+# Linux stuff
+.attach_pid*
 
 # Environment Variables
 !.env.example

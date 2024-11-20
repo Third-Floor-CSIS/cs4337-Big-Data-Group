@@ -1,19 +1,18 @@
 services:
-  mysql:
+  profile_mysql:
     # Always specify what version, "latest" causes issues later on
     image: mysql:9.1
-    container_name: dev_db
     environment:
-      MYSQL_USER: ${MYSQLDB_USER}
-      MYSQL_PASSWORD: ${MYSQLDB_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${MYSQLDB_PASSWORD_ROOT}
-      MYSQL_DATABASE: ${MYSQLDB_NAME}
+      MYSQL_USER: ${PROFILE_MYSQL_USERNAME}
+      MYSQL_PASSWORD: ${PROFILE_MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${PROFILE_MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${PROFILE_DB_NAME}
     networks:
       - net
     ports:
-      - "${MYSQLDB_PORT}:3306"
+      - "${PROFILE_DB_PORT}:3306"
     volumes:
-      - ./dev/database:/var/lib/mysql
+      - ./dev/database/profile:/var/lib/mysql
 
 networks:
   net:
