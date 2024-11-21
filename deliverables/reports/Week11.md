@@ -33,6 +33,7 @@
 | 30    | [Issue][issue_73] | [Trello][trello_46] |                       | Pending | 21308128   | DB Replication for Auth                 |
 | 31    | [Issue][issue_67] |                     | [Pull request][pr_82] | Pending | 12136891   | Dockerise Profile                       |
 | 32    |                   |                     | [Pull request][pr_83] | Pending | 12136891   | Week 11 Report                          |
+| 33    | [Issue][issue_56] | [Trello][trello_50] | [Pull request][pr_81] | Done    | 21332142   | Notification Microservice Functionality |
 
 [issue_21]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/21
 [issue_25]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/25
@@ -67,6 +68,7 @@
 [trello_44]: https://trello.com/c/4iiYV9sN/44-add-jwt
 [trello_45]: https://trello.com/c/ogG2nF6a/20-add-docker-to-authentication-microservice
 [trello_46]: https://trello.com/c/dtWto4Y7/22-db-replication-for-auth
+[trello_50]: https://trello.com/c/k58vDSmM/50-notifications-ms
 
 [pr_31]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/31
 [pr_36]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/36
@@ -79,5 +81,6 @@
 [pr_54]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/54
 [pr_57]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/57
 [pr_59]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/59
+[pr_81]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/81
 [pr_82]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/82
 [pr_83]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/83
