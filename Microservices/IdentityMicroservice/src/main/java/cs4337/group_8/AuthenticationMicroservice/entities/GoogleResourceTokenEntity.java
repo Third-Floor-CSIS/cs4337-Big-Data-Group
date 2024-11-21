@@ -1,5 +1,6 @@
 package cs4337.group_8.AuthenticationMicroservice.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;

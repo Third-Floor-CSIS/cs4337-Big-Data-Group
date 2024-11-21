@@ -151,6 +151,7 @@ public class GoogleAuthService {
         params.add("redirect_uri", "http://localhost:8080/auth/grantcode");
         params.add("client_id", this.clientId);
         params.add("client_secret", this.clientSecret);
+        params.add("access_type", "offline");
 
         // Information we retrieve
         params.add("scope", "https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile");
