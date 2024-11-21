@@ -25,9 +25,9 @@ public interface ProfileRepository extends JpaRepository<ProfileEntity, String> 
         WHERE t.user_id = :user_id
         """
     )
-    int updateByUserId(
+    void updateByUserId(
         @Param("user_id")
-        int user_id,
+        String user_id,
         @Param("full_name")
         String full_name,
         @Param("bio")
