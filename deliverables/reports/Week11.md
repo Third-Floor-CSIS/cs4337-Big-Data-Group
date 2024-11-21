@@ -29,11 +29,13 @@
 | 22    | [Issue][issue_65] | [Trello][trello_45] |                       | Pending | 21308128   | Dockerize Authentication                |
 | 23    | [Issue][issue_47] | [Trello][trello_21] |                       | Pending | 21342342   | Add docker to Posts MS                  |
 | 24    | [Issue][issue_48] | [Trello][trello_41] |                       | Pending | 21332142   | Kafka integration into Service Registry |
+| 28    | [Issue][issue_56]  | [Trello][trello_40]| [Pull_Request][pr_59] | Done    | 18265693   | Notification Micro service              |
 | 29    |                   |                     | [Pull Request][pr_57] | Done    | 12136891   | Week 10 Report                          |
 | 30    | [Issue][issue_73] | [Trello][trello_46] |                       | Pending | 21308128   | DB Replication for Auth                 |
 | 31    | [Issue][issue_67] |                     | [Pull request][pr_82] | Pending | 12136891   | Dockerise Profile                       |
 | 32    |                   |                     | [Pull request][pr_83] | Pending | 12136891   | Week 11 Report                          |
 | 33    | [Issue][issue_56] | [Trello][trello_50] | [Pull request][pr_81] | Done    | 21332142   | Notification Microservice Functionality |
+| 34    | [Issue][issue_63] | [Trello][trello_58] |                       | Pending | 18265693   | Adding JWT to Profile M.service         |
 
 [issue_21]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/21
 [issue_25]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/25
@@ -49,6 +51,7 @@
 [issue_48]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/48
 [issue_52]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/52
 [issue_56]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/56
+[issue_63]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/63
 [issue_65]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/65
 [issue_67]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/67
 [issue_73]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/73
@@ -69,6 +72,7 @@
 [trello_45]: https://trello.com/c/ogG2nF6a/20-add-docker-to-authentication-microservice
 [trello_46]: https://trello.com/c/dtWto4Y7/22-db-replication-for-auth
 [trello_50]: https://trello.com/c/k58vDSmM/50-notifications-ms
+[trello_58]: https://trello.com/c/wMch0YCg/58-add-jwt-to-profile
 
 [pr_31]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/31
 [pr_36]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/36
