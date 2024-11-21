@@ -19,7 +19,7 @@
 | Index | Issue ID          | Trello Link         | Pull Request Link     | Status  | Student ID | Issue Description                       | 
 |-------|-------------------|---------------------|-----------------------|---------|------------|-----------------------------------------|
 | 3     | [Issue][issue_29] | [Trello][trello_38] | [Pull Request][pr_40] | Pending | 21308128   | Add Oauth to Authentication Ms          |
-| 7     | [Issue][issue_21] | [Trello][trello_15] | [Pull Request][pr_53] | Pending | 21342342   | Post Microservice fondation             |
+| 7     | [Issue][issue_21] | [Trello][trello_15] |                       | Done    | 21342342   | Post Microservice fondation             |
 | 8     | [Issue][issue_26] | [Trello][trello_17] | [Pull Request][pr_31] | Pending | 21332673   | Add liquibase                           |
 | 9     | [Issue][issue_27] | [Trello][trello_13] | [Pull Request][pr_31] | Pending | 21332673   | Create service registry                 |
 | 13    | [Issue][issue_28] | [Trello][trello_18] |                       | Pending | 21332142   | Setup local environment                 |
@@ -36,6 +36,8 @@
 | 32    |                   |                     | [Pull request][pr_83] | Pending | 12136891   | Week 11 Report                          |
 | 33    | [Issue][issue_56] | [Trello][trello_50] | [Pull request][pr_81] | Done    | 21332142   | Notification Microservice Functionality |
 | 34    | [Issue][issue_63] | [Trello][trello_58] |                       | Pending | 18265693   | Adding JWT to Profile M.service         |
+| 35    | [Issue][issue_64] | [Trello][trello_59] |                       | Pending | 21342342   | Adding JWT to Posts M.service           |
+| 36    | [Issue][issue_74] | [Trello][trello_60] |                       | Pending | 21342342   | Posts DB replication                    |
 
 [issue_21]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/21
 [issue_25]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/25
@@ -55,6 +57,8 @@
 [issue_65]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/65
 [issue_67]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/67
 [issue_73]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/73
+[issue_64]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/64
+[issue_74]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/74
 
 [trello_12]: https://trello.com/c/JublwPPu/12-create-api-gateway-module-foundations
 [trello_13]: https://trello.com/c/3LMcupSB/13-create-service-registry
@@ -73,6 +77,8 @@
 [trello_46]: https://trello.com/c/dtWto4Y7/22-db-replication-for-auth
 [trello_50]: https://trello.com/c/k58vDSmM/50-notifications-ms
 [trello_58]: https://trello.com/c/wMch0YCg/58-add-jwt-to-profile
+[trello_59]: https://trello.com/c/YzFt5mD0/57-add-jwt-to-posts
+[trello_60]: https://trello.com/c/jh6KjtWv/48-db-replication-for-posts
 
 [pr_31]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/31
 [pr_36]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/36
