@@ -1,4 +1,4 @@
-fixpackage cs4337.group_8.TemplateProject.DTO;
+package cs4337.group_8.TemplateProject.DTO;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
