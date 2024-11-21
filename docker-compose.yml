@@ -10,9 +10,29 @@ services:
     networks:
       - net
     ports:
-      - "${PROFILE_DB_PORT}:3306"
+      - "${PROFILE_DB_PORT_EXTERNAL}:3306"
     volumes:
       - ./dev/database/profile:/var/lib/mysql
+
+  profile_microservice:
+    container_name: profile_microservice
+    depends_on:
+      - profile_mysql
+    # Path to teh root dir of teh microservice (where teh Dockerfile is)
+    build:
+      context: ./Microservices
+      dockerfile: Profile/Dockerfile
+      args:
+        # name of teh folder in Microservices
+        SERVICE_PATH: "Profile"
+    # pass in the env file to be used
+    env_file: ".env"
+    ports:
+      # ideally it would be mapped to a more static internal port
+      # - "${PROFILE_MICROSERVICE_PORT}:8080"
+      - "${PROFILE_MICROSERVICE_PORT}:${PROFILE_MICROSERVICE_PORT}"
+    networks:
+      - net
 
 networks:
   net:
