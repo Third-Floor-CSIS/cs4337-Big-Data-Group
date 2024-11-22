@@ -23,8 +23,6 @@
 | 9     | [Issue][issue_27] | [Trello][trello_13] | [Pull Request][pr_31] | Done    | 21332673   | Create service registry                 |
 | 13    | [Issue][issue_28] | [Trello][trello_18] |                       | Done    | 21332142   | Setup local environment                 |
 | 15    | [Issue][issue_34] | [Trello][trello_16] | [Pull Request][pr_51] | Done    | 12136891   | Profile Microservice                    |
-| 19    | [Issue][issue_43] | [Trello][trello_42] |                       | Pending | 21332673   | Fault Tolerance                         |
-| 20    | [Issue][issue_44] | [Trello][trello_43] |                       | Pending | 21332673   | Database Replication                    |
 | 22    | [Issue][issue_65] | [Trello][trello_45] | [Pull_Request][pr_77] | Pending | 21308128   | Dockerize Authentication                |
 | 23    | [Issue][issue_47] | [Trello][trello_21] |                       | Pending | 21342342   | Add docker to Posts MS                  |
 | 24    | [Issue][issue_48] | [Trello][trello_41] |                       | Pending | 21332142   | Kafka integration into Service Registry |
@@ -38,7 +36,8 @@
 | 35    | [Issue][issue_64] | [Trello][trello_59] |                       | Pending | 21342342   | Adding JWT to Posts M.service           |
 | 36    | [Issue][issue_74] | [Trello][trello_60] |                       | Pending | 21342342   | Posts DB replication                    |
 | 37    | [Issue][issue_80] | [Trello][trello_61] | [Pull_request][pr_77] | Pending | 21308128   | Dockerise Api Gateway                   |
-| 37    | [Issue][issue_79] | [Trello][trello_62] | [Pull_request][pr_77] | Pending | 21308128   | Dockerise Service Registry              |
+| 38    | [Issue][issue_79] | [Trello][trello_62] | [Pull_request][pr_77] | Pending | 21308128   | Dockerise Service Registry              |
+| 39    | [Issue][issue_84] | [Trello][trello_51] |                       | Pending | 21332673   | Add kafka                               |
 
 [issue_21]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/21
 [issue_25]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/25
@@ -62,6 +61,7 @@
 [issue_74]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/74
 [issue_79]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/79
 [issue_80]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/80
+[issue_84]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/84
 
 [trello_12]: https://trello.com/c/JublwPPu/12-create-api-gateway-module-foundations
 [trello_13]: https://trello.com/c/3LMcupSB/13-create-service-registry
@@ -79,6 +79,7 @@
 [trello_45]: https://trello.com/c/ogG2nF6a/20-add-docker-to-authentication-microservice
 [trello_46]: https://trello.com/c/dtWto4Y7/22-db-replication-for-auth
 [trello_50]: https://trello.com/c/k58vDSmM/50-notifications-ms
+[trello_51]: https://trello.com/c/MDTU3HCb
 [trello_58]: https://trello.com/c/wMch0YCg/58-add-jwt-to-profile
 [trello_59]: https://trello.com/c/YzFt5mD0/57-add-jwt-to-posts
 [trello_60]: https://trello.com/c/jh6KjtWv/48-db-replication-for-posts
