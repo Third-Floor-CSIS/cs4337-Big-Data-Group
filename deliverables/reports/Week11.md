@@ -26,7 +26,6 @@
 | 22    | [Issue][issue_65] | [Trello][trello_45] | [Pull_Request][pr_77] | Pending | 21308128   | Dockerize Authentication                |
 | 23    | [Issue][issue_47] | [Trello][trello_21] |                       | Pending | 21342342   | Add docker to Posts MS                  |
 | 24    | [Issue][issue_48] | [Trello][trello_41] |                       | Pending | 21332142   | Kafka integration into Service Registry |
-| 28    | [Issue][issue_56] | [Trello][trello_40] | [Pull_Request][pr_59] | Done    | 18265693   | Notification Micro service              |
 | 29    |                   |                     | [Pull Request][pr_57] | Done    | 12136891   | Week 10 Report                          |
 | 30    | [Issue][issue_73] | [Trello][trello_46] |                       | Pending | 21308128   | DB Replication for Auth                 |
 | 31    | [Issue][issue_67] |                     | [Pull request][pr_82] | Pending | 12136891   | Dockerise Profile                       |
