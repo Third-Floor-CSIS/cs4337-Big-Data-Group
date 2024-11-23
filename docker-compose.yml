@@ -14,18 +14,17 @@ services:
     volumes:
       - ./dev/database/profile:/var/lib/mysql
 
-  mysql_auth:
+  auth_mysql:
     # Always specify what version, "latest" causes issues later on
     image: mysql:9.1
     environment:
-#      MYSQL_USER: ${AUTH_MYSQL_USERNAME}
       MYSQL_PASSWORD: ${AUTH_MYSQL_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${AUTH_MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${AUTH_DB_NAME}
     networks:
       - net
     ports:
-      - "${AUTH_DOCKER_DB_PORT}:${AUTH_DOCKER_DB_PORT}"
+      - "${AUTH_DOCKER_DB_PORT}:3306"
     volumes:
       - ./dev/database/auth:/var/lib/mysql
 
@@ -33,51 +32,41 @@ services:
     build:
       context: ./Microservices/service-registry
       dockerfile: Dockerfile
+    env_file: ".env"
     environment:
-      PORT_SERVICE_REGISTRY: ${PORT_SERVICE_REGISTRY}
       SERVICE_REGISTRY_IP: eureka-service
     networks:
       - net
     ports:
-      - "${PORT_SERVICE_REGISTRY}:${PORT_SERVICE_REGISTRY}"
+      - "${PORT_SERVICE_REGISTRY}:8761"
 
   gateway:
     build:
       context: ./Microservices/api-gateway
       dockerfile: Dockerfile
+    env_file: ".env"
     environment:
-      GATEWAY_PORT: ${GATEWAY_PORT}
       SERVICE_REGISTRY_IP: eureka-service
-      PORT_SERVICE_REGISTRY: ${PORT_SERVICE_REGISTRY}
     networks:
       - net
     ports:
-      - "${GATEWAY_PORT}:${GATEWAY_PORT}"
+      - "${GATEWAY_PORT}:8080"
 
   auth_service:
     build:
       context: ./Microservices/IdentityMicroservice
       dockerfile: Dockerfile
+    env_file: ".env"
     environment:
-      AUTH_MICROSERVICE_PORT: ${AUTH_MICROSERVICE_PORT}
-      AUTH_MYSQL_USERNAME: ${AUTH_MYSQL_USERNAME}
       AUTH_MYSQL_PASSWORD: ${AUTH_MYSQL_ROOT_PASSWORD}
-      AUTH_MYSQL_ROOT_PASSWORD: ${AUTH_MYSQL_ROOT_PASSWORD}
-      AUTH_DB_IP: mysql_auth
-      AUTH_DB_PORT: ${AUTH_DB_PORT}
-      AUTH_DOCKER_DB_PORT: ${AUTH_DOCKER_DB_PORT}
-      AUTH_DB_NAME: ${AUTH_DB_NAME}
-      CLIENT_ID: ${CLIENT_ID}
-      CLIENT_SECRET: ${CLIENT_SECRET}
-      JWT_SECRET: ${JWT_SECRET}
+      AUTH_DB_IP: auth_mysql
       SERVICE_REGISTRY_IP: eureka-service
-      PORT_SERVICE_REGISTRY: ${PORT_SERVICE_REGISTRY}
     depends_on:
-      - mysql_auth
+      - auth_mysql
     networks:
       - net
     ports:
-      - "${AUTH_MICROSERVICE_PORT}:${AUTH_MICROSERVICE_PORT}"
+      - "${AUTH_MICROSERVICE_PORT}:8082"
 
 
 
