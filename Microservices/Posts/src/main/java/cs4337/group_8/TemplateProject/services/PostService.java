@@ -20,9 +20,12 @@ public class PostService {
     @Autowired
     private LikesRepository likesRepository;
 
-    public Post createPost(Post post) {
+    public Post createPost(Post post, String jwtToken) {
+        Long userId = jwtService.extractUserId(jwtToken); // Extract userId from token
+        post.setUserId(userId); // Associate post with the user
         return postRepository.save(post);
     }
+
 
     public List<Post> getPostsByUser(Long userId) {
         List<Post> posts = postRepository.findByUserId(userId);
@@ -36,7 +39,10 @@ public class PostService {
         return postRepository.findById(id);
     }
 
-    public void deletePost(Long postId, Long userId) {
+    public void deletePost(Long postId, String jwtToken)) {
+        // Extract user ID from the JWT
+        Long userId = jwtService.extractUserId(jwtToken);
+
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new PostException("Post with ID " + postId + " not found"));
 
@@ -47,7 +53,10 @@ public class PostService {
         }
     }
 
-    public void likePost(Long postId, Long userId) {
+    public void likePost(Long postId, String jwtToken) {
+        // Extract user ID from the JWT
+        Long userId = jwtService.extractUserId(jwtToken);
+
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new PostException("Post with ID " + postId + " not found"));
 
@@ -72,7 +81,9 @@ public class PostService {
         }
     }
 
-    public void unlikePost(Long postId, Long userId) {
+    public void unlikePost(Long postId, String jwtToken) {
+        // Extract user ID from the JWT
+        Long userId = jwtService.extractUserId(jwtToken);
         Optional<Like> likeOptional = likesRepository.findByPostIdAndUserId(postId, userId);
 
         if (likeOptional.isEmpty()) {

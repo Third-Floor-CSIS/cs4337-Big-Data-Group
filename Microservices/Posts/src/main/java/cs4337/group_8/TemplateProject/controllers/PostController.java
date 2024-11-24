@@ -18,6 +18,8 @@ public class PostController {
 
     @Autowired
     private PostService postService;
+    private final JwtService jwtService;
+
 
     @Autowired
     private PostMapper postMapper;
@@ -25,7 +27,8 @@ public class PostController {
     @PostMapping
     public PostDTO createPost(@RequestBody PostDTO postDTO) {
         Post post = postMapper.toEntity(postDTO);
-        return postMapper.toDTO(postService.createPost(post));
+        return postMapper.toDTO(postService.createPost(post, jwtService.generateRefreshToken));
+
     }
 
     @GetMapping("/user/{userId}")
