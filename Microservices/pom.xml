@@ -21,6 +21,7 @@
         <module>api-gateway</module>
         <module>service-registry</module>
 		<module>notification-service</module>
+        <module>Posts</module>
     </modules>
 
     <properties>

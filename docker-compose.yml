@@ -1,19 +1,33 @@
 services:
-  mysql:
+  posts_mysql:
     # Always specify what version, "latest" causes issues later on
     image: mysql:9.1
-    container_name: dev_db
     environment:
-      MYSQL_USER: ${MYSQLDB_USER}
-      MYSQL_PASSWORD: ${MYSQLDB_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${MYSQLDB_PASSWORD_ROOT}
-      MYSQL_DATABASE: ${MYSQLDB_NAME}
+      MYSQL_USER: ${POSTS_MYSQL_USERNAME}
+      MYSQL_PASSWORD: ${POSTS_MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${POSTS_MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${POSTS_DB_NAME}
     networks:
       - net
     ports:
-      - "${MYSQLDB_PORT}:3306"
+      - "${POSTS_DB_PORT_EXTERNAL}:3306"
     volumes:
-      - ./dev/database:/var/lib/mysql
+      - ./dev/database/posts:/var/lib/mysql
+
+  posts_microservice:
+    container_name: posts_microservice
+    depends_on:
+      - posts_mysql
+    build:
+      context: ./Microservices/Posts
+      dockerfile: Dockerfile
+      args:
+        SERVICE_PATH: "Posts"
+    env_file: ".env"
+    ports:
+      - "${POSTS_MICROSERVICE_PORT}:${POSTS_MICROSERVICE_PORT}"
+    networks:
+      - net
 
 networks:
   net:

@@ -13,7 +13,7 @@ LABEL authors="seanc"
 WORKDIR /app
 
 # Copy the Spring Boot application JAR file into the container
-COPY target/Posts-1.0.0.jar app.jar
+COPY target/Posts-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose the port your application runs on
 EXPOSE 8084
