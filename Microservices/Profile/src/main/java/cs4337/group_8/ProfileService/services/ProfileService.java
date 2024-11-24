@@ -38,10 +38,6 @@ public class ProfileService {
             String bio,
             String profilePic
     ){
-        ProfileEntity profileEntity = ProfileRepository.findById(userId).orElseThrow(() -> new SampleCustomException("User not found"));
-        profileEntity.setFull_name(fullName);
-        profileEntity.setBio(bio);
-        profileEntity.setProfile_pic(profilePic);
-        ProfileRepository.save(profileEntity);
+        ProfileRepository.updateByUserId(userId, fullName, bio, profilePic);
     }
 }
