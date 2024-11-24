@@ -34,6 +34,61 @@ services:
     networks:
       - net
 
+
+  auth_mysql:
+    # Always specify what version, "latest" causes issues later on
+    image: mysql:9.1
+    environment:
+      MYSQL_PASSWORD: ${AUTH_MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${AUTH_MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${AUTH_DB_NAME}
+    networks:
+      - net
+    ports:
+      - "${AUTH_DOCKER_DB_PORT}:3306"
+    volumes:
+      - ./dev/database/auth:/var/lib/mysql
+
+  eureka-service:
+    build:
+      context: ./Microservices/service-registry
+      dockerfile: Dockerfile
+    env_file: ".env"
+    environment:
+      SERVICE_REGISTRY_IP: eureka-service
+    networks:
+      - net
+    ports:
+      - "${PORT_SERVICE_REGISTRY}:8761"
+
+  gateway:
+    build:
+      context: ./Microservices/api-gateway
+      dockerfile: Dockerfile
+    env_file: ".env"
+    environment:
+      SERVICE_REGISTRY_IP: eureka-service
+    networks:
+      - net
+    ports:
+      - "${GATEWAY_PORT}:8080"
+
+  auth_service:
+    build:
+      context: ./Microservices/IdentityMicroservice
+      dockerfile: Dockerfile
+    env_file: ".env"
+    environment:
+      AUTH_MYSQL_PASSWORD: ${AUTH_MYSQL_ROOT_PASSWORD}
+      AUTH_DB_IP: auth_mysql
+      SERVICE_REGISTRY_IP: eureka-service
+    depends_on:
+      - auth_mysql
+    networks:
+      - net
+    ports:
+      - "${AUTH_MICROSERVICE_PORT}:8082"
+
 networks:
   net:
     driver: bridge
