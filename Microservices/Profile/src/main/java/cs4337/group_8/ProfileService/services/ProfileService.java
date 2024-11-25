@@ -14,10 +14,12 @@ import java.util.Optional;
 @Slf4j
 public class ProfileService {
     private final ProfileRepository ProfileRepository;
+    private final KafkaProducer kafkaProducer; // Inject KafkaProducer
     // It is okay to pull in more repositories AND services to use
 
-    public ProfileService(ProfileRepository ProfileRepository) {
+    public ProfileService(ProfileRepository ProfileRepository, KafkaProducer kafkaProducer) {
         this.ProfileRepository = ProfileRepository;
+        this.kafkaProducer = kafkaProducer;
     }
 
     // Business logic
@@ -39,5 +41,6 @@ public class ProfileService {
             String profilePic
     ){
         ProfileRepository.updateByUserId(userId, fullName, bio, profilePic);
+        kafkaProducer.sendMessage("Profile updated for user: " + userId); // Send Kafka message
     }
 }
