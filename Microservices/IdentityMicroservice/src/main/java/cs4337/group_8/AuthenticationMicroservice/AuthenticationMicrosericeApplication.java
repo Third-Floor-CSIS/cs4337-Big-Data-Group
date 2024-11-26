@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-//		(scanBasePackages = {"cs4337.group_8.AuthenticationMicroservice", "cs4337.group_8.AuthenticationMicroservice.services"})
 @EnableFeignClients
 public class AuthenticationMicrosericeApplication {
 
