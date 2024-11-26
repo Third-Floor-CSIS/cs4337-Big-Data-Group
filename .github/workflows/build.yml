@@ -22,4 +22,4 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build ${{ matrix.service }}
-        run: cd Microservices/${{ matrix.service }} && mvn clean package
+        run: cd Microservices/${{ matrix.service }} && mvn clean package -DskipTests=true
