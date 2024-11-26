@@ -11,7 +11,13 @@ jobs:
   build:
     strategy:
       matrix:
-        service: [ "Profile" ]
+        service:
+          - "api-gateway"
+          - "IdentityMicroservice"
+          - "notification-service"
+          - "Posts"
+          - "Profile"
+          - "service-registry"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
