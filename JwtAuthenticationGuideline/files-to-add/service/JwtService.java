@@ -32,6 +32,8 @@ public class JwtService {
         return extractClaim(token, Claims::getSubject);
     }
 
+    public Integer extractUserId(String token) { return extractClaim(token, claims -> Integer.parseInt(claims.get("sub").toString())); }
+
     public boolean isTokenSignatureValid(String token) {
         try {
             Jwts.parserBuilder()
