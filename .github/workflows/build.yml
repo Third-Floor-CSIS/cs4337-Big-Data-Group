@@ -22,4 +22,4 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build ${{ matrix.service }}
-        run: cd src/${{ matrix.service }} && mvn clean install
+        run: cd src/Microservices/${{ matrix.service }} && mvn clean install
