@@ -1,10 +1,16 @@
 package cs4337.group_8.AuthenticationMicroservice.controllers;
 
 import cs4337.group_8.AuthenticationMicroservice.DTOs.UserDTO;
+import cs4337.group_8.AuthenticationMicroservice.entities.JwtRefreshTokenEntity;
 import cs4337.group_8.AuthenticationMicroservice.exceptions.AuthenticationException;
 import cs4337.group_8.AuthenticationMicroservice.exceptions.RefreshTokenExpiredException;
+import cs4337.group_8.AuthenticationMicroservice.repositories.JwtRefreshTokenRepository;
+import cs4337.group_8.AuthenticationMicroservice.repositories.TokenRepository;
 import cs4337.group_8.AuthenticationMicroservice.services.AuthenticationService;
+import cs4337.group_8.AuthenticationMicroservice.services.JwtService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -15,14 +21,20 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
+import java.util.Optional;
+
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+@ActiveProfiles("test")
 @WebMvcTest(AuthenticationController.class)
 @ContextConfiguration(classes = {TestAuthenticationController.SecurityTestConfig.class})
 public class TestAuthenticationController {
@@ -34,6 +46,12 @@ public class TestAuthenticationController {
     @MockBean
     private AuthenticationService authenticationService;
 
+    @MockBean
+    private JwtService jwtService;
+
+    @MockBean
+    private JwtRefreshTokenRepository refreshTokenRepository;
+
     // Disable security config for testing
     @TestConfiguration
     @EnableWebSecurity
@@ -41,11 +59,19 @@ public class TestAuthenticationController {
         @Bean
         @Primary
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-            http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests(
-                    request -> request.requestMatchers("*").permitAll()
+            http.csrf(AbstractHttpConfigurer::disable)
+                    .authorizeHttpRequests(
+                    request -> request.requestMatchers("/**").permitAll()
+                            .anyRequest().authenticated()
             );
+
             return http.build();
         }
+    }
+
+    @BeforeEach
+    void setupMocks(){
+        Mockito.when(jwtService.isTokenSignatureValid(Mockito.anyString())).thenReturn(true);
     }
 
     @Test
@@ -62,7 +88,7 @@ public class TestAuthenticationController {
         when(authenticationService.handleAuthentication(code))
                 .thenReturn(expectedUser);
 
-        mockMvc.perform(get("/grantcode")
+        mockMvc.perform(get("/auth/grantcode")
                         .param("code", code)
                         .param("scope", scope)
                         .param("authuser", authUser)
@@ -84,7 +110,7 @@ public class TestAuthenticationController {
         when(authenticationService.handleAuthentication(code))
                 .thenThrow(new AuthenticationException(errorMsg));
 
-        mockMvc.perform(get("/grantcode")
+        mockMvc.perform(get("/auth/grantcode")
                         .param("code", code)
                         .param("scope", scope)
                         .param("authuser", authUser)
@@ -103,7 +129,7 @@ public class TestAuthenticationController {
         when(authenticationService.refreshAccessToken(trimmedToken))
                 .thenReturn(refreshedToken);
 
-        mockMvc.perform(post("/refresh-token")
+        mockMvc.perform(post("/auth/refresh-access-token")
                         .header("Authorization", requestHeaderToken))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").value("Token refreshed"))
@@ -117,14 +143,22 @@ public class TestAuthenticationController {
         String requestHeaderToken = "Bearer someToken";
         String trimmedToken = requestHeaderToken.substring(7);
 
-        when(authenticationService.refreshAccessToken(trimmedToken))
+        when(jwtService.refreshJwtToken(any()))
                 .thenThrow(new RefreshTokenExpiredException("Refresh token expired"));
 
-        mockMvc.perform(post("/refresh-token").header("Authorization", requestHeaderToken))
+        MvcResult result = mockMvc.perform(post("/auth/refresh-jwt-token")
+                        .header("Authorization", "Bearer someToken"))
+                .andReturn();
+
+        System.out.println("Response status: " + result.getResponse().getStatus());
+        System.out.println("Response headers: " + result.getResponse().getHeaderNames());
+        System.out.println("Location header: " + result.getResponse().getHeader("Location"));
+        System.out.println("Response body: " + result.getResponse().getContentAsString());
+
+
+        mockMvc.perform(post("/auth/refresh-jwt-token").header("Authorization", requestHeaderToken))
                 .andExpect(status().isForbidden())
                 .andExpect(header().string("Location", "/login"))
                 .andExpect(content().string("Refresh token expired"));
     }
-
-
 }
