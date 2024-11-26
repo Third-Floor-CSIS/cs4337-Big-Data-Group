@@ -4,10 +4,12 @@ import cs4337.group_8.AuthenticationMicroservice.POJOs.GoogleAuthorizationRespon
 import cs4337.group_8.AuthenticationMicroservice.POJOs.GoogleUserDetails;
 import cs4337.group_8.AuthenticationMicroservice.entities.GoogleResourceTokenEntity;
 import cs4337.group_8.AuthenticationMicroservice.entities.UserEntity;
+import io.jsonwebtoken.Claims;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.HashMap;
 import java.util.List;
 
 public class SharedResources {
@@ -60,4 +62,5 @@ public class SharedResources {
                 List.of()
         );
     }
+
 }

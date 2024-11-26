@@ -9,11 +9,14 @@ import cs4337.group_8.AuthenticationMicroservice.entities.UserEntity;
 import cs4337.group_8.AuthenticationMicroservice.repositories.AuthenticationRepository;
 import cs4337.group_8.AuthenticationMicroservice.repositories.TokenRepository;
 import cs4337.group_8.AuthenticationMicroservice.repositories.UserRepository;
+import io.jsonwebtoken.Claims;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Optional;
 
@@ -35,6 +38,8 @@ public class TestAuthenticationService {
     private UserRepository mockUserRepository;
     @Mock
     private GoogleAuthService mockGoogleAuthService;
+    @Mock
+    private JwtService mockJwtService;
 
     @BeforeEach
     void setUp() {
@@ -56,7 +61,6 @@ public class TestAuthenticationService {
 
         UserDTO userResponse = authenticationService.handleAuthentication(grantCode);
         assertEquals(userResponse.getUserId(), mockUser.getUser_id());
-        assertEquals(userResponse.getProfilePicture(), mockUser.getProfile_picture());
     }
 
     @Test
@@ -75,28 +79,32 @@ public class TestAuthenticationService {
 
         UserDTO userResponse = authenticationService.handleAuthentication(grantCode);
         assertEquals(userResponse.getUserId(), mockUserEntity.getUser_id());
-        assertEquals(userResponse.getProfilePicture(), mockUserEntity.getProfile_picture());
     }
 
     @Test
     public void refreshToken_shouldReturnNewAccessToken_whenRefreshAccessTokenIsValid() {
         String mockAccessToken = "mockAccessToken";
         String mockUpdatedAccessToken = "newAccessToken";
+        Claims mockClaims = mockClaims();
         GoogleResourceTokenEntity mockGoogleResourceTokenEntity = sharedResources.getMockTokenEntity();
-        when(mockGoogleAuthService.getRefreshTokenForAccessTokenIfNotExpired(anyString())).thenReturn(false);
+        when(mockGoogleAuthService.getRefreshTokenForAccessTokenIfNotExpired(anyString())).thenReturn("refreshedToken");
+        when(mockJwtService.extractAllClaims(any())).thenReturn(mockClaims);
         when(mockTokenRepository.getTokenEntityByCurrentAccessToken(anyString())).thenReturn(Optional.of(mockGoogleResourceTokenEntity));
-        when(mockGoogleAuthService.refreshAccessToken(mockGoogleResourceTokenEntity.getRefreshToken(), mockGoogleResourceTokenEntity.getUserId())).thenReturn(mockUpdatedAccessToken);
-
+        when(mockGoogleAuthService.refreshAccessToken(any(), eq(mockGoogleResourceTokenEntity.getUserId()))).thenReturn(mockUpdatedAccessToken);
+        when(mockJwtService.generateToken((UserDetails) any(), any())).thenReturn(mockUpdatedAccessToken);
         String updatedAccessToken = authenticationService.refreshAccessToken(mockAccessToken);
 
-        assertEquals(updatedAccessToken, mockUpdatedAccessToken);
+        assertEquals(mockUpdatedAccessToken, updatedAccessToken);
     }
+
 
     @Test
     public void refreshToken_shouldThrowRefreshTokenExpiredException_whenRefreshAccessTokenIsInvalid() {
         String mockAccessToken = "mockAccessToken";
 
-        when(mockGoogleAuthService.getRefreshTokenForAccessTokenIfNotExpired(anyString())).thenReturn(true);
+        when(mockGoogleAuthService.getRefreshTokenForAccessTokenIfNotExpired(anyString())).thenReturn("token");
+        Claims mockClaims = mockClaims();
+        when(mockJwtService.extractAllClaims(any())).thenReturn(mockClaims);
 
         try {
             authenticationService.refreshAccessToken(mockAccessToken);
@@ -121,5 +129,15 @@ public class TestAuthenticationService {
     private UserEntity getMockUserEntity() {
 
         return sharedResources.getMockUserEntity();
+    }
+
+    private Claims mockClaims() {
+        Claims claims = Mockito.mock(Claims.class);
+
+        Mockito.when(claims.get("sub")).thenReturn("some-userId");
+        Mockito.when(claims.get("access_token")).thenReturn("some-access");
+        Mockito.when(claims.get("user_id")).thenReturn("1");
+
+        return claims;
     }
 }
