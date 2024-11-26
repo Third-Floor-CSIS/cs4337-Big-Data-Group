@@ -4,14 +4,14 @@ on:
     branches:
       - "main"
   pull_request:
-    branches:
-      - "main"
+#    branches:
+#      - "main"
   workflow_dispatch:
 jobs:
   build:
     strategy:
       matrix:
-        service: [  ]
+        service: [ "Profile" ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
