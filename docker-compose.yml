@@ -17,7 +17,7 @@ services:
   profile-service:
     container_name: profile-service
     depends_on:
-      - profile-mysql
+      - profile_mysql
       - kafka
     # Path to teh root dir of teh microservice (where teh Dockerfile is)
     build:
