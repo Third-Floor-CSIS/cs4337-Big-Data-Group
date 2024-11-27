@@ -1,4 +1,5 @@
-package cs4337.group_8.AuthenticationMicroservice.services;
+package cs4337.group_8.TemplateProject.services;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,6 @@ public class KafkaProducer {
 
     public void sendMessage(String message) {
         LOGGER.info("Producing message: {}", message);
-        kafkaTemplate.send("Authentication-updates", message);
+        kafkaTemplate.send("posts-updates", message);
     }
 }

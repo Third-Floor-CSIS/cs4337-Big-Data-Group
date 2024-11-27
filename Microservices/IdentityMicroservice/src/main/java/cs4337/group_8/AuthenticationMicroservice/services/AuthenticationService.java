@@ -27,20 +27,17 @@ public class AuthenticationService {
     private final UserRepository userRepository;
     private final GoogleAuthService googleAuthService;
     private final JwtService jwtService;
-    private final KafkaProducer kafkaProducer; // Add KafkaProducer
 
     public AuthenticationService(
             TokenRepository tokenRepository,
             UserRepository userRepository,
             GoogleAuthService googleAuthService,
-            JwtService jwtService,
-            KafkaProducer kafkaProducer // Inject KafkaProducer
+            JwtService jwtService
             ) {
         this.tokenRepository = tokenRepository;
         this.userRepository = userRepository;
         this.googleAuthService = googleAuthService;
         this.jwtService = jwtService;
-        this.kafkaProducer = kafkaProducer;
     }
 
     public UserDTO handleAuthentication(String grantCode) {
@@ -58,8 +55,6 @@ public class AuthenticationService {
                 List.of(new SimpleGrantedAuthority("USER"))
         ), accessToken);
 
-        // Produce Kafka message for authentication
-        kafkaProducer.sendMessage("User authenticated: " + userDetails.getEmail());
         UserDTO userDto = new UserDTO();
         userDto.setUserId(user.getUser_id());
         userDto.setJwtToken(jwtToken);
@@ -92,7 +87,6 @@ public class AuthenticationService {
                     List.of(new SimpleGrantedAuthority("USER"))
             ), accessToken);
 
-            kafkaProducer.sendMessage("Token refreshed for user: " + userId);
 
             return newJwt;
         } catch (ValidateTokenException e) {
@@ -114,8 +108,6 @@ public class AuthenticationService {
                 List.of(new SimpleGrantedAuthority("USER"))
         ));
 
-        // Produce Kafka message for new user creation
-        kafkaProducer.sendMessage("New user created: " + userDetails.getEmail());
         return createdUser;
     }
 
