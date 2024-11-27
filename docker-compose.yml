@@ -17,7 +17,7 @@ services:
   profile-service:
     container_name: profile-service
     depends_on:
-      - profile_mysql
+      - profile-mysql
       - kafka
     # Path to teh root dir of teh microservice (where teh Dockerfile is)
     build:
@@ -35,7 +35,9 @@ services:
       - net
     environment:
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092  # Pass Kafka's bootstrap server
+      PROFILE_MYSQL_PASSWORD: ${PROFILE_MYSQL_PASSWORD}
       PROFILE_DB_IP: profile-mysql
+      SERVICE_REGISTRY_IP: eureka-service
 
 
 

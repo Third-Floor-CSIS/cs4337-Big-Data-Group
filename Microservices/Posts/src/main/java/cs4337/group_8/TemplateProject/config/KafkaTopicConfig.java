@@ -1,5 +1,4 @@
-package cs4337.group_8.AuthenticationMicroservice.config;
-
+package cs4337.group_8.TemplateProject.config;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +10,7 @@ public class KafkaTopicConfig {
 
     @Bean
     public NewTopic profileUpdatesTopic() {
-        return TopicBuilder.name("Authentication-updates").partitions(10).build();
+        return TopicBuilder.name("post-updates").partitions(10).build();
     }
 }
+
