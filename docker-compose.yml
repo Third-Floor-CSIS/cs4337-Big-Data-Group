@@ -1,5 +1,5 @@
 services:
-  profile_mysql:
+  profile-mysql:
     # Always specify what version, "latest" causes issues later on
     image: mysql:9.1
     environment:
@@ -14,10 +14,10 @@ services:
     volumes:
       - ./dev/database/profile:/var/lib/mysql
 
-  profile_microservice:
-    container_name: profile_microservice
+  profile-service:
+    container_name: profile-service
     depends_on:
-      - profile_mysql
+      - profile-mysql
       - kafka
     # Path to teh root dir of teh microservice (where teh Dockerfile is)
     build:
@@ -30,12 +30,13 @@ services:
     env_file: ".env"
     ports:
       # ideally it would be mapped to a more static internal port
-      # - "${PROFILE_MICROSERVICE_PORT}:8080"
-      - "${PROFILE_MICROSERVICE_PORT}:${PROFILE_MICROSERVICE_PORT}"
+       - "${PROFILE_MICROSERVICE_PORT}:8090"
     networks:
       - net
     environment:
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092  # Pass Kafka's bootstrap server
+      PROFILE_DB_IP: profile-mysql
+
 
 
   # Kafka Zookeeper
@@ -49,6 +50,8 @@ services:
       - net
     ports:
       - "2181:2181"
+    restart: on-failure
+
 
   # Kafka Service
   kafka:
@@ -65,6 +68,8 @@ services:
       - net
     ports:
       - "9092:9092"
+    restart: on-failure
+
 
   auth_mysql:
     # Always specify what version, "latest" causes issues later on
