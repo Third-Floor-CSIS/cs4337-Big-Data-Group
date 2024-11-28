@@ -27,10 +27,8 @@ public class ProfileDTO {
     private String profile_pic;
 
     @PositiveOrZero
-    @NotNull
     private int count_follower;
 
     @PositiveOrZero
-    @NotNull
     private int count_following;
 }
