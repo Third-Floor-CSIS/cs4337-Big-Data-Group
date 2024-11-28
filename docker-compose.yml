@@ -17,7 +17,7 @@ services:
   profile_microservice:
     container_name: profile_microservice
     depends_on:
-      - profile_mysql
+      - profile-mysql
     # Path to teh root dir of teh microservice (where teh Dockerfile is)
     build:
       context: ./Microservices
@@ -33,7 +33,9 @@ services:
       - "${PROFILE_MICROSERVICE_PORT}:${PROFILE_MICROSERVICE_PORT}"
     networks:
       - net
-
+    environment:
+      SERVICE_REGISTRY_IP: eureka-service
+      PROFILE_DB_IP: profile_mysql
 
   auth_mysql:
     # Always specify what version, "latest" causes issues later on
