@@ -3,6 +3,7 @@ package cs4337.group_8.ProfileService.controllers;
 import cs4337.group_8.ProfileService.DTO.ProfileDTO;
 import cs4337.group_8.ProfileService.exceptions.SampleCustomException;
 import cs4337.group_8.ProfileService.mappers.ProfileMapper;
+import cs4337.group_8.ProfileService.services.KafkaProducer;
 import cs4337.group_8.ProfileService.services.ProfileService;
 import cs4337.group_8.ProfileService.entities.ProfileEntity;
 import jakarta.validation.Valid;
@@ -25,13 +26,17 @@ public class ControllerProfile {
     // Bean injections
     // It is okay to have more than one service, but nothing lower
     private final ProfileService profileService;
+    private final KafkaProducer kafkaProducer;
 
-    public ControllerProfile(ProfileService profileService) {
+    public ControllerProfile(ProfileService profileService, KafkaProducer kafkaProducer) {
+        this.kafkaProducer = kafkaProducer;
         this.profileService = profileService;
+
     }
 
     @GetMapping("/test")
     public String test() {
+        kafkaProducer.sendMessage("Profile Microservice kafka test");
         return "Hello World";
     }
 

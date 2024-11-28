@@ -13,12 +13,14 @@ public class KafkaConsumer {
 
     @KafkaListener(topics = "profile-updates", groupId = "notification-group")
     public void consumeProfileUpdates(String message) {
+        System.out.println("Notification Received (Profile Update): " + message);
         LOGGER.info("Consumed profile message: {}", message);
         messagesProcessedCount++;
     }
 
     @KafkaListener(topics = "post-updates", groupId = "notification-group")
     public void consumePostUpdates(String message) {
+        System.out.println("Notification Received (Post Update): " + message);
         LOGGER.info("Consumed post message: {}", message);
         messagesProcessedCount++;
     }
