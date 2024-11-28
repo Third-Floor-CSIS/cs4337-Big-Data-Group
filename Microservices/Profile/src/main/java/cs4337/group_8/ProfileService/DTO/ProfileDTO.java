@@ -10,27 +10,27 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProfileDTO {
     @NotNull
-    private String user_id;
+    private String userID;
 
     @Size(
         min = 1,
         message = "Fullname is too short"
     )
     @NotNull
-    private String full_name;
+    private String fullName;
 
     // does not have to be filled in
     @NotNull
     private String bio;
 
     @NotNull
-    private String profile_pic;
+    private String profilePic;
 
     @PositiveOrZero
     @NotNull
-    private int count_follower;
+    private int countFollower;
 
     @PositiveOrZero
     @NotNull
-    private int count_following;
+    private int countFollowing;
 }

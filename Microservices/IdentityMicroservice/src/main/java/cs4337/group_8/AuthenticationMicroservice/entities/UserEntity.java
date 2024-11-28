@@ -13,7 +13,7 @@ import java.time.Instant;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer user_id;
+    private Integer userID;
     private String password;
     private String email;
 

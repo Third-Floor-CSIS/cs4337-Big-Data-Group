@@ -26,7 +26,7 @@ public class ControllerProfile {
     // It is okay to have more than one service, but nothing lower
     private final ProfileService profileService;
 
-    public ControllerProfile(ProfileService profileService) {
+    public ControllerProfile(final ProfileService profileService) {
         this.profileService = profileService;
     }
 
@@ -43,11 +43,11 @@ public class ControllerProfile {
     public ResponseEntity<ProfileDTO> addNewUserFromRegistration(
         @Valid
         @RequestBody
-        ProfileDTO incomingDTO
+        final ProfileDTO incomingDTO
     ) {
         try {
             // if a confict exist throwsi it down below
-            profileService.getUserExistanceById(incomingDTO.getUser_id());
+            profileService.getUserExistanceById(incomingDTO.getUserID());
             log.info("New user registered");
             ProfileDTO apiResponse = new ProfileDTO();
             return ResponseEntity.ok(apiResponse);
@@ -63,11 +63,11 @@ public class ControllerProfile {
     public ResponseEntity<ProfileDTO> getProfile(
         @Valid
         @RequestBody
-        String user_id
+        final String userID
     ) {
         try {
-            ProfileEntity profileEntity = profileService.getUserExistanceById(user_id);
-            ProfileDTO profile = ProfileMapper.INSTANCE.toDto( profileEntity );
+            ProfileEntity profileEntity = profileService.getUserExistanceById(userID);
+            ProfileDTO profile = ProfileMapper.INSTANCE.toDto(profileEntity);
             return ResponseEntity.ok(profile);
         } catch (SampleCustomException e) {
             // TODO: not the right response
@@ -83,16 +83,16 @@ public class ControllerProfile {
     public ResponseEntity<ProfileDTO> setProfile(
         @Valid
         @RequestBody
-        ProfileDTO incomingDTO
+        final ProfileDTO incomingDTO
     ) {
         try {
             // TODO: verify the user modifying it owns the profile
             // Save it to the database
             profileService.updateByUserId(
-                incomingDTO.getUser_id(),
-                incomingDTO.getFull_name(),
+                incomingDTO.getUserID(),
+                incomingDTO.getFullName(),
                 incomingDTO.getBio(),
-                incomingDTO.getProfile_pic()
+                incomingDTO.getProfilePic()
             );
             // return modified version
             return ResponseEntity.ok(incomingDTO);

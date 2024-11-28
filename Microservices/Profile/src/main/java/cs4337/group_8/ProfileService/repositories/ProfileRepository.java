@@ -14,26 +14,26 @@ import java.util.Optional;
 public interface ProfileRepository extends JpaRepository<ProfileEntity, String> {
 
     // Optional is a container object which may or may not contain a non-null value
-    @Query(value = "SELECT e FROM ProfileEntity e WHERE e.user_id = ?1")
-    Optional<ProfileEntity> findByIdEquals(String user_id);
+    @Query(value = "SELECT e FROM ProfileEntity e WHERE e.userID = ?1")
+    Optional<ProfileEntity> findByIdEquals(String userID);
 
     @Modifying
     @Query(
         """
-        UPDATE ProfileEntity t 
-        SET t.full_name = :full_name,  t.bio = :bio,  t.profile_pic = :profile_pic  
-        WHERE t.user_id = :user_id
+        UPDATE ProfileEntity t
+        SET t.fullName = :fullName,  t.bio = :bio,  t.profilePic = :profilePic
+        WHERE t.userID = :userID
         """
     )
     void updateByUserId(
-        @Param("user_id")
-        String user_id,
-        @Param("full_name")
-        String full_name,
+        @Param("userID")
+        String userID,
+        @Param("fullName")
+        String fullName,
         @Param("bio")
         String bio,
-        @Param("profile_pic")
-        String profile_pic
+        @Param("profilePic")
+        String profilePic
     );
 
 }

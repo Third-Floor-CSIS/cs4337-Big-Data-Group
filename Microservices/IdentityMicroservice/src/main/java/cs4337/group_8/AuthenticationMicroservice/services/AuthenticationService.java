@@ -68,9 +68,9 @@ public class AuthenticationService {
         String accessToken;
         String userId;
 
-        if (jwtClaims.get("access_token") != null && jwtClaims.get("user_id") != null) {
+        if (jwtClaims.get("access_token") != null && jwtClaims.get("userID") != null) {
             accessToken = (String) jwtClaims.get("access_token");
-            userId = (String) jwtClaims.get("user_id");
+            userId = (String) jwtClaims.get("userID");
         } else {
             throw new AuthenticationNotFoundException("Access token not found in JWT token");
         }

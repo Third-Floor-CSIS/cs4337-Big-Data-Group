@@ -2,19 +2,13 @@ package cs4337.group_8.ProfileService.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.ToString;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
-
-
 /**
- * The @Data annotation is the same as the following annotations:
+ * The @Data annotation is the same as the following annotations.
  * Getter, Setter, RequiredArgsConstructor, ToString, EqualsAndHashCode, Value
  * Other annotations: @AllArgsConstructor, @NoArgsConstructor
  *
@@ -28,20 +22,20 @@ public class ProfileEntity {
     // Primary key
     @Id
     @Column
-    private String user_id;
+    private String userID;
 
     @Column
-    private String full_name;
+    private String fullName;
 
     @Column
     private String bio;
 
     @Column
-    private String profile_pic;
+    private String profilePic;
 
     @Column
-    private int count_follower;
+    private int countFollower;
 
     @Column
-    private int count_following;
+    private int countFollowing;
 }

@@ -136,7 +136,7 @@ public class TestAuthenticationService {
 
         Mockito.when(claims.get("sub")).thenReturn("some-userId");
         Mockito.when(claims.get("access_token")).thenReturn("some-access");
-        Mockito.when(claims.get("user_id")).thenReturn("1");
+        Mockito.when(claims.get("userID")).thenReturn("1");
 
         return claims;
     }
