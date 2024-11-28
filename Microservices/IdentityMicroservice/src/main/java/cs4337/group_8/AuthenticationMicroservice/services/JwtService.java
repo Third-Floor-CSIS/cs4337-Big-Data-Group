@@ -1,6 +1,7 @@
 package cs4337.group_8.AuthenticationMicroservice.services;
 
 import cs4337.group_8.AuthenticationMicroservice.entities.JwtRefreshTokenEntity;
+import cs4337.group_8.AuthenticationMicroservice.exceptions.RefreshTokenExpiredException;
 import cs4337.group_8.AuthenticationMicroservice.repositories.JwtRefreshTokenRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -91,6 +92,10 @@ public class JwtService {
         JwtRefreshTokenEntity refreshTokenEntity = jwtRefreshTokenRepository.findByUserId(Integer.parseInt(userId))
                 .orElseThrow(() -> new JwtException("Refresh token not found"));
 
+        if(hasTokenExpired(refreshTokenEntity.getRefreshToken())){
+            throw new RefreshTokenExpiredException("Refresh token expired");
+        }
+
         String refreshJwtToken = generateToken(new org.springframework.security.core.userdetails.User(
                 userId,
                 "",
@@ -100,8 +105,8 @@ public class JwtService {
         return refreshJwtToken;
     }
 
-
-    public boolean isTokenExpired(String token) {
+    // Returns true if token expired
+    public boolean hasTokenExpired(String token) {
         assert token != null;
         return extractExpiration(token).before(new Date());
     }

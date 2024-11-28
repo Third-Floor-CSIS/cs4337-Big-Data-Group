@@ -11,7 +11,13 @@ jobs:
   build:
     strategy:
       matrix:
-        service: [  ]
+        service:
+          - "api-gateway"
+          - "IdentityMicroservice"
+          - "notification-service"
+          - "Posts"
+          - "Profile"
+          - "service-registry"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,4 +28,4 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build ${{ matrix.service }}
-        run: cd src/${{ matrix.service }} && mvn clean install
+        run: cd Microservices/${{ matrix.service }} && mvn clean package -DskipTests=true
