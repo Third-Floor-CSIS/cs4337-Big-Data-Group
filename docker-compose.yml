@@ -18,22 +18,16 @@ services:
     container_name: profile_microservice
     depends_on:
       - profile_mysql
-    # Path to teh root dir of teh microservice (where teh Dockerfile is)
     build:
       context: ./Microservices
       dockerfile: Profile/Dockerfile
       args:
-        # name of teh folder in Microservices
         SERVICE_PATH: "Profile"
-    # pass in the env file to be used
     env_file: ".env"
     ports:
-      # ideally it would be mapped to a more static internal port
-      # - "${PROFILE_MICROSERVICE_PORT}:8080"
       - "${PROFILE_MICROSERVICE_PORT}:${PROFILE_MICROSERVICE_PORT}"
     networks:
       - net
-
 
   auth_mysql:
     # Always specify what version, "latest" causes issues later on
@@ -48,6 +42,22 @@ services:
       - "${AUTH_DOCKER_DB_PORT}:3306"
     volumes:
       - ./dev/database/auth:/var/lib/mysql
+
+  auth_service:
+    build:
+      context: ./Microservices/IdentityMicroservice
+      dockerfile: Dockerfile
+    env_file: ".env"
+    environment:
+      AUTH_MYSQL_PASSWORD: ${AUTH_MYSQL_ROOT_PASSWORD}
+      AUTH_DB_IP: auth_mysql
+      SERVICE_REGISTRY_IP: eureka-service
+    depends_on:
+      - auth_mysql
+    networks:
+      - net
+    ports:
+      - "${AUTH_MICROSERVICE_PORT}:8082"
 
   eureka-service:
     build:
@@ -72,22 +82,6 @@ services:
       - net
     ports:
       - "${GATEWAY_PORT}:8080"
-
-  auth_service:
-    build:
-      context: ./Microservices/IdentityMicroservice
-      dockerfile: Dockerfile
-    env_file: ".env"
-    environment:
-      AUTH_MYSQL_PASSWORD: ${AUTH_MYSQL_ROOT_PASSWORD}
-      AUTH_DB_IP: auth_mysql
-      SERVICE_REGISTRY_IP: eureka-service
-    depends_on:
-      - auth_mysql
-    networks:
-      - net
-    ports:
-      - "${AUTH_MICROSERVICE_PORT}:8082"
 
   posts_mysql:
     # Always specify what version, "latest" causes issues later on
