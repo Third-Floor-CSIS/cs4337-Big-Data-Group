@@ -23,6 +23,7 @@ services:
       context: ./Microservices
       dockerfile: Profile/Dockerfile
       args:
+
         # name of teh folder in Microservices
         SERVICE_PATH: "Profile"
     # pass in the env file to be used
@@ -49,6 +50,22 @@ services:
     volumes:
       - ./dev/database/auth:/var/lib/mysql
 
+  auth_service:
+    build:
+      context: ./Microservices/IdentityMicroservice
+      dockerfile: Dockerfile
+    env_file: ".env"
+    environment:
+      AUTH_MYSQL_PASSWORD: ${AUTH_MYSQL_ROOT_PASSWORD}
+      AUTH_DB_IP: auth_mysql
+      SERVICE_REGISTRY_IP: eureka-service
+    depends_on:
+      - auth_mysql
+    networks:
+      - net
+    ports:
+      - "${AUTH_MICROSERVICE_PORT}:8082"
+      
   eureka-service:
     build:
       context: ./Microservices/service-registry
@@ -73,22 +90,35 @@ services:
     ports:
       - "${GATEWAY_PORT}:8080"
 
-  auth_service:
-    build:
-      context: ./Microservices/IdentityMicroservice
-      dockerfile: Dockerfile
-    env_file: ".env"
+  posts_mysql:
+    # Always specify what version, "latest" causes issues later on
+    image: mysql:9.1
     environment:
-      AUTH_MYSQL_PASSWORD: ${AUTH_MYSQL_ROOT_PASSWORD}
-      AUTH_DB_IP: auth_mysql
-      SERVICE_REGISTRY_IP: eureka-service
-    depends_on:
-      - auth_mysql
+      MYSQL_USER: ${POSTS_MYSQL_USERNAME}
+      MYSQL_PASSWORD: ${POSTS_MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${POSTS_MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${POSTS_DB_NAME}
     networks:
       - net
     ports:
-      - "${AUTH_MICROSERVICE_PORT}:8082"
+      - "${POSTS_DB_PORT_EXTERNAL}:3306"
+    volumes:
+      - ./dev/database/posts:/var/lib/mysql
 
+  posts_microservice:
+    container_name: posts_microservice
+    depends_on:
+      - posts_mysql
+    build:
+      context: ./Microservices/Posts
+      dockerfile: Dockerfile
+      args:
+        SERVICE_PATH: "Posts"
+    env_file: ".env"
+    ports:
+      - "${POSTS_MICROSERVICE_PORT}:${POSTS_MICROSERVICE_PORT}"
+    networks:
+      - net
 networks:
   net:
     driver: bridge
