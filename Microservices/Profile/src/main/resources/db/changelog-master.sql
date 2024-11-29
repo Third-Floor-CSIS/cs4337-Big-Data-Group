@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 -- changeset Brendan:0
-CREATE TABLE profile (
+CREATE TABLE IF NOT EXISTS profile (
     user_id VARCHAR(255) NOT NULL,
     full_name VARCHAR(255),
     bio VARCHAR(255),
@@ -12,7 +12,7 @@ CREATE TABLE profile (
 );
 
 -- changeset Milan:1
-CREATE TABLE following (
+CREATE TABLE IF NOT EXISTS following (
     initiator_id VARCHAR(255) NOT NULL,
     target_id VARCHAR(255) NOT NULL,
     time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
