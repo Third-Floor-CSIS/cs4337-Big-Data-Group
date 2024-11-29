@@ -36,6 +36,7 @@
 | 43    | [Issue][issue_68] | [Trello][trello_65] | [Pull_Request][pr_90] | Pending | 21308128   | Add follow and unfollow functionality   |
 | 44    | [Issue][issue_96] | [Trello][trello_64] | [Pull_Request][pr_94] | Pending | 21308128   | Fix 401 not returned when invalid JWT   |
 | 45    | [Issue][issue_92] | [Trello][trello_63] | [Pull_Request][pr_91] | Pending | 21308128   | Onboard Posts to API Gateway            |
+| 46    | [Issue][issue_64] | [Trello][trello_59] | [Pull_Request][pr_86] | Pending | 18265693   | JWT in post Micro service               |
 
 [issue_47]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/47
 [issue_48]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/48
@@ -72,6 +73,7 @@
 [pr_77]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/77
 [pr_82]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/82
 [pr_83]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/83
+[pr_86]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/86
 [pr_89]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/89
 [pr_90]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/90
 [pr_91]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/91
