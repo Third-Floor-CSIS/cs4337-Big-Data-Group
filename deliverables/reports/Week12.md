@@ -30,7 +30,7 @@
 | 37    | [Issue][issue_80] | [Trello][trello_61] | [Pull_request][pr_77] | Pending | 21308128   | Dockerise Api Gateway                   |
 | 38    | [Issue][issue_79] | [Trello][trello_62] | [Pull_request][pr_77] | Pending | 21308128   | Dockerise Service Registry              |
 | 39    | [Issue][issue_84] | [Trello][trello_51] |                       | Pending | 21332673   | Add kafka                               |
-| 40    |                   |                     |                       | Pending | 12136891   | Week 12 report                          |
+| 40    |                   |                     | [Pull_Request][pr_95] | Pending | 12136891   | Week 12 report                          |
 | 41    | [Issue][issue_88] |                     | [Pull_Request][pr_89] | Done    | 12136891   | Fix build pipeline                      |
 | 42    | [Issue][issue_88] |                     | [Pull_Request][pr_93] | Closed  | 12136891   | Fix linter Pipeline                     |
 
@@ -66,3 +66,4 @@
 [pr_83]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/83
 [pr_89]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/89
 [pr_93]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/93
+[pr_95]:https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/95
