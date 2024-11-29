@@ -31,7 +31,7 @@
 | 40    |                   |                     | [Pull_Request][pr_95] | Pending | 12136891   | Week 12 report                          |
 | 41    | [Issue][issue_88] |                     | [Pull_Request][pr_89] | Done    | 12136891   | Fix build pipeline                      |
 | 42    | [Issue][issue_88] |                     | [Pull_Request][pr_93] | Closed  | 12136891   | Fix linter Pipeline                     |
-| 43    | [Issue][issue_68] | [Trello][trello_65] | [Pull_Request][pr_90] | Done | 21308128   | Add follow and unfollow functionality   |
+| 43    | [Issue][issue_68] | [Trello][trello_65] | [Pull_Request][pr_90] | Done    | 21308128   | Add follow and unfollow functionality   |
 | 44    | [Issue][issue_96] | [Trello][trello_64] | [Pull_Request][pr_94] | Pending | 21308128   | Fix 401 not returned when invalid JWT   |
 | 45    | [Issue][issue_92] | [Trello][trello_63] | [Pull_Request][pr_91] | Pending | 21308128   | Onboard Posts to API Gateway            |
 | 46    | [Issue][issue_64] | [Trello][trello_59] | [Pull_Request][pr_86] | Pending | 18265693   | JWT in post Micro service               |
