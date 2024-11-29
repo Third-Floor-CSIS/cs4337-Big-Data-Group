@@ -35,7 +35,8 @@
 | 44    | [Issue][issue_96] | [Trello][trello_64] | [Pull_Request][pr_94] | Pending | 21308128   | Fix 401 not returned when invalid JWT   |
 | 45    | [Issue][issue_92] | [Trello][trello_63] | [Pull_Request][pr_91] | Pending | 21308128   | Onboard Posts to API Gateway            |
 | 46    | [Issue][issue_64] | [Trello][trello_59] | [Pull_Request][pr_86] | Pending | 18265693   | JWT in post Micro service               |
-| 46    | [Issue][issue_97] | [Trello][trello_66] | [Pull_Request][pr_87] | Done    | 21308128   | Auth Unit tests                         |
+| 47    | [Issue][issue_97] | [Trello][trello_66] | [Pull_Request][pr_87] | Done    | 21308128   | Auth Unit tests                         |
+| 48    | [Issue][issue_98] | [Trello][trello_67] |                       | Pending | 1826593    | profile Unit tests                      |
 
 [issue_47]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/47
 [issue_48]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/48
@@ -53,6 +54,7 @@
 [issue_92]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/92
 [issue_96]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/96
 [issue_97]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/97
+[issue_98]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/98
 
 [trello_21]: https://trello.com/c/jMzngaip/21-add-docker-to-posts-microservice
 [trello_41]: https://trello.com/c/Qpza67N3/41-kafka-integration-into-service-registry
@@ -68,6 +70,7 @@
 [trello_64]: https://trello.com/c/vvemtidO/62-fix401-not-returned
 [trello_65]: https://trello.com/c/aEI3xvmH/52-add-followers-followees
 [trello_66]: https://trello.com/c/AH6h2rFY/63-auth-unit-test
+[trello_67]: https://trello.com/c/ocj0R1f4/65-profile-unit-tests
 
 [pr_77]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/77
 [pr_82]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/82
