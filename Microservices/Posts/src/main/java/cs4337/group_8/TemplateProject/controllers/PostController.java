@@ -16,19 +16,24 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/posts")
 public class PostController {
 
-    @Autowired
     private PostService postService;
     private final JwtService jwtService;
 
+    public PostController(PostService postService, JwtService jwtService){
+        this.postService = postService;
+        this.jwtService = jwtService;
+    }
 
     @Autowired
     private PostMapper postMapper;
 
     @PostMapping
-    public PostDTO createPost(@RequestBody PostDTO postDTO) {
+    public PostDTO createPost(
+            @RequestBody PostDTO postDTO,
+            @RequestHeader(name="Authorization") String jwtToken
+    ) {
         Post post = postMapper.toEntity(postDTO);
-        return postMapper.toDTO(postService.createPost(post, jwtService.generateRefreshToken));
-
+        return postMapper.toDTO(postService.createPost(post, jwtToken));
     }
 
     @GetMapping("/user/{userId}")

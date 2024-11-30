@@ -1,5 +1,6 @@
 package cs4337.group_8.TemplateProject.config;
 
+import cs4337.group_8.TemplateProject.filters.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,10 +24,8 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(request -> {
                     request.requestMatchers(
-                            "/auth/grantcode",
-                            "/auth/validate-token",
-                            "/auth/refresh-token",
-                            "/auth/test").permitAll();
+                            "/public/",
+                            "/health") .permitAll();
                     request.anyRequest().authenticated();
                 })
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
