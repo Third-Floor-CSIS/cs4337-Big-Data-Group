@@ -1,6 +1,8 @@
 //package com.example.posts.controllers;
 package cs4337.group_8.TemplateProject.controllers;
 
+import cs4337.group_8.TemplateProject.filters.JwtAuthenticationFilter;
+import cs4337.group_8.AuthenticationMicroservice.services.JwtService;
 import cs4337.group_8.TemplateProject.DTO.PostDTO;
 import cs4337.group_8.TemplateProject.entities.Post;
 import cs4337.group_8.TemplateProject.services.PostService;
