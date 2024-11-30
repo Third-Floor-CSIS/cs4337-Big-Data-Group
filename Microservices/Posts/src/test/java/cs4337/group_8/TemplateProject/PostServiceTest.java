@@ -1,10 +1,11 @@
 package cs4337.group_8.TemplateProject.services;
 
-import cs4337.group_8.TemplateProject.entities.Like;
-import cs4337.group_8.TemplateProject.entities.Post;
-import cs4337.group_8.TemplateProject.exceptions.PostException;
-import cs4337.group_8.TemplateProject.repositories.LikesRepository;
-import cs4337.group_8.TemplateProject.repositories.PostRepository;
+import cs4337.group_8.posts.entities.Like;
+import cs4337.group_8.posts.entities.Post;
+import cs4337.group_8.posts.exceptions.PostException;
+import cs4337.group_8.posts.repositories.LikesRepository;
+import cs4337.group_8.posts.repositories.PostRepository;
+import cs4337.group_8.posts.services.PostService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

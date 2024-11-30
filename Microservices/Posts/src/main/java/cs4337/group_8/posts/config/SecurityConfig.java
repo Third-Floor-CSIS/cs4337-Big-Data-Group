@@ -1,7 +1,6 @@
-package cs4337.group_8.TemplateProject.config;
+package cs4337.group_8.posts.config;
 
-import cs4337.group_8.TemplateProject.filters.JwtAuthenticationFilter;
-import cs4337.group_8.AuthenticationMicroservice.services.JwtService;
+import cs4337.group_8.posts.config.filters.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
