@@ -1,12 +1,11 @@
 //package com.example.posts.controllers;
-package cs4337.group_8.TemplateProject.controllers;
+package cs4337.group_8.posts.controllers;
 
-import cs4337.group_8.TemplateProject.filters.JwtAuthenticationFilter;
-import cs4337.group_8.AuthenticationMicroservice.services.JwtService;
-import cs4337.group_8.TemplateProject.DTO.PostDTO;
-import cs4337.group_8.TemplateProject.entities.Post;
-import cs4337.group_8.TemplateProject.services.PostService;
-import cs4337.group_8.TemplateProject.mappers.PostMapper;
+import cs4337.group_8.posts.DTO.PostDTO;
+import cs4337.group_8.posts.entities.Post;
+import cs4337.group_8.posts.services.JwtService;
+import cs4337.group_8.posts.services.PostService;
+import cs4337.group_8.posts.mappers.PostMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

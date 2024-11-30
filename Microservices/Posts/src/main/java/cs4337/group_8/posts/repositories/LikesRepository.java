@@ -1,6 +1,6 @@
-package cs4337.group_8.TemplateProject.repositories;
+package cs4337.group_8.posts.repositories;
 
-import cs4337.group_8.TemplateProject.entities.Like;
+import cs4337.group_8.posts.entities.Like;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

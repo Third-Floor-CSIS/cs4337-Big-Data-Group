@@ -1,4 +1,5 @@
-package cs4337.group_8.TemplateProject.filters;
+package cs4337.group_8.posts.config.filters;
+import cs4337.group_8.posts.services.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -52,8 +53,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             filterChain.doFilter(request, response);
         } catch (Exception e) {
-            handlerExceptionResolver.resolveException(request, response, null, e);
-        }
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.getWriter().write("Invalid Authentication Token");
+            response.getWriter().flush();
+            return;        }
     }
 }
 

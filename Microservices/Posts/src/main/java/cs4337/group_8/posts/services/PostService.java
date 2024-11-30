@@ -1,12 +1,10 @@
-package cs4337.group_8.TemplateProject.services;
+package cs4337.group_8.posts.services;
 
-import cs4337.group_8.TemplateProject.entities.Like;
-import cs4337.group_8.TemplateProject.entities.Post;
-import cs4337.group_8.TemplateProject.exceptions.PostException;
-import cs4337.group_8.TemplateProject.repositories.LikesRepository;
-import cs4337.group_8.TemplateProject.repositories.PostRepository;
-import cs4337.group_8.TemplateProject.filters.JwtAuthenticationFilter;
-import cs4337.group_8.AuthenticationMicroservice.services.JwtService;
+import cs4337.group_8.posts.entities.Like;
+import cs4337.group_8.posts.entities.Post;
+import cs4337.group_8.posts.exceptions.PostException;
+import cs4337.group_8.posts.repositories.LikesRepository;
+import cs4337.group_8.posts.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +50,7 @@ public class PostService {
 
     public void deletePost(Long postId, String jwtToken) {
         // Extract user ID from the JWT
-        Long userId = jwtService.extractUserId(jwtToken);
+        Long userId = Long.valueOf(jwtService.extractUserId(jwtToken));
 
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new PostException("Post with ID " + postId + " not found"));
@@ -66,7 +64,7 @@ public class PostService {
 
     public void likePost(Long postId, String jwtToken) {
         // Extract user ID from the JWT
-        Long userId = jwtService.extractUserId(jwtToken);
+        Long userId = Long.valueOf(jwtService.extractUserId(jwtToken));
 
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new PostException("Post with ID " + postId + " not found"));
@@ -94,7 +92,7 @@ public class PostService {
 
     public void unlikePost(Long postId, String jwtToken) {
         // Extract user ID from the JWT
-        Long userId = jwtService.extractUserId(jwtToken);
+        Long userId = Long.valueOf(jwtService.extractUserId(jwtToken));
         Optional<Like> likeOptional = likesRepository.findByPostIdAndUserId(postId, userId);
 
         if (likeOptional.isEmpty()) {
