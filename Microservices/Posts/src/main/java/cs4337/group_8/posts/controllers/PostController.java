@@ -1,4 +1,3 @@
-//package com.example.posts.controllers;
 package cs4337.group_8.posts.controllers;
 
 import cs4337.group_8.posts.DTO.PostDTO;
@@ -6,27 +5,26 @@ import cs4337.group_8.posts.entities.Post;
 import cs4337.group_8.posts.services.JwtService;
 import cs4337.group_8.posts.services.PostService;
 import cs4337.group_8.posts.mappers.PostMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
-//Post Controller
+
 @RestController
 @RequestMapping("/api/posts")
 public class PostController {
 
+    private PostMapper postMapper;
     private PostService postService;
     private final JwtService jwtService;
 
-    public PostController(PostService postService, JwtService jwtService){
+
+    public PostController(PostService postService, JwtService jwtService, PostMapper postMapper) {
         this.postService = postService;
         this.jwtService = jwtService;
+        this.postMapper = postMapper;
     }
-
-    @Autowired
-    private PostMapper postMapper;
 
     @PostMapping
     public PostDTO createPost(
@@ -35,6 +33,11 @@ public class PostController {
     ) {
         Post post = postMapper.toEntity(postDTO);
         return postMapper.toDTO(postService.createPost(post, jwtToken));
+    }
+
+    @GetMapping("/test")
+    public ResponseEntity.BodyBuilder test() {
+        return ResponseEntity.ok();
     }
 
     @GetMapping("/user/{userId}")

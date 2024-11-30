@@ -5,7 +5,6 @@ import cs4337.group_8.posts.entities.Post;
 import cs4337.group_8.posts.exceptions.PostException;
 import cs4337.group_8.posts.repositories.LikesRepository;
 import cs4337.group_8.posts.repositories.PostRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,12 +13,8 @@ import java.util.Optional;
 @Service
 public class PostService {
 
-    @Autowired
-    private PostRepository postRepository;
-
-    @Autowired
-    private LikesRepository likesRepository;
-
+    private final PostRepository postRepository;
+    private final LikesRepository likesRepository;
     private final JwtService jwtService;
 
     public PostService(PostRepository postRepository, LikesRepository likesRepository, JwtService jwtService) {
