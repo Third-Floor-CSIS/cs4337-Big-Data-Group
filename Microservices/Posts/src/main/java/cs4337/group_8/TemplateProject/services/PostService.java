@@ -30,7 +30,8 @@ public class PostService {
     }
 
     public Post createPost(Post post, String jwtToken) {
-        Long userId = jwtService.extractUserId(jwtToken); // Extract userId from token
+        Integer userIdInteger = jwtService.extractUserId(jwtToken); // Extract userId from token
+        Long userId = Long.valueOf(userIdInteger); //convert intger to long
         post.setUserId(userId); // Associate post with the user
         return postRepository.save(post);
     }
