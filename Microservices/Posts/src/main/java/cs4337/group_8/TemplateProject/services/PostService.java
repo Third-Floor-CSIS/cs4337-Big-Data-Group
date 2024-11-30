@@ -5,6 +5,7 @@ import cs4337.group_8.TemplateProject.entities.Post;
 import cs4337.group_8.TemplateProject.exceptions.PostException;
 import cs4337.group_8.TemplateProject.repositories.LikesRepository;
 import cs4337.group_8.TemplateProject.repositories.PostRepository;
+import cs4337.group_8.AuthenticationMicroservice.services.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,14 @@ public class PostService {
 
     @Autowired
     private LikesRepository likesRepository;
+
+    private final JwtService jwtService;
+
+    public PostService(PostRepository postRepository, LikesRepository likesRepository, JwtService jwtService) {
+        this.postRepository = postRepository;
+        this.likesRepository = likesRepository;
+        this.jwtService = jwtService; //injecting JWT service
+    }
 
     public Post createPost(Post post, String jwtToken) {
         Long userId = jwtService.extractUserId(jwtToken); // Extract userId from token
@@ -39,7 +48,7 @@ public class PostService {
         return postRepository.findById(id);
     }
 
-    public void deletePost(Long postId, String jwtToken)) {
+    public void deletePost(Long postId, String jwtToken) {
         // Extract user ID from the JWT
         Long userId = jwtService.extractUserId(jwtToken);
 
