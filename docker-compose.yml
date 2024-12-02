@@ -68,6 +68,19 @@ services:
     volumes:
       - ./dev/database/auth:/var/lib/mysql
 
+  notification_mysql:
+    image: mysql:9.1
+    environment:
+      MYSQL_USER: ${NOTIFICATION_MYSQL_USERNAME}
+      MYSQL_PASSWORD: ${NOTIFICATION_MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${NOTIFICATION_MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${NOTIFICATION_DB_NAME}
+    networks:
+      -net
+    ports:
+      - "${NOTIFICATION_DOCKER_DB_PORT}:3306"
+
+
   profile_microservice:
     container_name: profile_microservice
     depends_on:
@@ -111,6 +124,24 @@ services:
       - net
     ports:
       - "${AUTH_MICROSERVICE_PORT}:8082"
+
+  notification_service:
+    build:
+      context: ./Microservices/notification-service
+      dockerfile: Dockerfile
+    env_file: ".env"
+    environment:
+      NOTIFICATION_DB_IP: notification_mysql
+      SERVICE_REGISTRY_IP: eureka-service
+    depends_on:
+      - notification_mysql
+      - eureka-service
+      - gateway
+    networks:
+      - net
+    ports:
+      - "${NOTIFICATION_MICROSERVICE_PORT}:${NOTIFICATION_MICROSERVICE_PORT}:"
+
 
   posts_microservice:
     container_name: posts_microservice
