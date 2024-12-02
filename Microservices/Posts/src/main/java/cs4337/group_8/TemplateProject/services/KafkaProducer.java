@@ -18,6 +18,6 @@ public class KafkaProducer {
 
     public void sendMessage(String message) {
         LOGGER.info("Producing message: {}", message);
-        kafkaTemplate.send("posts-updates", message);
+        kafkaTemplate.send("post-updates", message);
     }
 }
