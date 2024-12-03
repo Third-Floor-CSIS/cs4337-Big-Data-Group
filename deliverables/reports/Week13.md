@@ -16,20 +16,21 @@
 
 ## Work
 
-| Index | Issue ID          | Trello Link         | Pull Request Link     | Status  | Student ID | Issue Description                       | 
-|-------|-------------------|---------------------|-----------------------|---------|------------|-----------------------------------------|
-| 23    | [Issue][issue_47] | [Trello][trello_21] |                       | Pending | 21342342   | Add docker to Posts MS                  |
-| 24    | [Issue][issue_48] | [Trello][trello_41] |                       | Pending | 21332142   | Kafka integration into Service Registry |
-| 34    | [Issue][issue_63] | [Trello][trello_58] | [Pull_Request][pr_90] | Pending | 21308128   | Adding JWT to Profile M.service         |
-| 35    | [Issue][issue_64] | [Trello][trello_59] |                       | Pending | 21342342   | Adding JWT to Posts M.service           |
-| 36    | [Issue][issue_74] | [Trello][trello_60] |                       | Pending | 21342342   | Posts DB replication                    |
-| 39    | [Issue][issue_84] | [Trello][trello_51] |                       | Pending | 21332673   | Add kafka                               |
-| 40    |                   |                     | [Pull_Request][pr_95] | Done    | 12136891   | Week 12 report                          |
-| 44    | [Issue][issue_96] | [Trello][trello_64] | [Pull_Request][pr_94] | Pending | 21308128   | Fix 401 not returned when invalid JWT   |
-| 45    | [Issue][issue_92] | [Trello][trello_63] | [Pull_Request][pr_91] | Pending | 21308128   | Onboard Posts to API Gateway            |
-| 46    | [Issue][issue_64] | [Trello][trello_59] | [Pull_Request][pr_86] | Pending | 18265693   | JWT in post Micro service               |
-| 48    | [Issue][issue_98] | [Trello][trello_67] |                       | Pending | 18265693   | profile Unit tests                      |
-| 49    |                   |                     |                       | Pending | 12136891   | Week 13 report                          |
+| Index | Issue ID           | Trello Link         | Pull Request Link      | Status  | Student ID | Issue Description                       | 
+|-------|--------------------|---------------------|------------------------|---------|------------|-----------------------------------------|
+| 23    | [Issue][issue_47]  | [Trello][trello_21] |                        | Pending | 21342342   | Add docker to Posts MS                  |
+| 24    | [Issue][issue_48]  | [Trello][trello_41] |                        | Pending | 21332142   | Kafka integration into Service Registry |
+| 34    | [Issue][issue_63]  | [Trello][trello_58] | [Pull_Request][pr_90]  | Pending | 21308128   | Adding JWT to Profile M.service         |
+| 35    | [Issue][issue_64]  | [Trello][trello_59] |                        | Pending | 21342342   | Adding JWT to Posts M.service           |
+| 36    | [Issue][issue_74]  | [Trello][trello_60] |                        | Pending | 21342342   | Posts DB replication                    |
+| 39    | [Issue][issue_84]  | [Trello][trello_51] | [Pull_Request][pr_101] | Pending | 21332673   | Add kafka                               |
+| 40    |                    |                     | [Pull_Request][pr_95]  | Done    | 12136891   | Week 12 report                          |
+| 44    | [Issue][issue_96]  | [Trello][trello_64] | [Pull_Request][pr_94]  | Pending | 21308128   | Fix 401 not returned when invalid JWT   |
+| 45    | [Issue][issue_92]  | [Trello][trello_63] | [Pull_Request][pr_91]  | Pending | 21308128   | Onboard Posts to API Gateway            |
+| 46    | [Issue][issue_64]  | [Trello][trello_59] | [Pull_Request][pr_86]  | Pending | 18265693   | JWT in post Micro service               |
+| 48    | [Issue][issue_98]  | [Trello][trello_67] |                        | Pending | 18265693   | profile Unit tests                      |
+| 49    |                    |                     |                        | Pending | 12136891   | Week 13 report                          |
+| 50    | [Issue][issue_104] | [Trello][trello_68] | [Pull_Request][pr_102] | Pending | 21332673   | Dockerize notifications                 |
 
 
 
@@ -50,6 +51,7 @@
 [issue_96]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/96
 [issue_97]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/97
 [issue_98]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/98
+[issue_104]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues/104
 
 [trello_21]: https://trello.com/c/jMzngaip/21-add-docker-to-posts-microservice
 [trello_41]: https://trello.com/c/Qpza67N3/41-kafka-integration-into-service-registry
@@ -66,6 +68,7 @@
 [trello_65]: https://trello.com/c/aEI3xvmH/52-add-followers-followees
 [trello_66]: https://trello.com/c/AH6h2rFY/63-auth-unit-test
 [trello_67]: https://trello.com/c/ocj0R1f4/65-profile-unit-tests
+[trello_68]: https://trello.com/c/c436MNC9/66-dockerize-notifications
 
 [pr_77]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/77
 [pr_82]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/82
@@ -78,3 +81,5 @@
 [pr_93]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/93
 [pr_94]: https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/94
 [pr_95]:https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/95
+[pr_101]:https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/101
+[pr_102]:https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/pull/102
