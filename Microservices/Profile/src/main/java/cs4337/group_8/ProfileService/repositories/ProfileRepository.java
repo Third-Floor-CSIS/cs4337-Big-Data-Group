@@ -19,7 +19,7 @@ public interface ProfileRepository extends JpaRepository<ProfileEntity, String> 
 
     @Modifying
     @Query(
-        """
+        value = """
         UPDATE ProfileEntity t 
         SET t.full_name = :full_name,  t.bio = :bio,  t.profile_pic = :profile_pic  
         WHERE t.user_id = :user_id
@@ -35,5 +35,4 @@ public interface ProfileRepository extends JpaRepository<ProfileEntity, String> 
         @Param("profile_pic")
         String profile_pic
     );
-
 }
