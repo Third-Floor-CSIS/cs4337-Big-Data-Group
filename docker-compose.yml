@@ -88,9 +88,7 @@ services:
       PROFILE_DB_IP: profile_mysql
       SERVICE_REGISTRY_IP: eureka-service
     ports:
-      # ideally it would be mapped to a more static internal port
-      # - "${PROFILE_MICROSERVICE_PORT}:8080"
-      - "${PROFILE_MICROSERVICE_PORT}:${PROFILE_MICROSERVICE_PORT}"
+      - "${PROFILE_MICROSERVICE_PORT}:8083"
     networks:
       - net
 
