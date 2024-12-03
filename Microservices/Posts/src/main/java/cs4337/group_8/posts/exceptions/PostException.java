@@ -1,4 +1,4 @@
-package cs4337.group_8.TemplateProject.exceptions;
+package cs4337.group_8.posts.exceptions;
 
 public class PostException extends RuntimeException {
 

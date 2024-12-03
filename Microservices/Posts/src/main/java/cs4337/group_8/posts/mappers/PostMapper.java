@@ -1,7 +1,7 @@
-package cs4337.group_8.TemplateProject.mappers;
+package cs4337.group_8.posts.mappers;
 
-import cs4337.group_8.TemplateProject.DTO.PostDTO;
-import cs4337.group_8.TemplateProject.entities.Post;
+import cs4337.group_8.posts.DTO.PostDTO;
+import cs4337.group_8.posts.entities.Post;
 import org.springframework.stereotype.Component;
 
 @Component

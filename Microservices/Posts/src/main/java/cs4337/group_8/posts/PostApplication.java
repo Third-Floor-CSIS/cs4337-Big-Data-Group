@@ -1,5 +1,5 @@
-package cs4337.group_8.TemplateProject;
-//package com.example.posts;
+package cs4337.group_8.posts;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;

@@ -1,4 +1,4 @@
-package cs4337.group_8.TemplateProject.entities;
+package cs4337.group_8.posts.entities;
 
 import java.time.LocalDateTime;
 import jakarta.persistence.*;

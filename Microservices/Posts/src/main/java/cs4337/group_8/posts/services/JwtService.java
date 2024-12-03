@@ -1,3 +1,5 @@
+package cs4337.group_8.posts.services;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;

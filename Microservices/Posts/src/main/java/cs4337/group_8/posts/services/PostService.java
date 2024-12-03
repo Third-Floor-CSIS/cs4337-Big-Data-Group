@@ -1,10 +1,10 @@
-package cs4337.group_8.TemplateProject.services;
+package cs4337.group_8.posts.services;
 
-import cs4337.group_8.TemplateProject.entities.Like;
-import cs4337.group_8.TemplateProject.entities.Post;
-import cs4337.group_8.TemplateProject.exceptions.PostException;
-import cs4337.group_8.TemplateProject.repositories.LikesRepository;
-import cs4337.group_8.TemplateProject.repositories.PostRepository;
+import cs4337.group_8.posts.entities.Like;
+import cs4337.group_8.posts.entities.Post;
+import cs4337.group_8.posts.exceptions.PostException;
+import cs4337.group_8.posts.repositories.LikesRepository;
+import cs4337.group_8.posts.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,19 +14,24 @@ import java.util.Optional;
 @Service
 public class PostService {
 
-    @Autowired
-    private PostRepository postRepository;
-
-    @Autowired
-    private LikesRepository likesRepository;
-
-    @Autowired
+    private final PostRepository postRepository;
+    private final LikesRepository likesRepository;
+    private final JwtService jwtService;
     private KafkaProducer kafkaProducer;
 
-    public Post createPost(Post post) {
-        Post savedPost = postRepository.save(post);
+    public PostService(KafkaProducer kafkaProducer, PostRepository postRepository, LikesRepository likesRepository, JwtService jwtService) {
+        this.postRepository = postRepository;
+        this.likesRepository = likesRepository;
+        this.jwtService = jwtService; //injecting JWT service
+        this.kafkaProducer = kafkaProducer;
+    }
+
+    public Post createPost(Post post, String jwtToken) {
+        Integer userIdInteger = jwtService.extractUserId(jwtToken); // Extract userId from token
+        Long userId = Long.valueOf(userIdInteger); //convert intger to long
+        post.setUserId(userId); // Associate post with the user
         kafkaProducer.sendMessage("Post created with ID: " + savedPost.getId());
-        return savedPost;
+        return postRepository.save(post);
     }
 
     public List<Post> getPostsByUser(Long userId) {
@@ -41,7 +46,10 @@ public class PostService {
         return postRepository.findById(id);
     }
 
-    public void deletePost(Long postId, Long userId) {
+    public void deletePost(Long postId, String jwtToken) {
+        // Extract user ID from the JWT
+        Long userId = Long.valueOf(jwtService.extractUserId(jwtToken));
+
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new PostException("Post with ID " + postId + " not found"));
 
@@ -53,7 +61,10 @@ public class PostService {
         }
     }
 
-    public void likePost(Long postId, Long userId) {
+    public void likePost(Long postId, String jwtToken) {
+        // Extract user ID from the JWT
+        Long userId = Long.valueOf(jwtService.extractUserId(jwtToken));
+
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new PostException("Post with ID " + postId + " not found"));
 
@@ -80,7 +91,9 @@ public class PostService {
         }
     }
 
-    public void unlikePost(Long postId, Long userId) {
+    public void unlikePost(Long postId, String jwtToken) {
+        // Extract user ID from the JWT
+        Long userId = Long.valueOf(jwtService.extractUserId(jwtToken));
         Optional<Like> likeOptional = likesRepository.findByPostIdAndUserId(postId, userId);
 
         if (likeOptional.isEmpty()) {
