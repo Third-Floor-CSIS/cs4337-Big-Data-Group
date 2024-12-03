@@ -1,4 +1,4 @@
-package cs4337.group_8.TemplateProject.services;
+package cs4337.group_8.posts.services;
 
 
 import org.slf4j.Logger;

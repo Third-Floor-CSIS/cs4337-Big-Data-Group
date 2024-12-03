@@ -17,7 +17,7 @@ public class PostService {
     private final PostRepository postRepository;
     private final LikesRepository likesRepository;
     private final JwtService jwtService;
-    private KafkaProducer kafkaProducer;
+    private final KafkaProducer kafkaProducer;
 
     public PostService(KafkaProducer kafkaProducer, PostRepository postRepository, LikesRepository likesRepository, JwtService jwtService) {
         this.postRepository = postRepository;
@@ -30,8 +30,9 @@ public class PostService {
         Integer userIdInteger = jwtService.extractUserId(jwtToken); // Extract userId from token
         Long userId = Long.valueOf(userIdInteger); //convert intger to long
         post.setUserId(userId); // Associate post with the user
+        Post savedPost = postRepository.save(post);
         kafkaProducer.sendMessage("Post created with ID: " + savedPost.getId());
-        return postRepository.save(post);
+        return savedPost;
     }
 
     public List<Post> getPostsByUser(Long userId) {

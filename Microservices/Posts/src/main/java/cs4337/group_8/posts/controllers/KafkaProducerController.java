@@ -1,7 +1,7 @@
-package cs4337.group_8.TemplateProject.controllers;
+package cs4337.group_8.posts.controllers;
 
 
-import cs4337.group_8.TemplateProject.services.KafkaProducer;
+import cs4337.group_8.posts.services.KafkaProducer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
