@@ -1,4 +1,4 @@
-package cs4337.group_8.TemplateProject.DTO;
+package cs4337.group_8.posts.DTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

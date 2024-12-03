@@ -1,10 +1,11 @@
-package cs4337.group_8.TemplateProject.services;
+package cs4337.group_8.Posts;
 
-import cs4337.group_8.TemplateProject.entities.Like;
-import cs4337.group_8.TemplateProject.entities.Post;
-import cs4337.group_8.TemplateProject.exceptions.PostException;
-import cs4337.group_8.TemplateProject.repositories.LikesRepository;
-import cs4337.group_8.TemplateProject.repositories.PostRepository;
+import cs4337.group_8.posts.entities.Like;
+import cs4337.group_8.posts.entities.Post;
+import cs4337.group_8.posts.exceptions.PostException;
+import cs4337.group_8.posts.repositories.LikesRepository;
+import cs4337.group_8.posts.repositories.PostRepository;
+import cs4337.group_8.posts.services.PostService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -46,7 +47,7 @@ class PostServiceTest {
         when(postRepository.findById(postId)).thenReturn(Optional.of(post));
         when(likesRepository.findByPostIdAndUserId(postId, userId)).thenReturn(Optional.empty());
 
-        postService.likePost(postId, userId);
+        postService.likePost(postId, String.valueOf(userId));
 
         assertEquals(1, post.getLikesCount());
         verify(likesRepository, times(1)).save(any(Like.class));
@@ -61,7 +62,7 @@ class PostServiceTest {
         when(postRepository.findById(postId)).thenReturn(Optional.of(post));
         when(likesRepository.findByPostIdAndUserId(postId, userId)).thenReturn(Optional.of(like));
 
-        postService.unlikePost(postId, userId);
+        postService.unlikePost(postId, String.valueOf(userId));
 
         assertFalse(like.isLiked());
         assertEquals(0, post.getLikesCount());
@@ -85,7 +86,7 @@ class PostServiceTest {
     void unlikePost_shouldThrowExceptionIfNotLiked() {
         when(likesRepository.findByPostIdAndUserId(postId, userId)).thenReturn(Optional.empty());
 
-        assertThrows(PostException.class, () -> postService.unlikePost(postId, userId));
+        assertThrows(PostException.class, () -> postService.unlikePost(postId, String.valueOf(userId)));
     }
 
     //Trys to duplicate likes for same user
@@ -98,7 +99,7 @@ class PostServiceTest {
         when(likesRepository.findByPostIdAndUserId(postId, userId)).thenReturn(Optional.of(like));
 
         // Act & Assert
-        PostException exception = assertThrows(PostException.class, () -> postService.likePost(postId, userId));
+        PostException exception = assertThrows(PostException.class, () -> postService.likePost(postId, String.valueOf(userId)));
         assertEquals("User ID " + userId + " has already liked post with ID " + postId, exception.getMessage());
 
         // Verify that likesCount was not incremented and the like wasn't saved again
@@ -113,7 +114,7 @@ class PostServiceTest {
         when(likesRepository.findByPostIdAndUserId(postId, userId)).thenReturn(Optional.empty());
 
         // Act & Assert
-        PostException exception = assertThrows(PostException.class, () -> postService.unlikePost(postId, userId));
+        PostException exception = assertThrows(PostException.class, () -> postService.unlikePost(postId, String.valueOf(userId)));
         assertEquals("Like entry for Post ID " + postId + " by User ID " + userId + " not found", exception.getMessage());
 
         // Verify that likesCount remains unchanged and unlike wasn't processed
