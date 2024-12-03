@@ -140,7 +140,7 @@ services:
     networks:
       - net
     ports:
-      - "${NOTIFICATION_MICROSERVICE_PORT}:${NOTIFICATION_MICROSERVICE_PORT}:"
+      - "${NOTIFICATION_MICROSERVICE_PORT}:8085"
 
 
   posts_microservice:
