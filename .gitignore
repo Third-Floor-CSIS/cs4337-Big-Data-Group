@@ -42,8 +42,8 @@ test.*
 .attach_pid*
 
 # Environment Variables
-!.env
-.env
+!.env.example
+.env*
 
 # local dev storage
 /dev
