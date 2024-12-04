@@ -13,10 +13,10 @@ jobs:
       matrix:
         service:
           - "api-gateway"
-          - "IdentityMicroservice"
+          - "identity-microservice"
           - "notification-service"
-          - "Posts"
-          - "Profile"
+          - "posts"
+          - "profile"
           - "service-registry"
     runs-on: ubuntu-latest
     steps:
