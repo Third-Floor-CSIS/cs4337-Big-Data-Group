@@ -28,6 +28,15 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build ${{ matrix.service }}
-        run: cd Microservices/${{ matrix.service }} && mvn clean package -DskipTests=true &&  ls -lah
-      - name: testing files
-        run: ls -lah
+        run:  |
+          cd Microservices/${{ matrix.service }}
+          mvn clean package -DskipTests=true
+      - uses: azure/docker-login@v1
+        with:
+          login-server: cs4337.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - run: |
+          cd Microservices/${{ matrix.service }}
+          docker build . -t cs4337.azurecr.io/${{ matrix.service }}:${{ github.sha }}
+          docker push cs4337.azurecr.io/${{ matrix.service }}:${{ github.sha }}
