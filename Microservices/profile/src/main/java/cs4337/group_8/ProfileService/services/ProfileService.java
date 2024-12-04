@@ -37,6 +37,9 @@ public class ProfileService {
         // Log a throwable
         log.warn("Warning log:", new SampleCustomException("Some exception goes here"));
     }
+    public ProfileEntity getUserExistanceById(String id){
+        return profileRepository.findByIdEquals(id).orElseThrow(() -> new SampleCustomException("User not found"));
+    }
 
     public ProfileEntity createNewUserIfNotExists(String id, String accessToken) {
         return profileRepository.findById(id).orElseGet(() ->
@@ -128,13 +131,22 @@ public class ProfileService {
     }
 
     public void updateByUserId(
+            String userId,
+            String fullName,
+            String bio,
+            String profilePic
+    ) {
+        profileRepository.updateByUserId(userId, fullName, bio, profilePic);
+    }
+
+    public void updateByUserId(
             ProfileDTO updatedProfile
     ) {
-        profileRepository.updateByUserId(
-                updatedProfile.getUser_id(),
-                updatedProfile.getFull_name(),
-                updatedProfile.getBio(),
-                updatedProfile.getProfile_pic()
+        updateByUserId(
+            updatedProfile.getUser_id(),
+            updatedProfile.getFull_name(),
+            updatedProfile.getBio(),
+            updatedProfile.getProfile_pic()
         );
     }
 }

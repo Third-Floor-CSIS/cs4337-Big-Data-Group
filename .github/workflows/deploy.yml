@@ -1,0 +1,25 @@
+name: Deploy
+on:
+  workflow_run:
+    workflows: [Build]
+#    branches:
+#      - "main"
+    types:
+      - completed
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'cs4337-2024'
+          configuration-file: prod.docker-compose.yml
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          images: |
+            'cs4337.azurecr.io/api-gateway:latest'
+            'cs4337.azurecr.io/identity-microservice:latest'
+            'cs4337.azurecr.io/notification-service:latest'
+            'cs4337.azurecr.io/posts:latest'
+            'cs4337.azurecr.io/profile:latest'
+            'cs4337.azurecr.io/service-registry:latest'

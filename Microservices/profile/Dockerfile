@@ -7,11 +7,11 @@ RUN mvn clean package -DskipTests
 
 # Stage 2: Run
 FROM openjdk:21-jdk-slim
-LABEL authors="seanc"
+LABEL authors="brendan_Golden"
 
 WORKDIR /app
 
-COPY target/Posts-0.0.1-SNAPSHOT.jar app.jar
+COPY target/profile-0.0.1-SNAPSHOT.jar app.jar
 
 EXPOSE 8084
 

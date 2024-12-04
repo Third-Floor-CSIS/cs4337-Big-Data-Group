@@ -10,7 +10,7 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>Profile</artifactId>
+	<artifactId>profile</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Profile</name>
 	<description>Profile Microservice</description>

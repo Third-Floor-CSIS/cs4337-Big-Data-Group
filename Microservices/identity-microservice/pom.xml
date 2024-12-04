@@ -10,7 +10,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>IdentityMicroservice</artifactId>
+    <artifactId>identity-microservice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>AuthenticationMicroservice</name>
     <description>Demo project for Spring Boot</description>

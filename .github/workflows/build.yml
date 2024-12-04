@@ -1,4 +1,4 @@
-name: Build each Microservice
+name: Build
 on:
   push:
     branches:
@@ -13,10 +13,10 @@ jobs:
       matrix:
         service:
           - "api-gateway"
-          - "IdentityMicroservice"
+          - "identity-microservice"
           - "notification-service"
-          - "Posts"
-          - "Profile"
+          - "posts"
+          - "profile"
           - "service-registry"
     runs-on: ubuntu-latest
     steps:
@@ -28,4 +28,16 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build ${{ matrix.service }}
-        run: cd Microservices/${{ matrix.service }} && mvn clean package -DskipTests=true
+        run:  |
+          cd Microservices/${{ matrix.service }}
+          mvn clean package -DskipTests=true
+      - uses: azure/docker-login@v1
+        with:
+          login-server: cs4337.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - run: |
+          cd Microservices/${{ matrix.service }}
+          docker build . -t cs4337.azurecr.io/${{ matrix.service }}:${{ github.sha }} -t cs4337.azurecr.io/${{ matrix.service }}:latest
+          docker push cs4337.azurecr.io/${{ matrix.service }}:${{ github.sha }}
+          docker push cs4337.azurecr.io/${{ matrix.service }}:latest

@@ -11,7 +11,7 @@ LABEL authors="milan"
 
 WORKDIR /app
 
-COPY target/IdentityMicroservice-0.0.1-SNAPSHOT.jar app.jar
+COPY target/identity-microservice-0.0.1-SNAPSHOT.jar app.jar
 
 EXPOSE 8082
 
