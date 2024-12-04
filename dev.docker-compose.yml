@@ -1,8 +1,9 @@
-# TODO: set the env vars for each service (cannot pass in the .env)
-
 services:
   eureka-service:
-    image: cs4337.azurecr.io/service-registry:latest
+    build:
+      context: ./Microservices/service-registry
+      dockerfile: Dockerfile
+    env_file: ".env"
     environment:
       SERVICE_REGISTRY_IP: eureka-service
     networks:
@@ -11,7 +12,10 @@ services:
       - "${PORT_SERVICE_REGISTRY}:8761"
 
   gateway:
-    image: cs4337.azurecr.io/api-gateway:latest
+    build:
+      context: ./Microservices/api-gateway
+      dockerfile: Dockerfile
+    env_file: ".env"
     environment:
       SERVICE_REGISTRY_IP: eureka-service
     networks:
@@ -20,6 +24,7 @@ services:
       - "${GATEWAY_PORT}:8080"
 
   profile_mysql:
+    # Always specify what version, "latest" causes issues later on
     image: mysql:9.1
     environment:
       MYSQL_USER: ${PROFILE_MYSQL_USERNAME}
@@ -34,6 +39,7 @@ services:
       - ./dev/database/profile:/var/lib/mysql
 
   posts_mysql:
+    # Always specify what version, "latest" causes issues later on
     image: mysql:9.1
     environment:
       MYSQL_USER: ${POSTS_MYSQL_USERNAME}
@@ -48,6 +54,7 @@ services:
       - ./dev/database/posts:/var/lib/mysql
 
   auth_mysql:
+    # Always specify what version, "latest" causes issues later on
     image: mysql:9.1
     environment:
       MYSQL_USER: ${AUTH_MYSQL_USERNAME}
@@ -75,14 +82,24 @@ services:
 
 
   profile_microservice:
-    image: cs4337.azurecr.io/profile:latest
-    environment:
-      PROFILE_DB_IP: profile_mysql
-      SERVICE_REGISTRY_IP: eureka-service
+    container_name: profile_microservice
     depends_on:
       - profile_mysql
       - eureka-service
       - gateway
+    # Path to teh root dir of teh microservice (where teh Dockerfile is)
+    build:
+      context: ./Microservices
+      dockerfile: Profile/Dockerfile
+      args:
+
+        # name of teh folder in Microservices
+        SERVICE_PATH: "Profile"
+    # pass in the env file to be used
+    env_file: ".env"
+    environment:
+      PROFILE_DB_IP: profile_mysql
+      SERVICE_REGISTRY_IP: eureka-service
     ports:
       - "${PROFILE_MICROSERVICE_PORT}:8083"
     networks:
@@ -90,7 +107,10 @@ services:
 
 
   auth_service:
-    image: cs4337.azurecr.io/identity-microservice:latest
+    build:
+      context: ./Microservices/IdentityMicroservice
+      dockerfile: Dockerfile
+    env_file: ".env"
     environment:
       AUTH_DB_IP: auth_mysql
       SERVICE_REGISTRY_IP: eureka-service
@@ -104,7 +124,10 @@ services:
       - "${AUTH_MICROSERVICE_PORT}:8082"
 
   notification_service:
-    image: cs4337.azurecr.io/notification-service:latest
+    build:
+      context: ./Microservices/notification-service
+      dockerfile: Dockerfile
+    env_file: ".env"
     environment:
       NOTIFICATION_DB_IP: notification_mysql
       SERVICE_REGISTRY_IP: eureka-service
@@ -119,7 +142,11 @@ services:
 
 
   posts_microservice:
-    image: cs4337.azurecr.io/posts:latest
+    container_name: posts_microservice
+    build:
+      context: ./Microservices/Posts
+      dockerfile: Dockerfile
+    env_file: ".env"
     environment:
       POSTS_DB_IP: posts_mysql
       SERVICE_REGISTRY_IP: eureka-service
@@ -131,7 +158,6 @@ services:
       - "${POSTS_MICROSERVICE_PORT}:${POSTS_MICROSERVICE_PORT}"
     networks:
       - net
-
 networks:
   net:
     driver: bridge
