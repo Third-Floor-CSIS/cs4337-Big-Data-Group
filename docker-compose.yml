@@ -5,8 +5,6 @@ services:
     image: "cs4337.azurecr.io/service-registry:latest"
     environment:
       SERVICE_REGISTRY_IP: "eureka-service"
-#    networks:
-#      - net
     ports:
       - "${PORT_SERVICE_REGISTRY}:8761"
 
@@ -14,8 +12,6 @@ services:
     image: "cs4337.azurecr.io/api-gateway:latest"
     environment:
       SERVICE_REGISTRY_IP: "eureka-service"
-#    networks:
-#      - net
     ports:
       - "${GATEWAY_PORT}:8080"
 
@@ -26,8 +22,6 @@ services:
       MYSQL_PASSWORD: "${PROFILE_MYSQL_PASSWORD}"
       MYSQL_ROOT_PASSWORD: "${PROFILE_MYSQL_ROOT_PASSWORD}"
       MYSQL_DATABASE: "${PROFILE_DB_NAME}"
-#    networks:
-#      - net
     ports:
       - "${PROFILE_DB_PORT_EXTERNAL}:3306"
 
@@ -38,8 +32,6 @@ services:
       MYSQL_PASSWORD: "${POSTS_MYSQL_PASSWORD}"
       MYSQL_ROOT_PASSWORD: "${POSTS_MYSQL_ROOT_PASSWORD}"
       MYSQL_DATABASE: "${POSTS_DB_NAME}"
-#    networks:
-#      - net
     ports:
       - "${POSTS_DB_PORT_EXTERNAL}:3306"
 
@@ -51,8 +43,6 @@ services:
       MYSQL_PASSWORD: "${AUTH_MYSQL_PASSWORD}"
       MYSQL_ROOT_PASSWORD: "${AUTH_MYSQL_ROOT_PASSWORD}"
       MYSQL_DATABASE: "${AUTH_DB_NAME}"
-#    networks:
-#      - net
     ports:
       - "${AUTH_DOCKER_DB_PORT}:3306"
 
@@ -63,8 +53,6 @@ services:
       MYSQL_PASSWORD: "${NOTIFICATION_MYSQL_PASSWORD}"
       MYSQL_ROOT_PASSWORD: "${NOTIFICATION_MYSQL_ROOT_PASSWORD}"
       MYSQL_DATABASE: "${NOTIFICATION_DB_NAME}"
-#    networks:
-#      - net
     ports:
       - "${NOTIFICATION_DOCKER_DB_PORT}:3306"
 
@@ -80,9 +68,6 @@ services:
       - "gateway"
     ports:
       - "${PROFILE_MICROSERVICE_PORT}:8083"
-#    networks:
-#      - net
-
 
   auth_service:
     image: "cs4337.azurecr.io/identity-microservice:latest"
@@ -93,8 +78,6 @@ services:
       - "auth_mysql"
       - "eureka-service"
       - "gateway"
-#    networks:
-#      - net
     ports:
       - "${AUTH_MICROSERVICE_PORT}:8082"
 
@@ -107,8 +90,6 @@ services:
       - "notification_mysql"
       - "eureka-service"
       - "gateway"
-#    networks:
-#      - net
     ports:
       - "${NOTIFICATION_MICROSERVICE_PORT}:8085"
 
@@ -124,9 +105,3 @@ services:
       - "gateway"
     ports:
       - "${POSTS_MICROSERVICE_PORT}:${POSTS_MICROSERVICE_PORT}"
-#    networks:
-#      - net
-
-#networks:
-#  net:
-#    driver: bridge
