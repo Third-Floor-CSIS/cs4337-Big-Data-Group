@@ -1,4 +1,4 @@
-name: Build each Microservice
+name: Build
 on:
   push:
     branches:
@@ -28,4 +28,6 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build ${{ matrix.service }}
-        run: cd Microservices/${{ matrix.service }} && mvn clean package -DskipTests=true
+        run: cd Microservices/${{ matrix.service }} && mvn clean package -DskipTests=true &&  ls -lah
+      - name: testing files
+        run: ls -lah
