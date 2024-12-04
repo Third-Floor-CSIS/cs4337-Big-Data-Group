@@ -2,136 +2,131 @@
 
 services:
   eureka-service:
-    image: cs4337.azurecr.io/service-registry:latest
+    image: "cs4337.azurecr.io/service-registry:latest"
     environment:
-      SERVICE_REGISTRY_IP: eureka-service
-    networks:
-      - net
+      SERVICE_REGISTRY_IP: "eureka-service"
+#    networks:
+#      - net
     ports:
       - "${PORT_SERVICE_REGISTRY}:8761"
 
   gateway:
-    image: cs4337.azurecr.io/api-gateway:latest
+    image: "cs4337.azurecr.io/api-gateway:latest"
     environment:
-      SERVICE_REGISTRY_IP: eureka-service
-    networks:
-      - net
+      SERVICE_REGISTRY_IP: "eureka-service"
+#    networks:
+#      - net
     ports:
       - "${GATEWAY_PORT}:8080"
 
   profile_mysql:
-    image: mysql:9.1
+    image: "mysql:9.1"
     environment:
-      MYSQL_USER: ${PROFILE_MYSQL_USERNAME}
-      MYSQL_PASSWORD: ${PROFILE_MYSQL_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${PROFILE_MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${PROFILE_DB_NAME}
-    networks:
-      - net
+      MYSQL_USER: "${PROFILE_MYSQL_USERNAME}"
+      MYSQL_PASSWORD: "${PROFILE_MYSQL_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${PROFILE_MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${PROFILE_DB_NAME}"
+#    networks:
+#      - net
     ports:
       - "${PROFILE_DB_PORT_EXTERNAL}:3306"
-    volumes:
-      - ./dev/database/profile:/var/lib/mysql
 
   posts_mysql:
-    image: mysql:9.1
+    image: "mysql:9.1"
     environment:
-      MYSQL_USER: ${POSTS_MYSQL_USERNAME}
-      MYSQL_PASSWORD: ${POSTS_MYSQL_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${POSTS_MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${POSTS_DB_NAME}
-    networks:
-      - net
+      MYSQL_USER: "${POSTS_MYSQL_USERNAME}"
+      MYSQL_PASSWORD: "${POSTS_MYSQL_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${POSTS_MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${POSTS_DB_NAME}"
+#    networks:
+#      - net
     ports:
       - "${POSTS_DB_PORT_EXTERNAL}:3306"
-    volumes:
-      - ./dev/database/posts:/var/lib/mysql
+
 
   auth_mysql:
-    image: mysql:9.1
+    image: "mysql:9.1"
     environment:
-      MYSQL_USER: ${AUTH_MYSQL_USERNAME}
-      MYSQL_PASSWORD: ${AUTH_MYSQL_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${AUTH_MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${AUTH_DB_NAME}
-    networks:
-      - net
+      MYSQL_USER: "${AUTH_MYSQL_USERNAME}"
+      MYSQL_PASSWORD: "${AUTH_MYSQL_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${AUTH_MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${AUTH_DB_NAME}"
+#    networks:
+#      - net
     ports:
       - "${AUTH_DOCKER_DB_PORT}:3306"
-    volumes:
-      - ./dev/database/auth:/var/lib/mysql
 
   notification_mysql:
-    image: mysql:9.1
+    image: "mysql:9.1"
     environment:
-      MYSQL_USER: ${NOTIFICATION_MYSQL_USERNAME}
-      MYSQL_PASSWORD: ${NOTIFICATION_MYSQL_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${NOTIFICATION_MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${NOTIFICATION_DB_NAME}
-    networks:
-      - net
+      MYSQL_USER: "${NOTIFICATION_MYSQL_USERNAME}"
+      MYSQL_PASSWORD: "${NOTIFICATION_MYSQL_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${NOTIFICATION_MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${NOTIFICATION_DB_NAME}"
+#    networks:
+#      - net
     ports:
       - "${NOTIFICATION_DOCKER_DB_PORT}:3306"
 
 
   profile_microservice:
-    image: cs4337.azurecr.io/profile:latest
+    image: "cs4337.azurecr.io/profile:latest"
     environment:
-      PROFILE_DB_IP: profile_mysql
-      SERVICE_REGISTRY_IP: eureka-service
+      PROFILE_DB_IP: "profile_mysql"
+      SERVICE_REGISTRY_IP: "eureka-service"
     depends_on:
-      - profile_mysql
-      - eureka-service
-      - gateway
+      - "profile_mysql"
+      - "eureka-service"
+      - "gateway"
     ports:
       - "${PROFILE_MICROSERVICE_PORT}:8083"
-    networks:
-      - net
+#    networks:
+#      - net
 
 
   auth_service:
-    image: cs4337.azurecr.io/identity-microservice:latest
+    image: "cs4337.azurecr.io/identity-microservice:latest"
     environment:
-      AUTH_DB_IP: auth_mysql
-      SERVICE_REGISTRY_IP: eureka-service
+      AUTH_DB_IP: "auth_mysql"
+      SERVICE_REGISTRY_IP: "eureka-service"
     depends_on:
-      - auth_mysql
-      - eureka-service
-      - gateway
-    networks:
-      - net
+      - "auth_mysql"
+      - "eureka-service"
+      - "gateway"
+#    networks:
+#      - net
     ports:
       - "${AUTH_MICROSERVICE_PORT}:8082"
 
   notification_service:
-    image: cs4337.azurecr.io/notification-service:latest
+    image: "cs4337.azurecr.io/notification-service:latest"
     environment:
-      NOTIFICATION_DB_IP: notification_mysql
-      SERVICE_REGISTRY_IP: eureka-service
+      NOTIFICATION_DB_IP: "notification_mysql"
+      SERVICE_REGISTRY_IP: "eureka-service"
     depends_on:
-      - notification_mysql
-      - eureka-service
-      - gateway
-    networks:
-      - net
+      - "notification_mysql"
+      - "eureka-service"
+      - "gateway"
+#    networks:
+#      - net
     ports:
       - "${NOTIFICATION_MICROSERVICE_PORT}:8085"
 
 
   posts_microservice:
-    image: cs4337.azurecr.io/posts:latest
+    image: "cs4337.azurecr.io/posts:latest"
     environment:
-      POSTS_DB_IP: posts_mysql
-      SERVICE_REGISTRY_IP: eureka-service
+      POSTS_DB_IP: "posts_mysql"
+      SERVICE_REGISTRY_IP: "eureka-service"
     depends_on:
-      - posts_mysql
-      - eureka-service
-      - gateway
+      - "posts_mysql"
+      - "eureka-service"
+      - "gateway"
     ports:
       - "${POSTS_MICROSERVICE_PORT}:${POSTS_MICROSERVICE_PORT}"
-    networks:
-      - net
+#    networks:
+#      - net
 
-networks:
-  net:
-    driver: bridge
+#networks:
+#  net:
+#    driver: bridge
