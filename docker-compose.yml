@@ -76,7 +76,7 @@ services:
       MYSQL_ROOT_PASSWORD: ${NOTIFICATION_MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${NOTIFICATION_DB_NAME}
     networks:
-      -net
+      - net
     ports:
       - "${NOTIFICATION_DOCKER_DB_PORT}:3306"
 
