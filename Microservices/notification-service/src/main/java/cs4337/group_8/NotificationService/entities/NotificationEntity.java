@@ -5,6 +5,10 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
 import lombok.Data;
 import lombok.ToString;
 
@@ -13,29 +17,31 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @ToString(callSuper = true, includeFieldNames = true)
-@Table(name = "notification")
+@Table(name = "notifications")
 public class NotificationEntity {
 
     @Id
-    @Column
-    private String id; //primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, unique = true)
+    private Long id; //primary key
 
-    @Column
+    @Column(name = "sender_id", nullable = false)
     private String senderId;
 
-    @Column
+    @Column(name = "receiver_id", nullable = false)
     private String receiverId;
 
-    @Column
+    @Column(name = "message", nullable = false, length = 500)
     private String message;
 
-    @Column
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type", nullable = false)
     private NotificationType type;
 
-    @Column
+    @Column(name = "timestamp", nullable = false)
     private LocalDateTime timestamp;
 
-    @Column
+    @Column(name = "is_read", nullable = false)
     private boolean read;
 
 }
