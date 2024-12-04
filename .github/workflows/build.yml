@@ -38,5 +38,5 @@ jobs:
           password: ${{ secrets.REGISTRY_PASSWORD }}
       - run: |
           cd Microservices/${{ matrix.service }}
-          docker build . -t cs4337.azurecr.io/${{ matrix.service }}:${{ github.sha }}
+          docker build . -t cs4337.azurecr.io/${{ matrix.service }}:${{ github.sha }} -t cs4337.azurecr.io/${{ matrix.service }}:latest
           docker push cs4337.azurecr.io/${{ matrix.service }}:${{ github.sha }}
