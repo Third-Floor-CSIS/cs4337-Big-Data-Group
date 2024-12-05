@@ -1,8 +1,5 @@
 services:
   eureka-service:
-    build:
-      context: ./Microservices/service-registry
-      dockerfile: Dockerfile
     env_file: ".env"
     environment:
       SERVICE_REGISTRY_IP: eureka-service
@@ -12,9 +9,6 @@ services:
       - "${PORT_SERVICE_REGISTRY}:8761"
 
   gateway:
-    build:
-      context: ./Microservices/api-gateway
-      dockerfile: Dockerfile
     env_file: ".env"
     environment:
       SERVICE_REGISTRY_IP: eureka-service
@@ -35,8 +29,6 @@ services:
       - net
     ports:
       - "${PROFILE_DB_PORT_EXTERNAL}:3306"
-    volumes:
-      - ./dev/database/profile:/var/lib/mysql
 
   posts_mysql:
     # Always specify what version, "latest" causes issues later on
@@ -50,8 +42,6 @@ services:
       - net
     ports:
       - "${POSTS_DB_PORT_EXTERNAL}:3306"
-    volumes:
-      - ./dev/database/posts:/var/lib/mysql
 
   auth_mysql:
     # Always specify what version, "latest" causes issues later on
@@ -64,9 +54,7 @@ services:
     networks:
       - net
     ports:
-      - "${AUTH_DOCKER_DB_PORT}:3306"
-    volumes:
-      - ./dev/database/auth:/var/lib/mysql
+      - "${AUTH_DB_PORT_EXTERNAL}:3306"
 
   notification_mysql:
     image: mysql:9.1
@@ -78,38 +66,25 @@ services:
     networks:
       - net
     ports:
-      - "${NOTIFICATION_DOCKER_DB_PORT}:3306"
+      - "${NOTIFICATION_DB_PORT_EXTERNAL}:3306"
 
 
   profile_microservice:
-    container_name: profile_microservice
     depends_on:
       - profile_mysql
       - eureka-service
       - gateway
-    # Path to teh root dir of teh microservice (where teh Dockerfile is)
-    build:
-      context: ./Microservices
-      dockerfile: Profile/Dockerfile
-      args:
-
-        # name of teh folder in Microservices
-        SERVICE_PATH: "Profile"
-    # pass in the env file to be used
     env_file: ".env"
     environment:
       PROFILE_DB_IP: profile_mysql
       SERVICE_REGISTRY_IP: eureka-service
-    ports:
-      - "${PROFILE_MICROSERVICE_PORT}:8083"
     networks:
       - net
+    ports:
+      - "${PROFILE_MICROSERVICE_PORT}:8083"
 
 
   auth_service:
-    build:
-      context: ./Microservices/IdentityMicroservice
-      dockerfile: Dockerfile
     env_file: ".env"
     environment:
       AUTH_DB_IP: auth_mysql
@@ -118,15 +93,10 @@ services:
       - auth_mysql
       - eureka-service
       - gateway
-    networks:
-      - net
     ports:
       - "${AUTH_MICROSERVICE_PORT}:8082"
 
   notification_service:
-    build:
-      context: ./Microservices/notification-service
-      dockerfile: Dockerfile
     env_file: ".env"
     environment:
       NOTIFICATION_DB_IP: notification_mysql
@@ -142,10 +112,6 @@ services:
 
 
   posts_microservice:
-    container_name: posts_microservice
-    build:
-      context: ./Microservices/Posts
-      dockerfile: Dockerfile
     env_file: ".env"
     environment:
       POSTS_DB_IP: posts_mysql
@@ -154,10 +120,10 @@ services:
       - posts_mysql
       - eureka-service
       - gateway
-    ports:
-      - "${POSTS_MICROSERVICE_PORT}:${POSTS_MICROSERVICE_PORT}"
     networks:
       - net
+    ports:
+      - "${POSTS_MICROSERVICE_PORT}:8084"
+
 networks:
   net:
-    driver: bridge

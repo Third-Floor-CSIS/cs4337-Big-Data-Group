@@ -1,0 +1,35 @@
+services:
+  eureka-service:
+    image: ghcr.io/third-floor-csis/cs4337-big-data-group/service-registry:main
+
+  gateway:
+    image: ghcr.io/third-floor-csis/cs4337-big-data-group/api-gateway:main
+
+  profile_mysql:
+    volumes:
+      - ./dev/database/profile:/var/lib/mysql
+
+  posts_mysql:
+    volumes:
+      - ./dev/database/posts:/var/lib/mysql
+
+  auth_mysql:
+    volumes:
+      - ./dev/database/auth:/var/lib/mysql
+
+  notification_mysql:
+    volumes:
+      - ./dev/database/notification:/var/lib/mysql
+
+  profile_microservice:
+    image: ghcr.io/third-floor-csis/cs4337-big-data-group/profile:main
+
+  auth_service:
+    image: ghcr.io/third-floor-csis/cs4337-big-data-group/identity-microservice:main
+
+  notification_service:
+    image: ghcr.io/third-floor-csis/cs4337-big-data-group/notification-service:main
+
+  posts_microservice:
+    image: ghcr.io/third-floor-csis/cs4337-big-data-group/posts:main
+
