@@ -17,7 +17,7 @@ services:
     ports:
       - "${GATEWAY_PORT}:8080"
 
-  profile_mysql:
+  profile-mysql:
     # Always specify what version, "latest" causes issues later on
     image: mysql:9.1
     environment:
@@ -30,7 +30,7 @@ services:
     ports:
       - "${PROFILE_DB_PORT_EXTERNAL}:3306"
 
-  posts_mysql:
+  posts-mysql:
     # Always specify what version, "latest" causes issues later on
     image: mysql:9.1
     environment:
@@ -43,7 +43,7 @@ services:
     ports:
       - "${POSTS_DB_PORT_EXTERNAL}:3306"
 
-  auth_mysql:
+  auth-mysql:
     # Always specify what version, "latest" causes issues later on
     image: mysql:9.1
     environment:
@@ -56,7 +56,7 @@ services:
     ports:
       - "${AUTH_DB_PORT_EXTERNAL}:3306"
 
-  notification_mysql:
+  notification-mysql:
     image: mysql:9.1
     environment:
       MYSQL_USER: ${NOTIFICATION_MYSQL_USERNAME}
@@ -71,12 +71,12 @@ services:
 
   profile_microservice:
     depends_on:
-      - profile_mysql
+      - profile-mysql
       - eureka-service
       - gateway
     env_file: ".env"
     environment:
-      PROFILE_DB_IP: profile_mysql
+      PROFILE_DB_IP: profile-mysql
       SERVICE_REGISTRY_IP: eureka-service
     networks:
       - net
@@ -87,22 +87,24 @@ services:
   auth_service:
     env_file: ".env"
     environment:
-      AUTH_DB_IP: auth_mysql
+      AUTH_DB_IP: auth-mysql
       SERVICE_REGISTRY_IP: eureka-service
     depends_on:
-      - auth_mysql
+      - auth-mysql
       - eureka-service
       - gateway
+    networks:
+      - net
     ports:
       - "${AUTH_MICROSERVICE_PORT}:8082"
 
   notification_service:
     env_file: ".env"
     environment:
-      NOTIFICATION_DB_IP: notification_mysql
+      NOTIFICATION_DB_IP: notification-mysql
       SERVICE_REGISTRY_IP: eureka-service
     depends_on:
-      - notification_mysql
+      - notification-mysql
       - eureka-service
       - gateway
     networks:
@@ -114,10 +116,10 @@ services:
   posts_microservice:
     env_file: ".env"
     environment:
-      POSTS_DB_IP: posts_mysql
+      POSTS_DB_IP: posts-mysql
       SERVICE_REGISTRY_IP: eureka-service
     depends_on:
-      - posts_mysql
+      - posts-mysql
       - eureka-service
       - gateway
     networks:
