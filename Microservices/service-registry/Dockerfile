@@ -1,9 +1,12 @@
 # Build
 FROM maven:3.9.9-ibm-semeru-21-jammy AS build
+ARG SERVICE
 COPY ../pom.xml /home/
 COPY ./ /home/app
-WORKDIR /home/app
+WORKDIR /home/app/$SERVICE
 RUN mvn clean package -DskipTests=true -DoutputDirectory=./target
+#RUN ls -lah . && ls -lah ./posts && exit 1
+
 
 # Run
 FROM openjdk:21-jdk-slim
