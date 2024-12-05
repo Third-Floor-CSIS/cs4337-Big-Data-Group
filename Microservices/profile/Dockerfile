@@ -1,18 +1,13 @@
-# Stage 1: Build
-FROM maven:3.9.9-eclipse-temurin-21 AS builder
-WORKDIR /app
-COPY pom.xml .
-COPY src ./src
-RUN mvn clean package -DskipTests
+# Build
+FROM maven:3.9.9-ibm-semeru-21-jammy AS build
+COPY ../pom.xml /home/
+COPY ./ /home/app
+WORKDIR /home/app
+RUN mvn clean package -DskipTests=true -DoutputDirectory=./target
 
-# Stage 2: Run
+# Run
 FROM openjdk:21-jdk-slim
-LABEL authors="brendan_Golden"
-
-WORKDIR /app
-
-COPY target/profile-0.0.1-SNAPSHOT.jar app.jar
-
-EXPOSE 8084
-
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ARG SERVICE
+ARG JAR_FILE=/home/app/$SERVICE/target/*.jar
+COPY --from=build $JAR_FILE /app/runner.jar
+ENTRYPOINT ["java", "-jar", "/app/runner.jar"]
