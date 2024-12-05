@@ -29,6 +29,11 @@ services:
       - net
     ports:
       - "${PROFILE_DB_PORT_EXTERNAL}:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   posts-mysql:
     # Always specify what version, "latest" causes issues later on
@@ -42,6 +47,11 @@ services:
       - net
     ports:
       - "${POSTS_DB_PORT_EXTERNAL}:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   auth-mysql:
     # Always specify what version, "latest" causes issues later on
@@ -55,6 +65,11 @@ services:
       - net
     ports:
       - "${AUTH_DB_PORT_EXTERNAL}:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   notification-mysql:
     image: mysql:9.1
@@ -67,13 +82,20 @@ services:
       - net
     ports:
       - "${NOTIFICATION_DB_PORT_EXTERNAL}:3306"
-
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   profile_microservice:
     depends_on:
-      - profile-mysql
-      - eureka-service
-      - gateway
+      profile-mysql:
+        condition: service_healthy
+      eureka-service:
+        condition: service_started
+      gateway:
+        condition: service_started
     env_file: ".env"
     environment:
       PROFILE_DB_IP: profile-mysql
@@ -90,9 +112,12 @@ services:
       AUTH_DB_IP: auth-mysql
       SERVICE_REGISTRY_IP: eureka-service
     depends_on:
-      - auth-mysql
-      - eureka-service
-      - gateway
+      auth-mysql:
+        condition: service_healthy
+      eureka-service:
+        condition: service_started
+      gateway:
+        condition: service_started
     networks:
       - net
     ports:
@@ -104,9 +129,12 @@ services:
       NOTIFICATION_DB_IP: notification-mysql
       SERVICE_REGISTRY_IP: eureka-service
     depends_on:
-      - notification-mysql
-      - eureka-service
-      - gateway
+      notification-mysql:
+        condition: service_healthy
+      eureka-service:
+        condition: service_started
+      gateway:
+        condition: service_started
     networks:
       - net
     ports:
@@ -119,9 +147,13 @@ services:
       POSTS_DB_IP: posts-mysql
       SERVICE_REGISTRY_IP: eureka-service
     depends_on:
-      - posts-mysql
-      - eureka-service
-      - gateway
+      posts-mysql:
+        condition: service_healthy
+      eureka-service:
+        condition: service_started
+      gateway:
+        condition: service_started
+
     networks:
       - net
     ports:
