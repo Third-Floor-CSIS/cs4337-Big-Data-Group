@@ -11,23 +11,17 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: 'Sign in via Azure CLI'
-        uses: azure/login@v1
+      - name: Deploy docker
+        uses: appleboy/ssh-action@v1.2.0
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'cs4337-2024'
-          configuration-file: ./docker-compose.yml
-          # publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          images: |
-            'cs4337.azurecr.io/api-gateway:latest'
-            'cs4337.azurecr.io/identity-microservice:latest'
-            'cs4337.azurecr.io/notification-service:latest'
-            'cs4337.azurecr.io/posts:latest'
-            'cs4337.azurecr.io/profile:latest'
-            'cs4337.azurecr.io/service-registry:latest'
-      - name: Azure logout
-        run: |
-          az logout
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /cs4337
+            git pull origin main
+            docker compose -f base.docker-compose.yml -f prod.docker-compose.yml pull
+            docker compose -f base.docker-compose.yml -f prod.docker-compose.yml down
+            # rm -rf dev
+            docker compose -f base.docker-compose.yml -f prod.docker-compose.yml up -d
