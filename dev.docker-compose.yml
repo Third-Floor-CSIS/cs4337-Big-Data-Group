@@ -13,19 +13,19 @@ services:
       args:
         SERVICE: api-gateway
 
-  profile_mysql:
+  profile-mysql:
     volumes:
       - ./dev/database/profile:/var/lib/mysql
 
-  posts_mysql:
+  posts-mysql:
     volumes:
       - ./dev/database/posts:/var/lib/mysql
 
-  auth_mysql:
+  auth-mysql:
     volumes:
       - ./dev/database/auth:/var/lib/mysql
 
-  notification_mysql:
+  notification-mysql:
     volumes:
       - ./dev/database/notification:/var/lib/mysql
 
