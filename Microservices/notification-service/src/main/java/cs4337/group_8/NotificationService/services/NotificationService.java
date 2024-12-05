@@ -13,16 +13,17 @@ import java.util.stream.Collectors;
 @Service
 public class NotificationService {
 
-    @Autowired
-    private NotificationRepository notificationRepository;
-    @Autowired
-    private NotificationMapper notificationMapper;
+    private final NotificationRepository notificationRepository;
+
+    public NotificationService(NotificationRepository notificationRepository) {
+        this.notificationRepository = notificationRepository;
+    }
 
 
     public List<NotificationDTO> getUnreadNotifications(String receiverId) {
         List<NotificationEntity> notifications = notificationRepository.findUnreadNotificationsByReceiverId(receiverId);
         return notifications.stream()
-                .map(notificationMapper::toDto)
+                .map(NotificationMapper.INSTANCE::toDto)
                 .collect(Collectors.toList());
     }
 
