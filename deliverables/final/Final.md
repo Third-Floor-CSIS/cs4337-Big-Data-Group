@@ -161,7 +161,7 @@ https://third-floor-csis.ie/
 |                             |              |                                                                 |
 | Microservice - Notification | Euan & Fawad | Fawad created the base microservice, Euan implemented the logic |
 | Microservice - Profile      | Brendan      |                                                                 |
-|                             |              |                                                                 |
+| Microservice - Posts        | Sean         |                                                                 |
 | CI/CD - Linter              | Euan         | Had to be removed due to time constraints                       |
 | CI/CD - Build               | Brendan      |                                                                 |
 | CI/CD - Deploy              | Brendan      |                                                                 |
