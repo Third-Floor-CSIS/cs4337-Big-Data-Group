@@ -39,6 +39,11 @@ In the diagram above, we can see the tools we planned on using. It included usin
 In the diagram above, we can see the overall communication between the end-users' requests and the microservices;
 #### Api Gateway + Eureka Server (Service Registry)
 The **API Gateway**, acts as a proxy, where all requests can come through and distributes them to the appropriate microservices. Second responsibility of the **API Gateway** is being a **load balancer**. It tightly works with the Eureka Server to get information about 'living' services. 
+The **API Gateway** provides:
+
+- Centralized routing and filtering for all microservices.
+- Integration with the Service Registry for dynamic service discovery and fault tolerance.
+- A JWT-based request filter embedded within the gateway to validate user authentication.
 
 **Service Registry** (_Eureka Server_) monitors the **health** of the microservices and provides information to the API Gateway. If it was implemented, it could also share information to other microservices about the existence of other services. Since API Gateway is also a load balancer, horizontally scaled applications would contact the Eureka Server about their upbringing and the Eureka would constantly do a **healthcheck** on them. Every service will **try and contact the Eureka about their existence**, and with that the Gateway will send the request. If a service is down Gateway will not forward the request and return a 503 error. 
 
@@ -69,6 +74,10 @@ The API gateway behaves like a proxy, where all requests go through a single por
 
 When an incoming request is looking for an endpoint with certain sub-route, there are sub-routes  mapped onto different microservices. The API gateway will fetch service registry for how many microservices exists for the certain route. The API gateway will then decide using round Robin to which instance to forward the request to. 
 
+#### Kafka Cluster
+![kafkaDiagram.png](kafkaDiagram.png)
+Zookeeper acts as a cluster manager for the 3 kafka brokers. The 3 brokers store the partitions of the post-updates and profile-updates
+kafka topics. The post and profile producers publish messages to their respective topics. The notification consumer then consumes the messages from each topic as they are produced.
 
 ### Technologies used
 
@@ -150,6 +159,9 @@ api.third-floor-csis.ie {
 }
 ```
 
+#### Kafka
+Kafka was used to send messages between three microservices posts, profile and notification. Kafka topics (post-updates and profile-updates) allow producers (Post and Profile services) to publish events, which are then consumed by the Notification Service
+
 #### Liquibase
 Liquibase is a spring boot dependency, which allows us to manage database schemas and migrations. It allows to sync databases with schemas and retains history of the modifications, similar to git. You can see the `identity-microservice/src/resources/db/db.changelog-master.sql` file.
 ```sql
@@ -179,9 +191,6 @@ We used a dependency during development called Spring Boot Dev Tools which allow
 #### Google Oauth 2.0
 We are using Google Oauth 2.0 for third-party integration. Users must use Google authentication to access the application. See `Microservices/identity-micrservice/src/main/.../services/GoogleAuthService.java` for all the business logic. This service is not tested because it relies on third-party services, and we don't test third-party services (because they are expected to work a certain way).
 
-#### Kafka
-Kafka is used to send messages to the notification microservice and not throttle the Notification microservice.
-
 #### Eureka
 Eureka is used to monitor the health of the microservices and provide information to the API Gateway.
 You can see how in the API Gateway `application.properties` we map the sub-route, the microservice name, etc:
@@ -191,8 +200,61 @@ spring.cloud.gateway.routes[2].id=authenticationmicroservice
 spring.cloud.gateway.routes[2].uri=lb://authenticationmicroservice
 spring.cloud.gateway.routes[2].predicates[0]=Path=/auth/**
 ```
+### Detailed explanation of components or modules
 
-### Detailed explanation of components or modules 
+### Notification Micro Service
+The Notification Microservice is responsible for managing notifications, including retrieving unread messages and will mark them as read. It is integrated with Kafka for asynchronous message processing and it also provides REST APIs for interacting with notifications. WIth Kafka this allows the system to handle a large volume of notifications without impacting the performance of other services.
+
+The notification data is stored in a database with a well-structured schema.
+- A unique notification ID to identify each notification.
+- A receiver ID to associate the notification with a specific user.
+- A status field to indicate whether the notification is unread or read.
+- A timestamp to log the creation time of each notification.
+
+For error handling, custom exceptions are implemented to provide meaningful error messages when issues occur, which makes it more user-friendly.
+
+### Posts MicroService
+The Posts microservice is a backend service built to manage user-created content, like posts and likes, within an application. Ensures security with JWT-based authentication to protect user data and restrict access to authorized users. It handles all the essential operations such as,
+
+•	Posts creation
+•	Liking posts
+•	Un-liking Posts
+•	Get posts by userId
+•	Get posts by postId
+
+The main logic lives in the service layer, while the database layer keeps everything organized and efficient. It’s designed to seamlessly handle interactions, like users liking posts, and makes sure data flows smoothly between the system’s components with the help of mappers and data transfer objects (DTOs).
+
+
+#### Profile Service Unit Tests 
+Unit tests were added to the Profile Service to ensure its functionality and reliability. 
+##### Service Layer Tests:
+The tests for the service layer focus on the logic of managing profiles. e.g they check that profiles can be created, retrieved, and updated correctly. These tests validate that the service handles the data as expected and respects the rules defined in the business logic
+##### Controller Layer Tests:
+These ensures that the API endpoints work well as they should. tests various scenerios like Handling valid and invalid requests, Ensuring proper HTTP status codes for success and failure cases.
+##### Posts Service Unit Tests:
+Includes unit and integration tests to ensure its functionality and reliability. Tests focus on critical components like the service layer and database interactions, verifying that the system behaves as expected under various scenarios.
+
+### Kafka
+The project integrates kafka as a messaging system across three microservices: Post, Profile and Notification. It is used to send notifications between the microservices. Kafka allows for real-time event handling,
+scalability and fault tolerance in the project.
+
+#### Configuration
+Two Kafka topics were configured for the project: ``post-updates``used by the post service to publish post notifications and ``profile-updates`` used by the profile service to
+publish profile notifications. The Kafka producers implemented utilize the KafkaTemplate for sending messages to topics. The consumer uses kafka listeners to consume messages from the two topics.
+
+#### Microservice integration
+Post Microservice: The ``KafkaProducer`` class in the post microservice publishes messages to the post updates topic. The ``PostService`` class produces messages after new events such as new post creation.
+
+Profile Microservice: The ``KafkaProducer`` class in the profile microservice publishes messages to the profile updates topic. The ``PostService`` class produces messages after new events such as new post creation.
+
+Notification Microservice: The ``KafkaConsumer`` class in the profile microservice consumes messages from the profile-updates and post-updates topics. Currently the message is just printed to the terminal and stored, this could be developed further and for instance send the user 
+an email containing their notifications.
+
+#### Kafka Cluster Architecture
+The Kafka cluster architecture consists of Zookeeper and three Kafka brokers. Zookeeper acts as the cluster manager ensuring the brokers are healthy and managing partitions. The three Kafka
+brokers play the role of storing partitions of each kafka topic. Each partition has a leader broker who is responsible for handling requests while the other brokers act as followers keeping replicas.
+
+
 
 ### Any assumptions or constraints considered during development 
 
@@ -209,16 +271,18 @@ https://third-floor-csis.ie/
 
 ## Project Breakdown (Ownership for Each Feature) 
 
-| Feature                     | Owner        | Notes                                                           |
-|-----------------------------|--------------|-----------------------------------------------------------------|
-|                             |              |                                                                 |
-| Microservice - Notification | Euan & Fawad | Fawad created the base microservice, Euan implemented the logic |
-| Microservice - Profile      | Brendan      |                                                                 |
-| Microservice - Posts        | Sean         |                                                                 |
-| CI/CD - Linter              | Euan         | Had to be removed due to time constraints                       |
-| CI/CD - Build               | Brendan      |                                                                 |
-| CI/CD - Deploy              | Brendan      |                                                                 |
-| Initial .env setup          | Euan         | Updated by whole team as project advanced                       |
+| Feature                         | Owner        | Notes                                                           |
+|---------------------------------|--------------|-----------------------------------------------------------------|
+| Microservice - API Gateway      | Fawad        | Implemented routing, filtering,& Service Registry integration   |
+| Microservice - Service Registry | Fawad        |                                                                 |
+| Microservice - Notification     | Euan & Fawad | Fawad created the base microservice, Euan implemented the logic |
+| Microservice - Profile          | Brendan      |                                                                 |
+| Microservice - Posts            | Sean         |                                                                 |
+| Unit Tests - Profile            | Fawad        | Added and verified unit tests for service and controller layers |
+| CI/CD - Linter                  | Euan         | Had to be removed due to time constraints                       |
+| CI/CD - Build                   | Brendan      |                                                                 |
+| CI/CD - Deploy                  | Brendan      |                                                                 |
+| Initial .env setup              | Euan         | Updated by whole team as project advanced                       |
 
 
 ## Load testing/scaling test summary 
