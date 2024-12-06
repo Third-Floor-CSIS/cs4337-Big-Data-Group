@@ -7,10 +7,136 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BIG data Group 11</title>
 </head>
+<style>
+    table {
+        width: 80%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #000000;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #ffffff;
+    }
+    body{
+        background-color: #eeeeee;
+    }
+</style>
 <body>
+
+<p style="font-size: 22px;">Welcome to <span style="font-size: larger; font-weight: bold">BIG</span> Data Management and Security Group 8: Shamtagram</p>
+<b>vvvv Click vvvv</b>
+<br>
 <a
 href="https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=https://api.third-floor-csis.ie/auth/grantcode&response_type=code&client_id=903706693249-7tn3crt1s21sm21bmfm5i4t2f5nprc0n.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&access_type=offline&prompt=consent">
     Sign in with Google
 </a>
+<br>
+<b>^^^^ Click ^^^^</b>
+<br><br>
+<br>
+<b>After signing in, this will send a GET request and you will see a json response.</b>
+<br><br>
+Sample response:
+<br>
+<pre>
+{
+    "userId": 1,
+    "jwtToken": "<b style="color: blue;">eyJhbGciOiJIUzI1NiJ9.eyJhY2Nlc3NfdG9rZW4iOiJ5YTI5LmEwQWVEQ2xaQnFDbGJMdWFYT2Fpa093bUVrckFoRFY3Q3piNTE4YlJKTFNTOEVpd3FVTUl6
+    NW9XTFJRUjBKTXhEeW1jSk1NNzdadVE4S1EzWjJiZk9iZUFUUEc5OTlrMnkxVTFDd2JIODBlamVyelZFRXBBT2RFOWlpcENmZHYyMDdV
+    OHl1UkRMQTNUTGNZZkViWkQyMjM2VDRsNFZCM1pJQloxaS1KMXpDYUNnWUtBZUVTQVJFU0ZRSEdYMk1pMkVvTFBHTFQ3d09EYWJFLU1BUU5DUTAxNz
+    UiLCJzdWIiOiIxIiwiaWF0IjoxNzMzNTE2NjM5LCJleHAiOjE3MzM1MjAyMzl9.hNRdPrqVLXvAX8Uq6Pz6-l3n2TuMXh2n6yvrJwmW3ow</b>"
+}
+</pre>
+Using the value extracted from the quotes, you can add it as an environment variable in your Postman as a Request header:
+<br><br>
+<b>Authorization</b> - <b>Bearer </b><i style="color: blue;">eyJhbGciOiJIUzI1NiJ9.eyJhY2Nlc3NfdG9rZW4iOiJ5YTI5LmEwQWVEQ2xaQnFDbGJMdWFYT2Fpa093bUVrckFoRFY3Q3piNTE4YlJKTFNTOEVpd3FVTUl6
+    NW9XTFJRUjBKTXhEeW1jSk1NNzdadVE4S1EzWjJiZk9iZUFUUEc5OTlrMnkxVTFDd2JIODBlamVyelZFRXBBT2RFOWlpcENmZHYyMDdV
+    OHl1UkRMQTNUTGNZZkViWkQyMjM2VDRsNFZCM1pJQloxaS1KMXpDYUNnWUtBZUVTQVJFU0ZRSEdYMk1pMkVvTFBHTFQ3d09EYWJFLU1BUU5DUTAxNz
+    UiLCJzdWIiOiIxIiwiaWF0IjoxNzMzNTE2NjM5LCJleHAiOjE3MzM1MjAyMzl9.hNRdPrqVLXvAX8Uq6Pz6-l3n2TuMXh2n6yvrJwmW3ow</i>
+<br><br>
+<b>NOTE:</b> Make sure there is a space after 'Bearer ' <--- Like this. The token is valid for 1 hour.
+<br>
+<br>
+<b>API Endpoints</b>
+<br>
+<br>
+You will be pinging the following IP address: <b>https://api.third-floor-csis.ie/</b> and you can test the following routes:<br><br>
+<table>
+    <thead>
+    <tr>
+        <th>Route</th>
+        <th>Request Type</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>/auth/test</td>
+        <td>GET</td>
+        <td>Health check, it should return 200 OK with body: Test. Does not require JWT</td>
+    </tr>
+    <tr>
+        <td>/auth/grantcode</td>
+        <td>GET</td>
+        <td>Process grant code, you probably don't need it other than Google</td>
+    </tr>
+    <tr>
+        <td>/auth/refresh-access-token</td>
+        <td>POST</td>
+        <td>Refreshes access token within JWT (returned in header)</td>
+    </tr>
+    <tr>
+        <td>/auth/refresh-jwt-token</td>
+        <td>POST</td>
+        <td>Refreshes JWT token (returned in header)</td>
+    </tr>
+    <tr>
+        <td>/api/posts</td>
+        <td>POST</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>/api/posts/test</td>
+        <td>GET</td>
+        <td>Healthcheck</td>
+    </tr>
+    <tr>
+        <td>/api/posts/{userId}</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>/api/posts/{postId}</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>/profile/test</td>
+        <td>GET</td>
+        <td>Healthcheck</td>
+    </tr>
+    <tr>
+        <td>/profile/existing</td>
+        <td>GET</td>
+        <td>From the JWT it will get the profile object from the DB</td>
+    </tr>
+    <tr>
+        <td>/profile/existing</td>
+        <td>POST</td>
+        <td>Update the profile object in the DB. Can update profile picture link, bio, name,</td>
+    </tr>
+    <tr>
+        <td>/profile/follow/{user_id}</td>
+        <td>POST</td>
+        <td>Follow the user with {user_id}. Sending the same request will unfollow. Returns the number of followers/following for your profile. Try userID less than what you are provided with such as 1, 2 etc. If you are wondering what is your ID you can check it with the JWT on jwt.io</td>
+    </tr>
+    </tbody>
+</table>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
 </body>
 </html>
