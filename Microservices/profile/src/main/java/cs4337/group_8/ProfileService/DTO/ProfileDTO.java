@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class ProfileDTO {
-    @NotNull
     private String user_id;
 
     @Size(
@@ -26,9 +25,7 @@ public class ProfileDTO {
     @NotNull
     private String profile_pic;
 
-    @PositiveOrZero
     private int count_follower;
 
-    @PositiveOrZero
     private int count_following;
 }

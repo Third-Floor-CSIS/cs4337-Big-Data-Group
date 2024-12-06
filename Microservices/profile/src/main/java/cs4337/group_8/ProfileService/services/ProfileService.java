@@ -157,4 +157,16 @@ public class ProfileService {
         );
         kafkaProducer.sendMessage("Profile updated for user: " + updatedProfile.getUser_id());
     }
+
+    public void updateByUserId(
+            String userId,
+            ProfileDTO updatedProfile
+    ) {
+        updateByUserId(
+                userId,
+                updatedProfile.getFull_name(),
+                updatedProfile.getBio(),
+                updatedProfile.getProfile_pic()
+        );
+    }
 }
