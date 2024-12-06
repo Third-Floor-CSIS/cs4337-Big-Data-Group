@@ -132,10 +132,13 @@ public class GoogleAuthService {
 
 
         HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(params, headers);
-
         try {
             String url = "https://oauth2.googleapis.com/token";
+            logger.info("Sending request to Google OAuth2 Token endpoint with code: " + grantCode);
+            logger.info("Request URL: " + url);
+            logger.info("Request body: " + params);
             ResponseEntity<String> response = restTemplate.postForEntity(url, requestEntity, String.class);
+            logger.error("Response from Google OAuth token endpoint: " + response.getBody());
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(response.getBody());
             GoogleAuthorizationResponse userTokenDetails = objectMapper.treeToValue(jsonNode, GoogleAuthorizationResponse.class);
@@ -144,12 +147,14 @@ public class GoogleAuthService {
             throw new AuthenticationException("Failed to get access token");
         } catch (HttpClientErrorException e) {
             logger.error("Failed to get access token", e);
+
             throw new AuthenticationException("Invalid grant code");
         }
 
     }
 
     private void setInformationParameters(String code, MultiValueMap<String, String> params) {
+        logger.info(code);
         // User authorization code
         params.add("code", code);
         params.add("redirect_uri", "https://api.third-floor-csis.ie/auth/grantcode");
@@ -157,9 +162,8 @@ public class GoogleAuthService {
         params.add("client_secret", this.clientSecret);
 
         // Information we retrieve
-        params.add("scope", "https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile");
-        params.add("scope", "https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email");
-        params.add("scope", "openid");
+        params.add("scope", "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email openid");
+
         params.add("grant_type", "authorization_code");
     }
 }
