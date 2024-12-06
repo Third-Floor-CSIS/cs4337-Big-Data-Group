@@ -150,6 +150,48 @@ api.third-floor-csis.ie {
 }
 ```
 
+#### Liquibase
+Liquibase is a spring boot dependency, which allows us to manage database schemas and migrations. It allows to sync databases with schemas and retains history of the modifications, similar to git. You can see the `identity-microservice/src/resources/db/db.changelog-master.sql` file.
+```sql
+--liquibase formatted sql
+
+-- changeset Milan:0
+CREATE TABLE IF NOT EXISTS tokens (
+  user_id BIGINT NOT NULL,
+  refresh_token VARCHAR(500) NOT NULL,
+    expiration_time_access_token DATETIME,
+    expiration_time_refresh_token DATETIME,
+    current_access_token VARCHAR(500) NOT NULL,
+    PRIMARY KEY (user_id)
+    );
+```
+#### JWT
+We are leveraging authentication using JWT. The JWT token is signed with the user ID and Google access token. The JWT token is then passed to each microservice to validate the user. You can see in application.properties where we inject the secret and expiration times:
+```properties
+jwt.secret=${JWT_SECRET}
+jwt.expiration=3600000
+jwt.refresh.expiration=25200000
+```
+
+#### SpringBoot-DevTools
+We used a dependency during development called Spring Boot Dev Tools which allows us to hot reload the application while developing. This is very useful as it saves time from having to restart the application every time a change is made.
+
+#### Google Oauth 2.0
+We are using Google Oauth 2.0 for third-party integration. Users must use Google authentication to access the application. See `Microservices/identity-micrservice/src/main/.../services/GoogleAuthService.java` for all the business logic. This service is not tested because it relies on third-party services, and we don't test third-party services (because they are expected to work a certain way).
+
+#### Kafka
+Kafka is used to send messages to the notification microservice and not throttle the Notification microservice.
+
+#### Eureka
+Eureka is used to monitor the health of the microservices and provide information to the API Gateway.
+You can see how in the API Gateway `application.properties` we map the sub-route, the microservice name, etc:
+```properties
+# Route configuration for Auth Service
+spring.cloud.gateway.routes[2].id=authenticationmicroservice
+spring.cloud.gateway.routes[2].uri=lb://authenticationmicroservice
+spring.cloud.gateway.routes[2].predicates[0]=Path=/auth/**
+```
+
 ### Detailed explanation of components or modules 
 
 ### Any assumptions or constraints considered during development 
