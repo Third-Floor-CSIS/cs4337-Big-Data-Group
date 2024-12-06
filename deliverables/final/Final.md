@@ -168,12 +168,26 @@ The notification data is stored in a database with a well-structured schema.
 
 For error handling, custom exceptions are implemented to provide meaningful error messages when issues occur, which makes it more user-friendly.
 
+### Posts MicroService
+The Posts microservice is a backend service built to manage user-created content, like posts and likes, within an application. Ensures security with JWT-based authentication to protect user data and restrict access to authorized users. It handles all the essential operations such as,
+
+•	Posts creation
+•	Liking posts
+•	Un-liking Posts
+•	Get posts by userId
+•	Get posts by postId
+
+The main logic lives in the service layer, while the database layer keeps everything organized and efficient. It’s designed to seamlessly handle interactions, like users liking posts, and makes sure data flows smoothly between the system’s components with the help of mappers and data transfer objects (DTOs).
+
+
 #### Profile Service Unit Tests 
 Unit tests were added to the Profile Service to ensure its functionality and reliability. 
 ##### Service Layer Tests:
 The tests for the service layer focus on the logic of managing profiles. e.g they check that profiles can be created, retrieved, and updated correctly. These tests validate that the service handles the data as expected and respects the rules defined in the business logic
 ##### Controller Layer Tests:
 These ensures that the API endpoints work well as they should. tests various scenerios like Handling valid and invalid requests, Ensuring proper HTTP status codes for success and failure cases.
+##### Posts Service Unit Tests:
+Includes unit and integration tests to ensure its functionality and reliability. Tests focus on critical components like the service layer and database interactions, verifying that the system behaves as expected under various scenarios.
 
 ### Any assumptions or constraints considered during development 
 
