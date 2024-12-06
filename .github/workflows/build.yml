@@ -39,7 +39,9 @@ jobs:
           cache: maven
       - name: Build ${{ matrix.service }}
         run:  |
+          ls -lah
           cd Microservices/${{ matrix.service }}
+          ls -lah
           mvn clean package -DskipTests=true
       - name: Log in to the Container registry
         uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
