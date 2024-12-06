@@ -300,30 +300,35 @@ https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues
 
 ## Project Breakdown (Ownership for Each Feature) 
 
-| Feature                         | Owner        | Notes                                                                       |
-|---------------------------------|--------------|-----------------------------------------------------------------------------|
-| Microservice - API Gateway      | Fawad        | Implemented routing, filtering,& Service Registry integration               |
-| Microservice - Service Registry | Fawad        |                                                                             |
-| Microservice - Notification     | Euan & Fawad | Fawad created the base microservice, Euan implemented the logic             |
-| Microservice - Profile          | Brendan      |                                                                             |
-| Microservice - Posts            | Sean         |                                                                             |
-| Microservice - Identity         | Milan        | Auth, JWT, Google Oauth 2.0, User creation, Token generation, Token refresh | 
-| Unit Tests - Profile            | Fawad        | Added and verified unit tests for service and controller layers             |
-| CI/CD - Linter                  | Euan         | Had to be removed due to time constraints                                   |
-| CI/CD - Build                   | Brendan      |                                                                             |
-| CI/CD - Deploy                  | Brendan      |                                                                             |
-| Initial .env setup              | Euan         | Updated by whole team as project advanced                                   |
-| Architecture                    | Milan & Euan | Created high-level overview of the product                                  |
-| Code Style                      | Milan        | Created XML for standard code style                                         |
-| Template Microservice           | Milan        | Template to get the team upto speed                                         |
-| JWT Filter integration          | Milan        | Simpliefied JWT service & filterchain                                       |
-| Dockerization Fix               | Brendan      |                                                                             |
-| Setup prod environment          | Brendan      |                                                                             |
-| Identity Unit Test              | Milan        | Added unit tests for the Identity Microservice                              |
-| Profile Follow/Unfollow         | Milan        | Added follow/unfollow functionality to the Profile Microservice             |
-| Documentation - JWT             | Milan        | Guideline to integrate JWT into each microservice                           |
-| Kafka                           | Killian      |                                                                             |
-| Database                        | Killian      | Updated by whole team as the project developed                              |
+| Feature                         | Owner        | Notes                                                                                                                        |
+|---------------------------------|--------------|------------------------------------------------------------------------------------------------------------------------------|
+| Microservice - API Gateway      | Fawad        | Implemented routing, filtering,& Service Registry integration                                                                |
+| Microservice - Service Registry | Fawad        |                                                                                                                              |
+| Microservice - Notification     | Euan & Fawad | Fawad created the base microservice, Euan implemented the logic                                                              |
+| Microservice - Profile          | Brendan      |                                                                                                                              |
+| Microservice - Posts            | Sean         |                                                                                                                              |
+| Microservice - Identity         | Milan        | Auth, JWT, Google Oauth 2.0, User creation, Token generation, Token refresh                                                  | 
+| Unit Tests - Profile            | Fawad        | Added and verified unit tests for service and controller layers                                                              |
+| CI/CD - Linter                  | Euan         | Had to be removed due to time constraints                                                                                    |
+| CI/CD - Build                   | Brendan      |                                                                                                                              |
+| CI/CD - Deploy                  | Brendan      |                                                                                                                              |
+| Deployment - Azure              | Brendan      | Initial testing of deploying to Azure                                                                                        |
+| Deployment - Hetzner            | Brendan      | Fallback plan of deploying to VPS in Hetzner, with DNS in Cloudflare                                                         |
+| Initial .env setup              | Euan         | Updated by whole team as project advanced                                                                                    |
+| Architecture                    | Milan & Euan | Created high-level overview of the product                                                                                   |
+| Code Style                      | Milan        | Created XML for standard code style                                                                                          |
+| Template Microservice           | Milan        | Template to get the team upto speed                                                                                          |
+| JWT Filter integration          | Milan        | Simpliefied JWT service & filterchain                                                                                        |
+| Dockerization Fix               | Brendan      |                                                                                                                              |
+| Setup Dev environment           | Brendan      | Initially a single docker compose file its now layered to share config with prod.                                            |
+| Setup Prod environment          | Brendan      | Split off config from dev                                                                                                    |
+| Identity Unit Test              | Milan        | Added unit tests for the Identity Microservice                                                                               |
+| Profile Follow/Unfollow         | Milan        | Added follow/unfollow functionality to the Profile Microservice                                                              |
+| Documentation - JWT             | Milan        | Guideline to integrate JWT into each microservice                                                                            |
+| Kafka                           | Killian      |                                                                                                                              |
+| Database                        | Killian      | Updated by whole team as the project developed                                                                               |
+| Weekly Reports                  | Brendan      | Managed teh weekly reports                                                                                                   |
+| Discord Webhook                 | Brendan      | Set up a webhook to link in with our Discord server, notified members of changes to repo, which lead to greater involvement. |
 
 
 ## Load testing/scaling test summary 
