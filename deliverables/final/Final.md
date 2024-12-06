@@ -77,6 +77,9 @@ When an incoming request is looking for an endpoint with certain sub-route, ther
 #### Profile Microservice
 Allows users to customize their user profile. The user profile consists of their displayed username, profile picture, bio alongside with follower and followee count. 
 
+#### Posts Microservice
+Posts microservice allows for adding new posts, retrieving posts, liking and unliking posts. 
+
 #### Kafka Cluster
 ![kafkaDiagram.png](kafkaDiagram.png)
 
