@@ -19,11 +19,9 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.Instant;
-import java.util.Date;
 
 @Service
 @Slf4j
@@ -146,12 +144,6 @@ public class GoogleAuthService {
         } catch (JsonProcessingException e) {
             throw new AuthenticationException("Failed to get access token");
         }
-//        catch (HttpClientErrorException e) {
-//            logger.error("Failed to get access token", e);
-//
-//            throw new AuthenticationException("Invalid grant code");
-//        }
-
     }
 
     private void setInformationParameters(String code, MultiValueMap<String, String> params) {
