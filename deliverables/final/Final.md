@@ -190,18 +190,18 @@ https://third-floor-csis.ie/
 
 ## Project Breakdown (Ownership for Each Feature) 
 
-| Feature                     | Owner        | Notes                                                           |
-|-----------------------------|--------------|-----------------------------------------------------------------|
-| API Gateway                 | Fawad        | Implemented routing, filtering,& Service Registry integration   |
-| Service Registry            | Fawad        |                                                                 |
-| Microservice - Notification | Euan & Fawad | Fawad created the base microservice, Euan implemented the logic |
-| Microservice - Profile      | Brendan      |                                                                 |
-| Microservice - Posts        | Sean         |                                                                 |
-| Unit Tests - Profile        | Fawad        | Added and verified unit tests for service and controller layers |
-| CI/CD - Linter              | Euan         | Had to be removed due to time constraints                       |
-| CI/CD - Build               | Brendan      |                                                                 |
-| CI/CD - Deploy              | Brendan      |                                                                 |
-| Initial .env setup          | Euan         | Updated by whole team as project advanced                       |
+| Feature                         | Owner        | Notes                                                           |
+|---------------------------------|--------------|-----------------------------------------------------------------|
+| Microservice - API Gateway      | Fawad        | Implemented routing, filtering,& Service Registry integration   |
+| Microservice - Service Registry | Fawad        |                                                                 |
+| Microservice - Notification     | Euan & Fawad | Fawad created the base microservice, Euan implemented the logic |
+| Microservice - Profile          | Brendan      |                                                                 |
+| Microservice - Posts            | Sean         |                                                                 |
+| Unit Tests - Profile            | Fawad        | Added and verified unit tests for service and controller layers |
+| CI/CD - Linter                  | Euan         | Had to be removed due to time constraints                       |
+| CI/CD - Build                   | Brendan      |                                                                 |
+| CI/CD - Deploy                  | Brendan      |                                                                 |
+| Initial .env setup              | Euan         | Updated by whole team as project advanced                       |
 
 
 ## Load testing/scaling test summary 
