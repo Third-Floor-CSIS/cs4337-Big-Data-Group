@@ -108,7 +108,7 @@ strategy:
     service:
       - "api-gateway"
       - "identity-microservice"
-      - "notification-service"
+      - "ion-service"
       - "posts"
       - "profile"
       - "service-registry"
@@ -171,7 +171,7 @@ api.third-floor-csis.ie {
 ```
 
 #### Kafka
-Kafka was used to send messages between three microservices posts, profile and notification. Kafka topics (post-updates and profile-updates) allow producers (Post and Profile services) to publish events, which are then consumed by the Notification Service
+Kafka was used to send messages between three microservices posts, profile and ion. Kafka topics (post-updates and profile-updates) allow producers (Post and Profile services) to publish events, which are then consumed by the ion Service
 
 #### Liquibase
 Liquibase is a spring boot dependency, which allows us to manage database schemas and migrations. It allows to sync databases with schemas and retains history of the modifications, similar to git. You can see the `identity-microservice/src/resources/db/db.changelog-master.sql` file.
@@ -224,14 +224,17 @@ The API gateway behaves like a proxy, where all requests go through a single por
 
 When an incoming request is looking for an endpoint with certain sub-route, there are sub-routes  mapped onto different microservices. The API gateway will fetch service registry for how many microservices exists for the certain route. The API gateway will then decide using round Robin to which instance to forward the request to.
 
-### Notification Micro Service
-The Notification Microservice is responsible for managing notifications, including retrieving unread messages and will mark them as read. It is integrated with Kafka for asynchronous message processing and it also provides REST APIs for interacting with notifications. WIth Kafka this allows the system to handle a large volume of notifications without impacting the performance of other services.
+### Notification Microservice
+The Notification Microservice is responsible for managing notifications, including retrieving unread messages and will mark them as read. It is integrated with Kafka for asynchronous message processing and it also provides REST APIs for interacting with notifications. The notification microservice integrates with Kafka, allowing communication between the different microservices.
 
-The notification data is stored in a database with a well-structured schema.
-- A unique notification ID to identify each notification.
-- A receiver ID to associate the notification with a specific user.
-- A status field to indicate whether the notification is unread or read.
-- A timestamp to log the creation time of each notification.
+Notifications are stored in a database containing both, the user who caused the notification to be created, and the user receiving the notification, aswell as a boolean indicating whether it was read or not. This allows us to keep a history of the notifications, instead of deleting them after they are read.
+
+The notificaion database also contains the custom enumerator NotificationType, which contains the following:
+- LIKE
+- FOLLOW
+- COMMENT
+
+Each corresponding to different events which create a notification.
 
 For error handling, custom exceptions are implemented to provide meaningful error messages when issues occur, which makes it more user-friendly.
 
