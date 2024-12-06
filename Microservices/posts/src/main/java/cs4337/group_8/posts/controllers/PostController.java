@@ -36,8 +36,8 @@ public class PostController {
     }
 
     @GetMapping("/test")
-    public ResponseEntity.BodyBuilder test() {
-        return ResponseEntity.ok();
+    public String test() {
+        return "Hello World";
     }
 
     @GetMapping("/user/{userId}")
