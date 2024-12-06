@@ -336,6 +336,17 @@ https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues
 
 ## Postman API Collection (Optional) 
 
+When testing in Postman we need to create a new Environment variable for our URL and JWT token.  
+This can be done through the 'Environments' section on the left. Click 'Globals' (or create a custom), 
+then enter two new variables:
+- url - with the value of ``http://api.third-floor-csis.ie``
+- jwt - with the value of ``Bearer {JWT}``, where {JWT} is the token you created when signing in with Google.
+
+3 Postman collections are included in the final repository that can be imported (via the 'Import' button or by dragging and dropping the file):  
+[Auth](Auth.postman_collection.json)  
+[Post](Post.postman_collection.json)  
+[Profile](Profile.postman_collection.json)
+
 Posts 
   1.	GET /api/posts/test:
         o	Purpose: Verifies the Posts service is running.
