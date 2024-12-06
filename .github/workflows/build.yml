@@ -31,16 +31,16 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v4
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
-          cache: maven
-      - name: Build ${{ matrix.service }}
-        run:  |
-          cd Microservices/${{ matrix.service }}
-          mvn clean package -DskipTests=true
+#      - name: Set up JDK 21
+#        uses: actions/setup-java@v4
+#        with:
+#          java-version: '21'
+#          distribution: 'temurin'
+#          cache: maven
+#      - name: Build ${{ matrix.service }}
+#        run:  |
+#          cd Microservices/${{ matrix.service }}
+#          mvn clean package -DskipTests=true
       - name: Log in to the Container registry
         uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
         with:
@@ -52,11 +52,18 @@ jobs:
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/${{ matrix.service }}
+#      - run: |
+#          ls -lah .
+#          ls -lah ./Microservices
+#          ls -lah ./Microservices/${{ matrix.service }}
       - name: Build and push Docker image
         id: push
         uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
         with:
-          context: Microservices/${{ matrix.service }}
+          context: ./Microservices
+          file: ./Microservices/${{ matrix.service }}/Dockerfile
+          build-args: |
+            SERVICE=${{ matrix.service }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
