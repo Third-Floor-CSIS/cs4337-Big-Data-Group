@@ -12,6 +12,8 @@ import cs4337.group_8.AuthenticationMicroservice.exceptions.RefreshTokenExpiredE
 import cs4337.group_8.AuthenticationMicroservice.exceptions.ValidateTokenException;
 import cs4337.group_8.AuthenticationMicroservice.repositories.TokenRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,7 @@ public class GoogleAuthService {
     private final String clientId;
     private final TokenRepository tokenRepository;
     private static final long SECOND_IN_MILLISECONDS = 1000;
+    private static final Logger logger = LoggerFactory.getLogger(GoogleAuthService.class);
 
     public GoogleAuthService(@Value("${CLIENT.SECRET}") String clientSecret,
                              @Value("${CLIENT.ID}") String clientId,
@@ -140,6 +143,7 @@ public class GoogleAuthService {
         } catch (JsonProcessingException e) {
             throw new AuthenticationException("Failed to get access token");
         } catch (HttpClientErrorException e) {
+            logger.error("Failed to get access token", e);
             throw new AuthenticationException("Invalid grant code");
         }
 
