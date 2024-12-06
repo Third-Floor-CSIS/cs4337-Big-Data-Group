@@ -227,9 +227,7 @@ When an incoming request is looking for an endpoint with certain sub-route, ther
 ### Notification Microservice
 The Notification Microservice is responsible for managing notifications, including retrieving unread messages and will mark them as read. It is integrated with Kafka for asynchronous message processing and it also provides REST APIs for interacting with notifications. The notification microservice integrates with Kafka, allowing communication between the different microservices.
 
-Notifications are stored in a database containing both, the user who caused the notification to be created, and the user receiving the notification, aswell as a boolean indicating whether it was read or not. This allows us to keep a history of the notifications, instead of deleting them after they are read.
-
-The notificaion database also contains the custom enumerator NotificationType, which contains the following:
+Notifications also offer the custom Enumerator; NotificationType, which contains the following:
 - LIKE
 - FOLLOW
 - COMMENT
