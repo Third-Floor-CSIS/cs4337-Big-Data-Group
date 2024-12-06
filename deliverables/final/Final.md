@@ -305,3 +305,57 @@ https://third-floor-csis.ie/
 ## Load testing/scaling test summary 
 
 ## Postman API Collection (Optional) 
+
+Posts 
+  1.	GET /api/posts/test:
+        o	Purpose: Verifies the Posts service is running.
+        o	Response: A simple confirmation message ‘Hello World’
+
+  2.	POST /api/posts/root:
+        o	Purpose: Creates a new post with data like userId.
+        o	Response: Returns a 201 Created status with the new post’s details.
+
+  3.	GET /api/posts/user/{userId}:
+        o	Purpose: Retrieves all posts created by a specific user.
+        o	Response: A list of posts in JSON format.
+
+  4.	GET /api/posts/{postId}:
+        o	Purpose: Fetches a specific post using its unique ID.
+        o	Response: JSON details of the post or a 404 Not Found error.
+
+Profile 
+
+  1.	GET /profile/test:
+        o	Purpose: Confirms the Profile service is operational.
+        o	Response: A simple confirmation message ‘Hello World’
+
+  2.	GET /profile/existing:
+        o	Purpose: Retrieves the user’s profile based on their JWT token.
+        o	Response: Profile data, including name, bio, and profile picture.
+
+  3.	POST /profile/existing:
+        o	Purpose: Updates the user’s profile with new data.
+        o	Response: Confirms the update with a 200 OK or 204 No Content.
+
+  4.	POST /profile/follow/{user_id}:
+        o	Purpose: Allows the user to follow or unfollow another user.
+        o	Response: Updated follower and following counts.
+
+Auth 
+
+  1.	GET /auth/test:
+        o	Purpose: Verifies the Auth service is running.
+        o	Response: A simple confirmation message, HttpStatus: OK
+
+  2.	GET /auth/grantcode:
+        o	Purpose: Processes OAuth grant codes for user authentication.
+        o	Response: HttpStatus.OK
+  3.	POST /auth/refresh-access-token:
+        o	Purpose: Refreshes the access token using a valid refresh token.
+        o	Response: Returns the new access token.
+
+  4.	POST /auth/refresh-jwt-token:
+        o	Purpose: Refreshes the entire JWT for session validity.
+        o	Response: A new JWT token.
+
+
