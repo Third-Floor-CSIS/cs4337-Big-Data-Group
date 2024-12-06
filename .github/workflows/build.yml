@@ -52,10 +52,10 @@ jobs:
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/${{ matrix.service }}
-      - run: |
-          ls -lah .
-          ls -lah ./Microservices
-          ls -lah ./Microservices/${{ matrix.service }}
+#      - run: |
+#          ls -lah .
+#          ls -lah ./Microservices
+#          ls -lah ./Microservices/${{ matrix.service }}
       - name: Build and push Docker image
         id: push
         uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
