@@ -76,10 +76,25 @@ When an incoming request is looking for an endpoint with certain sub-route, ther
 
 #### Kafka Cluster
 ![kafkaDiagram.png](kafkaDiagram.png)
+
 Zookeeper acts as a cluster manager for the 3 kafka brokers. The 3 brokers store the partitions of the post-updates and profile-updates
 kafka topics. The post and profile producers publish messages to their respective topics. The notification consumer then consumes the messages from each topic as they are produced.
 
-### Technologies used
+#### Original Database
+![Original_Database.png](Original_Database.png)
+
+This is the entity relationship diagram for the original database containing all the tables for the project in the same database.
+During the development of the project it was decided to split the database up into smaller databases for each microservice with decoupled tables.
+Below are the entity relationship diagrams for each microservices database.
+#### Identity Microservice Database
+![Identity_Database.png](AuthDB.png)
+#### Posts Microservice Database
+![Posts_Database.png](postDB.png)
+#### Profile Microservice Database
+![Profile_Database.png](profileDB.png)
+#### Notification Microservice Database
+![Notification_Database.png](notificationDB.png)
+### Technologies used Microservice Database
 
 #### Github Actions
 We used Github actions to build, test and deploy the project.  
@@ -283,6 +298,8 @@ https://third-floor-csis.ie/
 | CI/CD - Build                   | Brendan      |                                                                 |
 | CI/CD - Deploy                  | Brendan      |                                                                 |
 | Initial .env setup              | Euan         | Updated by whole team as project advanced                       |
+| Kafka                           | Killian      |                                                                 |
+| Database                        | Killian      | Updated by whole team as the project developed                  |
 
 
 ## Load testing/scaling test summary 
