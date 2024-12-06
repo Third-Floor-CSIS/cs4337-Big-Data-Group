@@ -64,11 +64,15 @@ public class ControllerProfile {
     public ResponseEntity<ProfileDTO> setProfile(
         @Valid
         @RequestBody
-        ProfileDTO incomingDTO
+        ProfileDTO incomingDTO,
+        @RequestHeader("Authorization")
+        String jwtHeader
     ) {
         try {
+            // Extract the user ID from the JWT token in the Header
+            String userId = jwtService.extractUserId(jwtHeader);
             // Save it to the database
-            profileService.updateByUserId(incomingDTO);
+            profileService.updateByUserId(userId, incomingDTO);
             // return modified version
             return ResponseEntity.ok(incomingDTO);
         } catch (SampleCustomException e) {

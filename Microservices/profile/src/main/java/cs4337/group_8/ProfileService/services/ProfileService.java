@@ -149,4 +149,16 @@ public class ProfileService {
             updatedProfile.getProfile_pic()
         );
     }
+
+    public void updateByUserId(
+            String userId,
+            ProfileDTO updatedProfile
+    ) {
+        updateByUserId(
+                userId,
+                updatedProfile.getFull_name(),
+                updatedProfile.getBio(),
+                updatedProfile.getProfile_pic()
+        );
+    }
 }
