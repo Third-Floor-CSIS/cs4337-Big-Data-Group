@@ -20,14 +20,16 @@ public class ProfileService {
     private final ProfileRepository profileRepository;
     private final GoogleResourceExchangeService googleResourceService;
     private final FollowingRepository followingRepository;
+    private  final KafkaProducer kafkaProducer;
     // It is okay to pull in more repositories AND services to use
 
     public ProfileService(ProfileRepository ProfileRepository,
                           GoogleResourceExchangeService googleResourceService,
-                          FollowingRepository followingRepository) {
+                          FollowingRepository followingRepository, KafkaProducer kafkaProducer) {
         this.profileRepository = ProfileRepository;
         this.googleResourceService = googleResourceService;
         this.followingRepository = followingRepository;
+        this.kafkaProducer = kafkaProducer;
     }
 
     // Business logic
@@ -42,9 +44,9 @@ public class ProfileService {
     }
 
     public ProfileEntity createNewUserIfNotExists(String id, String accessToken) {
-        return profileRepository.findById(id).orElseGet(() ->
-                createUser(id, accessToken)
-        );
+        ProfileEntity profile = profileRepository.findById(id).orElseGet(() -> createUser(id, accessToken));
+        kafkaProducer.sendMessage("User profile created or Already exists: " + profile.getUser_id());
+        return profile;
     }
 
     public ProfileEntity createUser(String id, String accessToken) {
@@ -56,7 +58,9 @@ public class ProfileService {
         profile.setProfile_pic(googleUserDetails.getPicture());
         profile.setCount_follower(0);
         profile.setCount_following(0);
-        return profileRepository.save(profile);
+        ProfileEntity savedProfile = profileRepository.save(profile);
+        kafkaProducer.sendMessage("New user profile created: " + savedProfile.getUser_id());
+        return savedProfile;
     }
 
     public ProfileEntity createBlankUser(String userId) {
@@ -89,13 +93,16 @@ public class ProfileService {
             FollowingEntity followingEntity = fe.get();
             if (followingEntity.getStatus() == Status.ACTIVE) {
                 initiator = unfollow(followerId, followingId);
+                kafkaProducer.sendMessage("User " + followerId + " unfollowed user " + followingId);
             } else if (followingEntity.getStatus() == Status.INACTIVE) {
                 initiator = refollow(followerId, followingId);
+                kafkaProducer.sendMessage("User " + followerId + " refollowed user " + followingId);
             }
         } else {
             // If there was never an interaction, create one
             followingRepository.save(new FollowingEntity(followerId, followingId, Instant.now(), Status.ACTIVE, Instant.now()));
             initiator = updateFollowerFollowingCount(followerId, followingId);
+            kafkaProducer.sendMessage("User " + followerId + " followed user " + followingId);
         }
         return initiator;
     }
@@ -148,5 +155,6 @@ public class ProfileService {
             updatedProfile.getBio(),
             updatedProfile.getProfile_pic()
         );
+        kafkaProducer.sendMessage("Profile updated for user: " + updatedProfile.getUser_id());
     }
 }
