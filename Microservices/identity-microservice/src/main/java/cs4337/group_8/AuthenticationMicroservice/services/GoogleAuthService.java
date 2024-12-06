@@ -148,7 +148,7 @@ public class GoogleAuthService {
     private void setInformationParameters(String code, MultiValueMap<String, String> params) {
         // User authorization code
         params.add("code", code);
-        params.add("redirect_uri", "http://localhost:8080/auth/grantcode");
+        params.add("redirect_uri", "https://api.third-floor-csis.ie/auth/grantcode");
         params.add("client_id", this.clientId);
         params.add("client_secret", this.clientSecret);
 
