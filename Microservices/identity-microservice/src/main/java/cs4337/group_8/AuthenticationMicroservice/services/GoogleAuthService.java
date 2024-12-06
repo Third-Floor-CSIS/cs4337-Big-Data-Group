@@ -145,11 +145,12 @@ public class GoogleAuthService {
             return userTokenDetails;
         } catch (JsonProcessingException e) {
             throw new AuthenticationException("Failed to get access token");
-        } catch (HttpClientErrorException e) {
-            logger.error("Failed to get access token", e);
-
-            throw new AuthenticationException("Invalid grant code");
         }
+//        catch (HttpClientErrorException e) {
+//            logger.error("Failed to get access token", e);
+//
+//            throw new AuthenticationException("Invalid grant code");
+//        }
 
     }
 
