@@ -77,11 +77,15 @@ You will be pinging the following IP address: <b>https://api.third-floor-csis.ie
         <td>/auth/test</td>
         <td>GET</td>
         <td>Health check, it should return 200 OK with body: Test. Does not require JWT</td>
+        <td>Verifies the Auth service is running.</td>
+        <td>A simple confirmation message, HttpStatus: OK</td>
     </tr>
     <tr>
         <td>/auth/grantcode</td>
         <td>GET</td>
         <td>Process grant code, you probably don't need it other than Google</td>
+        <td>Processes OAuth grant codes for user authentication.</td>
+        <td>Returns: HttpStatus: OK</td>
     </tr>
     <tr>
         <td>/auth/refresh-access-token</td>
@@ -96,42 +100,50 @@ You will be pinging the following IP address: <b>https://api.third-floor-csis.ie
     <tr>
         <td>/api/posts</td>
         <td>POST</td>
-        <td></td>
+        <td>Creates a new post with data like userId.</td>
+        <td>Returns a 201 Created status with the new post’s details.</td>
     </tr>
     <tr>
         <td>/api/posts/test</td>
         <td>GET</td>
         <td>Healthcheck</td>
+        <td>Verifies the Posts service is running.</td>
+        <td>A simple confirmation message ‘Hello World’</td>
     </tr>
     <tr>
         <td>/api/posts/{userId}</td>
-        <td></td>
-        <td></td>
+        <td>Retrieves all posts created by a specific user.</td>
     </tr>
     <tr>
         <td>/api/posts/{postId}</td>
-        <td></td>
-        <td></td>
+        <td>Purpose: Retrieves all posts created by a specific user.</td>
+        <td>Response: A list of posts in JSON format</td>
     </tr>
     <tr>
         <td>/profile/test</td>
         <td>GET</td>
         <td>Healthcheck</td>
+        <td>Confirms the Profile service is operational.</td>
+        <td>A simple confirmation message ‘Hello World’</td>
     </tr>
     <tr>
         <td>/profile/existing</td>
         <td>GET</td>
         <td>From the JWT it will get the profile object from the DB</td>
+        <td>Profile data, including name, bio, and profile picture.</td>
     </tr>
     <tr>
         <td>/profile/existing</td>
         <td>POST</td>
-        <td>Update the profile object in the DB. Can update profile picture link, bio, name,</td>
+        <td>Updates the user’s profile with new data.</td>
+        <td>Confirms the update with a 200 OK or 204 No Content.</td>
     </tr>
     <tr>
         <td>/profile/follow/{user_id}</td>
         <td>POST</td>
         <td>Follow the user with {user_id}. Sending the same request will unfollow. Returns the number of followers/following for your profile</td>
+        <td>Allows the user to follow or unfollow another user.</td>
+        <td>Updated follower and following counts.</td>
     </tr>
     </tbody>
 </table>
