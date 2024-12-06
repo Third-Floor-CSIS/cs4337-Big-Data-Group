@@ -167,16 +167,16 @@ https://third-floor-csis.ie/
 
 ## Project Breakdown (Ownership for Each Feature) 
 
-| Feature                | Owner   | Notes |
-|------------------------|---------|-------|
-|                        |         |       |
-|                        |         |       |
-| Microservice - Profile | Brendan |       |
-|                        |         |       |
-|                        |         |       |
-| CI/CD - Build          | Brendan |       |
-| CI/CD - Deploy         | Brendan |       |
-|                        |         |       |
+| Feature                     | Owner        | Notes                                                           |
+|-----------------------------|--------------|-----------------------------------------------------------------|
+|                             |              |                                                                 |
+| Microservice - Notification | Euan & Fawad | Fawad created the base microservice, Euan implemented the logic |
+| Microservice - Profile      | Brendan      |                                                                 |
+| Microservice - Posts        | Sean         |                                                                 |
+| CI/CD - Linter              | Euan         | Had to be removed due to time constraints                       |
+| CI/CD - Build               | Brendan      |                                                                 |
+| CI/CD - Deploy              | Brendan      |                                                                 |
+| Initial .env setup          | Euan         | Updated by whole team as project advanced                       |
 
 
 ## Load testing/scaling test summary 
