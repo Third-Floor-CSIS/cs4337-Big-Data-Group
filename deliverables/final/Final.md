@@ -74,6 +74,9 @@ The API gateway behaves like a proxy, where all requests go through a single por
 
 When an incoming request is looking for an endpoint with certain sub-route, there are sub-routes  mapped onto different microservices. The API gateway will fetch service registry for how many microservices exists for the certain route. The API gateway will then decide using round Robin to which instance to forward the request to. 
 
+#### Profile Microservice
+Allows users to customize their user profile. The user profile consists of their displayed username, profile picture, bio alongside with follower and followee count. 
+
 #### Kafka Cluster
 ![kafkaDiagram.png](kafkaDiagram.png)
 
@@ -273,6 +276,9 @@ brokers play the role of storing partitions of each kafka topic. Each partition 
 
 ### Any assumptions or constraints considered during development 
 
+**DB stateless assumption**
+To make the applications to be stateless is by passing the userID within the JWT. This allows the microservices to not have intercommunication with each other. This way each microservice will create a user related row in their table based on the UserID from the JWT. This can be ensured because if the JWT is valid, then it **must** have been created by the Identity Microservice. IE: The userID exists somewhere. Unfortunately we can't do complex JOINS on the table so we had to get creative with this.
+
 
 
 
@@ -283,23 +289,35 @@ brokers play the role of storing partitions of each kafka topic. Each partition 
 https://third-floor-csis.ie/
 
 ## Project Tracking Link 
+https://trello.com/b/chFsPjoU/big-data-group-8
+https://github.com/Third-Floor-CSIS/cs4337-Big-Data-Group/issues
 
 ## Project Breakdown (Ownership for Each Feature) 
 
-| Feature                         | Owner        | Notes                                                           |
-|---------------------------------|--------------|-----------------------------------------------------------------|
-| Microservice - API Gateway      | Fawad        | Implemented routing, filtering,& Service Registry integration   |
-| Microservice - Service Registry | Fawad        |                                                                 |
-| Microservice - Notification     | Euan & Fawad | Fawad created the base microservice, Euan implemented the logic |
-| Microservice - Profile          | Brendan      |                                                                 |
-| Microservice - Posts            | Sean         |                                                                 |
-| Unit Tests - Profile            | Fawad        | Added and verified unit tests for service and controller layers |
-| CI/CD - Linter                  | Euan         | Had to be removed due to time constraints                       |
-| CI/CD - Build                   | Brendan      |                                                                 |
-| CI/CD - Deploy                  | Brendan      |                                                                 |
-| Initial .env setup              | Euan         | Updated by whole team as project advanced                       |
-| Kafka                           | Killian      |                                                                 |
-| Database                        | Killian      | Updated by whole team as the project developed                  |
+| Feature                         | Owner        | Notes                                                                       |
+|---------------------------------|--------------|-----------------------------------------------------------------------------|
+| Microservice - API Gateway      | Fawad        | Implemented routing, filtering,& Service Registry integration               |
+| Microservice - Service Registry | Fawad        |                                                                             |
+| Microservice - Notification     | Euan & Fawad | Fawad created the base microservice, Euan implemented the logic             |
+| Microservice - Profile          | Brendan      |                                                                             |
+| Microservice - Posts            | Sean         |                                                                             |
+| Microservice - Identity         | Milan        | Auth, JWT, Google Oauth 2.0, User creation, Token generation, Token refresh | 
+| Unit Tests - Profile            | Fawad        | Added and verified unit tests for service and controller layers             |
+| CI/CD - Linter                  | Euan         | Had to be removed due to time constraints                                   |
+| CI/CD - Build                   | Brendan      |                                                                             |
+| CI/CD - Deploy                  | Brendan      |                                                                             |
+| Initial .env setup              | Euan         | Updated by whole team as project advanced                                   |
+| Architecture                    | Milan & Euan | Created high-level overview of the product                                  |
+| Code Style                      | Milan        | Created XML for standard code style                                         |
+| Template Microservice           | Milan        | Template to get the team upto speed                                         |
+| JWT Filter integration          | Milan        | Simpliefied JWT service & filterchain                                       |
+| Dockerization Fix               | Brendan      |                                                                             |
+| Setup prod environment          | Brendan      |                                                                             |
+| Identity Unit Test              | Milan        | Added unit tests for the Identity Microservice                              |
+| Profile Follow/Unfollow         | Milan        | Added follow/unfollow functionality to the Profile Microservice             |
+| Documentation - JWT             | Milan        | Guideline to integrate JWT into each microservice                           |
+| Kafka                           | Killian      |                                                                             |
+| Database                        | Killian      | Updated by whole team as the project developed                              |
 
 
 ## Load testing/scaling test summary 
