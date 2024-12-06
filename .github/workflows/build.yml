@@ -61,7 +61,7 @@ jobs:
         uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
         with:
           context: ./Microservices
-          file: ${{ matrix.service }}/Dockerfile
+          file: ./Microservices/${{ matrix.service }}/Dockerfile
           build-args: |
             SERVICE=${{ matrix.service }}
           push: true
