@@ -16,18 +16,22 @@ public class PostService {
     private final PostRepository postRepository;
     private final LikesRepository likesRepository;
     private final JwtService jwtService;
+    private final KafkaProducer kafkaProducer;
 
-    public PostService(PostRepository postRepository, LikesRepository likesRepository, JwtService jwtService) {
+    public PostService(PostRepository postRepository, LikesRepository likesRepository, JwtService jwtService, KafkaProducer kafkaProducer) {
         this.postRepository = postRepository;
         this.likesRepository = likesRepository;
         this.jwtService = jwtService; //injecting JWT service
+        this.kafkaProducer = kafkaProducer;
     }
 
     public Post createPost(Post post, String jwtToken) {
         Integer userIdInteger = jwtService.extractUserId(jwtToken); // Extract userId from token
         Long userId = Long.valueOf(userIdInteger); //convert intger to long
         post.setUserId(userId); // Associate post with the user
-        return postRepository.save(post);
+        Post savedPost = postRepository.save(post);
+        kafkaProducer.sendMessage("Post created with ID: " + savedPost.getId());
+        return savedPost;
     }
 
 
@@ -52,6 +56,7 @@ public class PostService {
 
         if (post.getUserId().equals(userId)) {
             postRepository.delete(post);
+            kafkaProducer.sendMessage("User ID " + userId + " Deleted Post ID " + postId);
         } else {
             throw new PostException("User ID " + userId + " is not authorized to delete post with ID " + postId);
         }
@@ -73,6 +78,7 @@ public class PostService {
                 likesRepository.save(like);
                 post.setLikesCount(post.getLikesCount() + 1); // Increment fast lookup counter
                 postRepository.save(post);
+                kafkaProducer.sendMessage("User ID " + userId + " liked Post ID " + postId);
             } else {
                 throw new PostException("User ID " + userId + " has already liked post with ID " + postId);
             }
@@ -82,6 +88,7 @@ public class PostService {
             likesRepository.save(newLike);
             post.setLikesCount(post.getLikesCount() + 1); // Increment fast lookup counter
             postRepository.save(post);
+            kafkaProducer.sendMessage("User ID " + userId + " liked Post ID " + postId);
         }
     }
 
@@ -112,6 +119,7 @@ public class PostService {
         }
 
         postRepository.save(post);
+        kafkaProducer.sendMessage("User ID " + userId + " unliked Post ID " + postId);
     }
 
     public long getLikeCount(Long postId) {
