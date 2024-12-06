@@ -33,6 +33,19 @@ Description: Provide the product documentation, which includes details on the de
 Note: The documentation should include:   
 
 ###  High-level design overview
+![img.png](high_level_overview.png) 
+In the diagram above, we can see the tools we planned on using. It included using tools such as MySQL, Docker, Kafka, communication with Google Server for Authentication. 
+
+
+![img.png](service_communication.png)
+In the diagram above, we can see the overall communication between the end-users' requests and the microservices;
+#### Api Gateway + Eureka Server (Service Registry)
+The **API Gateway**, acts as a proxy, where all requests can come through and distributes them to the appropriate microservices. Second responsibility of the **API Gateway** is being a **load balancer**. It tightly works with the Eureka Server to get information about 'living' services. 
+
+**Service Registry** (_Eureka Server_) monitors the **health** of the microservices and provides information to the API Gateway. If it was implemented, it could also share information to other microservices about the existence of other services. Since API Gateway is also a load balancer, horizontally scaled applications would contact the Eureka Server about their upbringing and the Eureka would constantly do a **healthcheck** on them. Every service will **try and contact the Eureka about their existence**, and with that the Gateway will send the request. If a service is down Gateway will not forward the request and return a 503 error. 
+
+#### Identity Service
+Identity (also known as _authentication_) microservice is responsible for authentication. With our frontend
 
 ###  Architectural diagrams (if any) 
 
@@ -43,14 +56,7 @@ Note: The documentation should include:
 ###  Any assumptions or constraints considered during development 
 
 
-{Diagram of the arch}  
-In the diagram above, we can see the tools we planned on using. It included using dependencies and tools such as MySQL, Docker, Kafka,
 
-
-
-A diagram of a company
-Description automatically generated
-Figure 2 Overall communication of the application
 
 
 
