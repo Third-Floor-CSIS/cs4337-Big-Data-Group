@@ -77,7 +77,7 @@ When an incoming request is looking for an endpoint with certain sub-route, ther
 #### Kafka Cluster
 ![kafkaDiagram.png](kafkaDiagram.png)
 
-Zookeeper acts as a cluster manager for the 3 kafka brokers. The 3 brokers store the partitions of the post-updates and profile-updates
+Zookeeper acts as a cluster manager for the three kafka brokers. The three brokers store the partitions of the post-updates and profile-updates
 kafka topics. The post and profile producers publish messages to their respective topics. The notification consumer then consumes the messages from each topic as they are produced.
 
 #### Original Database
@@ -94,7 +94,7 @@ Below are the entity relationship diagrams for each microservices database.
 ![Profile_Database.png](profileDB.png)
 #### Notification Microservice Database
 ![Notification_Database.png](notificationDB.png)
-### Technologies used Microservice Database
+### Technologies used
 
 #### Github Actions
 We used Github actions to build, test and deploy the project.  
@@ -260,9 +260,9 @@ publish profile notifications. The Kafka producers implemented utilize the Kafka
 #### Microservice integration
 Post Microservice: The ``KafkaProducer`` class in the post microservice publishes messages to the post updates topic. The ``PostService`` class produces messages after new events such as new post creation.
 
-Profile Microservice: The ``KafkaProducer`` class in the profile microservice publishes messages to the profile updates topic. The ``PostService`` class produces messages after new events such as new post creation.
+Profile Microservice: The ``KafkaProducer`` class in the profile microservice publishes messages to the profile updates topic. The ``ProfileService`` class produces messages after new events such as profile edited.
 
-Notification Microservice: The ``KafkaConsumer`` class in the profile microservice consumes messages from the profile-updates and post-updates topics. Currently the message is just printed to the terminal and stored, this could be developed further and for instance send the user 
+Notification Microservice: The ``KafkaConsumer`` class in the notifications microservice consumes messages from the profile-updates and post-updates topics. Currently the message is just printed to the terminal and stored, this could be developed further and for instance send the user 
 an email containing their notifications.
 
 #### Kafka Cluster Architecture
