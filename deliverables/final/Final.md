@@ -39,6 +39,11 @@ In the diagram above, we can see the tools we planned on using. It included usin
 In the diagram above, we can see the overall communication between the end-users' requests and the microservices;
 #### Api Gateway + Eureka Server (Service Registry)
 The **API Gateway**, acts as a proxy, where all requests can come through and distributes them to the appropriate microservices. Second responsibility of the **API Gateway** is being a **load balancer**. It tightly works with the Eureka Server to get information about 'living' services. 
+The **API Gateway** provides:
+
+- Centralized routing and filtering for all microservices.
+- Integration with the Service Registry for dynamic service discovery and fault tolerance.
+- A JWT-based request filter embedded within the gateway to validate user authentication.
 
 **Service Registry** (_Eureka Server_) monitors the **health** of the microservices and provides information to the API Gateway. If it was implemented, it could also share information to other microservices about the existence of other services. Since API Gateway is also a load balancer, horizontally scaled applications would contact the Eureka Server about their upbringing and the Eureka would constantly do a **healthcheck** on them. Every service will **try and contact the Eureka about their existence**, and with that the Gateway will send the request. If a service is down Gateway will not forward the request and return a 503 error. 
 
@@ -150,7 +155,25 @@ api.third-floor-csis.ie {
 }
 ```
 
-### Detailed explanation of components or modules 
+### Detailed explanation of components or modules
+
+### Notification Micro Service
+The Notification Microservice is responsible for managing notifications, including retrieving unread messages and will mark them as read. It is integrated with Kafka for asynchronous message processing and it also provides REST APIs for interacting with notifications. WIth Kafka this allows the system to handle a large volume of notifications without impacting the performance of other services.
+
+The notification data is stored in a database with a well-structured schema.
+- A unique notification ID to identify each notification.
+- A receiver ID to associate the notification with a specific user.
+- A status field to indicate whether the notification is unread or read.
+- A timestamp to log the creation time of each notification.
+
+For error handling, custom exceptions are implemented to provide meaningful error messages when issues occur, which makes it more user-friendly.
+
+#### Profile Service Unit Tests 
+Unit tests were added to the Profile Service to ensure its functionality and reliability. 
+##### Service Layer Tests:
+The tests for the service layer focus on the logic of managing profiles. e.g they check that profiles can be created, retrieved, and updated correctly. These tests validate that the service handles the data as expected and respects the rules defined in the business logic
+##### Controller Layer Tests:
+These ensures that the API endpoints work well as they should. tests various scenerios like Handling valid and invalid requests, Ensuring proper HTTP status codes for success and failure cases.
 
 ### Any assumptions or constraints considered during development 
 
@@ -169,10 +192,12 @@ https://third-floor-csis.ie/
 
 | Feature                     | Owner        | Notes                                                           |
 |-----------------------------|--------------|-----------------------------------------------------------------|
-|                             |              |                                                                 |
+| API Gateway                 | Fawad        | Implemented routing, filtering,& Service Registry integration   |
+| Service Registry            | Fawad        |                                                                 |
 | Microservice - Notification | Euan & Fawad | Fawad created the base microservice, Euan implemented the logic |
 | Microservice - Profile      | Brendan      |                                                                 |
 | Microservice - Posts        | Sean         |                                                                 |
+| Unit Tests - Profile        | Fawad        | Added and verified unit tests for service and controller layers |
 | CI/CD - Linter              | Euan         | Had to be removed due to time constraints                       |
 | CI/CD - Build               | Brendan      |                                                                 |
 | CI/CD - Deploy              | Brendan      |                                                                 |
