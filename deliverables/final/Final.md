@@ -60,25 +60,15 @@ By default, JWT refresh token is valid for 7 days (25,200,000 milliseconds), and
 We have created a JWT filter chain which is embedded within each microservice. At the time of creation and we were not aware that you could expose only one port and looking back now we should have only embedded within the API gateway and just forward the request if it's valid. Each microservice contains a simplified version of the JWT Service to be able to retrieve user ID, access token and how to validate the JWT signature. The filter chain will check if the request is going to an exposed endpoint (such as health checks '/test') or secured, and it will try and validate the JWT token. If it's valid, it forwards the request otherwise reject it with 403 forbidden.
 
 ### Architectural diagrams (if any) 
-As above the high-level overview of the architecture is shown. However in depth of each microservice follows the following:
+As above the high-level overview of the architecture is shown. However in depth explanations are down below
 
 #### Identity Microservice
-![identity_architecture.png](identity_ms_arch.png)
-Identity has a lot of components, tried to play around and make the most out of what spring boot provides. The user uses the frontend with the hyperlink which has a matching URI parameters as the service. 
+![identity_architecture.png](identity_ms_arch.png) 
 
-Once the user has authenticated the API to have access to the resources the authority server will give a grant code to the API. The API will then process a grant code to retrieve the access token and refresh tokens. The access token will have a lifetime of one hour while the refresh token has two weeks. Then the API will check if this user exists within the database, if the user doesn't exist from the database it creates a user with an ID. It will then generate a JWT token alongside with a refresh token, they have one hour and one week lifetimes respectively.
 
 #### API Gateway and Service Registry (Eureka Server)
-![Gateway_and_eureka.png](gateway_and_eureka.png)
-The API gateway behaves like a proxy, where all requests go through a single port, and also as a load balancer as far as we know. The Eureka server behaves as a health checker and monitors upcoming and down going servers. When a microservice comes up they will initially try and contact the service registry, on the defined port, and when the service registry receives the incoming requests, it will monitor the microservice going forward. It will then ping every couple of seconds whether the microservice is still alive, and if there is no response it will assume it to be down and the registration. As far as we know,if the microservice doesn’t receive health check, it will try and contact the Eureka. 
+![Gateway_and_eureka.png](gateway_and_eureka.png) 
 
-When an incoming request is looking for an endpoint with certain sub-route, there are sub-routes  mapped onto different microservices. The API gateway will fetch service registry for how many microservices exists for the certain route. The API gateway will then decide using round Robin to which instance to forward the request to. 
-
-#### Profile Microservice
-Allows users to customize their user profile. The user profile consists of their displayed username, profile picture, bio alongside with follower and followee count. 
-
-#### Posts Microservice
-Posts microservice allows for adding new posts, retrieving posts, liking and unliking posts. 
 
 #### Kafka Cluster
 ![kafkaDiagram.png](kafkaDiagram.png)
@@ -223,6 +213,17 @@ spring.cloud.gateway.routes[2].predicates[0]=Path=/auth/**
 ```
 ### Detailed explanation of components or modules
 
+#### Identity Microservice
+Identity has a lot of components, tried to play around and make the most out of what spring boot provides. The user uses the frontend with the hyperlink which has a matching URI parameters as the service.
+
+Once the user has authenticated the API to have access to the resources the authority server will give a grant code to the API. The API will then process a grant code to retrieve the access token and refresh tokens. The access token will have a lifetime of one hour while the refresh token has two weeks. Then the API will check if this user exists within the database, if the user doesn't exist from the database it creates a user with an ID. It will then generate a JWT token alongside with a refresh token, they have one hour and one week lifetimes respectively.
+
+#### API Gateway and Service Registry (Eureka Server)
+
+The API gateway behaves like a proxy, where all requests go through a single port, and also as a load balancer as far as we know. The Eureka server behaves as a health checker and monitors upcoming and down going servers. When a microservice comes up they will initially try and contact the service registry, on the defined port, and when the service registry receives the incoming requests, it will monitor the microservice going forward. It will then ping every couple of seconds whether the microservice is still alive, and if there is no response it will assume it to be down and the registration. As far as we know, if the microservice doesn’t receive health check, it will try and contact the Eureka.
+
+When an incoming request is looking for an endpoint with certain sub-route, there are sub-routes  mapped onto different microservices. The API gateway will fetch service registry for how many microservices exists for the certain route. The API gateway will then decide using round Robin to which instance to forward the request to.
+
 ### Notification Micro Service
 The Notification Microservice is responsible for managing notifications, including retrieving unread messages and will mark them as read. It is integrated with Kafka for asynchronous message processing and it also provides REST APIs for interacting with notifications. WIth Kafka this allows the system to handle a large volume of notifications without impacting the performance of other services.
 
@@ -245,6 +246,8 @@ The Posts microservice is a backend service built to manage user-created content
 
 The main logic lives in the service layer, while the database layer keeps everything organized and efficient. It’s designed to seamlessly handle interactions, like users liking posts, and makes sure data flows smoothly between the system’s components with the help of mappers and data transfer objects (DTOs).
 
+#### Profile Microservice
+Allows users to customize their user profile. The user profile consists of their displayed username, profile picture, bio alongside with follower and followee count.
 
 #### Profile Service Unit Tests 
 Unit tests were added to the Profile Service to ensure its functionality and reliability. 
