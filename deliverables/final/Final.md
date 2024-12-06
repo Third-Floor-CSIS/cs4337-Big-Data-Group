@@ -74,6 +74,10 @@ The API gateway behaves like a proxy, where all requests go through a single por
 
 When an incoming request is looking for an endpoint with certain sub-route, there are sub-routes  mapped onto different microservices. The API gateway will fetch service registry for how many microservices exists for the certain route. The API gateway will then decide using round Robin to which instance to forward the request to. 
 
+#### Kafka Cluster
+![kafkaDiagram.png](kafkaDiagram.png)
+Zookeeper acts as a cluster manager for the 3 kafka brokers. The 3 brokers store the partitions of the post-updates and profile-updates
+kafka topics. The post and profile producers publish messages to their respective topics. The notification consumer then consumes the messages from each topic as they are produced.
 
 ### Technologies used
 
@@ -155,6 +159,8 @@ api.third-floor-csis.ie {
 }
 ```
 
+##### Kafka
+Kafka was used to send messages between three microservices posts, profile and notification. Kafka topics (post-updates and profile-updates) allow producers (Post and Profile services) to publish events, which are then consumed by the Notification Service
 ### Detailed explanation of components or modules
 
 ### Notification Micro Service
@@ -188,6 +194,28 @@ The tests for the service layer focus on the logic of managing profiles. e.g the
 These ensures that the API endpoints work well as they should. tests various scenerios like Handling valid and invalid requests, Ensuring proper HTTP status codes for success and failure cases.
 ##### Posts Service Unit Tests:
 Includes unit and integration tests to ensure its functionality and reliability. Tests focus on critical components like the service layer and database interactions, verifying that the system behaves as expected under various scenarios.
+
+### Kafka
+The project integrates kafka as a messaging system across three microservices: Post, Profile and Notification. It is used to send notifications between the microservices. Kafka allows for real-time event handling,
+scalability and fault tolerance in the project.
+
+#### Configuration
+Two Kafka topics were configured for the project: ``post-updates``used by the post service to publish post notifications and ``profile-updates`` used by the profile service to
+publish profile notifications. The Kafka producers implemented utilize the KafkaTemplate for sending messages to topics. The consumer uses kafka listeners to consume messages from the two topics.
+
+#### Microservice integration
+Post Microservice: The ``KafkaProducer`` class in the post microservice publishes messages to the post updates topic. The ``PostService`` class produces messages after new events such as new post creation.
+
+Profile Microservice: The ``KafkaProducer`` class in the profile microservice publishes messages to the profile updates topic. The ``PostService`` class produces messages after new events such as new post creation.
+
+Notification Microservice: The ``KafkaConsumer`` class in the profile microservice consumes messages from the profile-updates and post-updates topics. Currently the message is just printed to the terminal and stored, this could be developed further and for instance send the user 
+an email containing their notifications.
+
+#### Kafka Cluster Architecture
+The Kafka cluster architecture consists of Zookeeper and three Kafka brokers. Zookeeper acts as the cluster manager ensuring the brokers are healthy and managing partitions. The three Kafka
+brokers play the role of storing partitions of each kafka topic. Each partition has a leader broker who is responsible for handling requests while the other brokers act as followers keeping replicas.
+
+
 
 ### Any assumptions or constraints considered during development 
 
