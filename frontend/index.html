@@ -37,7 +37,7 @@ href="https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=https://api.thir
 <b>^^^^ Click ^^^^</b>
 <br><br>
 <br>
-<b>After signing in, this will send a get request and you will see a json response.</b>
+<b>After signing in, this will send a GET request and you will see a json response.</b>
 <br><br>
 Sample response:
 <br>
@@ -131,7 +131,7 @@ You will be pinging the following IP address: <b>https://api.third-floor-csis.ie
     <tr>
         <td>/profile/follow/{user_id}</td>
         <td>POST</td>
-        <td>Follow the user with {user_id}. Sending the same request will unfollow. Returns the number of followers/following for your profile</td>
+        <td>Follow the user with {user_id}. Sending the same request will unfollow. Returns the number of followers/following for your profile. Try userID less than what you are provided with such as 1, 2 etc. If you are wondering what is your ID you can check it with the JWT on jwt.io</td>
     </tr>
     </tbody>
 </table>
